@@ -1,6 +1,5 @@
   
-# \<Deviant Chess\>
- > Your author list below should include links to all members GitHub (remove existing author).
+# \<Deviant Chess\>.
  
  > Authors: \<[Nathan Kond](https://github/NateGaNe)\>
 	\<[Joseph Chang](https://github.com/DevoTrix)\>
