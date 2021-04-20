@@ -1,7 +1,7 @@
   
 # \<Deviant Chess\>.
  
- > Authors: \<[Nathan Kond](https://github/NateGaNe)\>
+ > Authors: \<[Nathan Kong](https://github/NateGaNe)\>
 	\<[Joseph Chang](https://github.com/DevoTrix)\>
 	\<[Alexander Coats](https://github.com/swifteralex)\>
 
