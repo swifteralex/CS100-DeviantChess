@@ -1,9 +1,9 @@
   
 # Deviant Chess
  
- Authors: \<[Nathan Kong](https://github/NateGaNe)\>
-	\<[Joseph Chang](https://github.com/DevoTrix)\>
-	\<[Alexander Coats](https://github.com/swifteralex)\>
+ Authors: \[Nathan Kong](https://github/NateGaNe)\
+	\[Joseph Chang](https://github.com/DevoTrix)\
+	\[Alexander Coats](https://github.com/swifteralex)\
 
 
 ## Project Description
