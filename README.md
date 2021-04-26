@@ -1,5 +1,5 @@
   
-# Deviant Chess.
+# Deviant Chess
  
  Authors: \<[Nathan Kong](https://github/NateGaNe)\>
 	\<[Joseph Chang](https://github.com/DevoTrix)\>
@@ -17,15 +17,11 @@
     * Input/Output:
         * input is mouse/keyboard
         * output is screen in the console (GUI if we have time.)
-    * Composite Design Pattern
-        * Uses composite design pattern that starts with a base class that is being inheritted. We will have a base class
-        Piece that all other pieces will inherit from. This will allow us to refer to each piece with a base class pointer,
-        which will reduce spaghetti code. This way, a user could specify a piece they'd like to move and we could simply call
-        Piece.move(some location), problems may arise when a piece (such as 2 knights) can move to the same square
+    * Singleton Design Pattern
+        * We will be using Singleton as the main design pattern for this project. Since we are creating a chess game, we will only create a single instance of a chess board and
+          have other components such as chess pieces using that single instance. This way, our single instance makes sure no other instances of the chess board arises especially 	    when we do not need it and configuration of the single instance is more clear.
     * Strategy Pattern 
-        * Have a separated area where we it would be separated. Uses an algorithm to make a simple chess computer. A Chess game isn't playable without an opponent. Due to the lack of
-        knowledge on implementing a wide multiplayer game. A computer controlled opponent would be suitable. Problems may arise when designing the chess engine itself Strategy Pattern
-        would prove to be a good solution rather than random moves by the computer as it would prove to be a bit more challenging to the player.
+        * We will be using the Strategy pattern for our chess AI's. We will be developing several different types of AI's (various Stockfish levels to go against and a bot that 	   only makes random moves) and to organize these different engines we will make an interface ChessAI that captures common functionality between the engines. This design 	    pattern solves the problem of updating a class whenever a new engine is designed or updated or removed. We believe this design pattern will lead to a good solution 	  since the Strategy pattern very nicely groups all the chess engines into a single ChessAI interface that other classes can use.
  
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
