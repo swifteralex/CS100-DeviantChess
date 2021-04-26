@@ -18,10 +18,9 @@
         * input is mouse/keyboard
         * output is screen in the console (GUI if we have time.)
     * Singleton Design Pattern
-        * We will be using Singleton as the main design pattern for this project. Since we are creating a chess game, we will only create a single instance of a chess board and
-          have other components such as chess pieces using that single instance. This way, our single instance makes sure no other instances of the chess board arises especially 	    when we do not need it and configuration of the single instance is more clear.
+        * We will be using Singleton as the main design pattern for this project. Since we are creating a chess game, we will only create a single instance of a chess board and have other components such as chess pieces using that single instance.\ This way, our single instance makes sure no other instances of the chess board arises especially when we do not need it and configuration of the single instance is more clear.
     * Strategy Pattern 
-        * We will be using the Strategy pattern for our chess AI's. We will be developing several different types of AI's (various Stockfish levels to go against and a bot that 	   only makes random moves) and to organize these different engines we will make an interface ChessAI that captures common functionality between the engines. This design 	    pattern solves the problem of updating a class whenever a new engine is designed or updated or removed. We believe this design pattern will lead to a good solution 	  since the Strategy pattern very nicely groups all the chess engines into a single ChessAI interface that other classes can use.
+        * We will be using the Strategy pattern for our chess AI's. We will be developing several different types of AI's (various Stockfish levels to go against and a bot that only makes random moves) and to organize these different engines we will make an interface ChessAI that captures common functionality between the engines. This design pattern solves the problem of updating a class whenever a new engine is designed or updated or removed. We believe this design pattern will lead to a good solution since the Strategy pattern very nicely groups all the chess engines into a single ChessAI interface that other classes can use.
  
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
