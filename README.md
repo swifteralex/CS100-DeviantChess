@@ -1,31 +1,31 @@
   
-# \<Deviant Chess\>.
+# \Deviant Chess\.
  
- > Authors: \<[Nathan Kong](https://github/NateGaNe)\>
-	\<[Joseph Chang](https://github.com/DevoTrix)\>
-	\<[Alexander Coats](https://github.com/swifteralex)\>
+ Authors: \[Nathan Kong](https://github/NateGaNe)\>
+	\[Joseph Chang](https://github.com/DevoTrix)\>
+	\[Alexander Coats](https://github.com/swifteralex)\>
 
 
 ## Project Description
- >	* Language:
- >       * C++
- >           * Chosen because all three of us are familiar with C++
- >   * Chess
- >   * Focus on the base game then deviate with different rules and/or gameplay(create variants such as no castling, etc.)
- >   * This project is interesting to us as we have never done a project like this before.
- >   * As children one of the board games that we have been playing for a long time is chess, which is why it is important for us to recreate chess.
- >   * Input/Output:
- >       * input is mouse/keyboard
- >       * output is screen in the console (GUI if we have time.)
- >   * Composite Design Pattern
- >       * Uses composite design pattern that starts with a base class that is being inheritted. We will have a base class
- >       Piece that all other pieces will inherit from. This will allow us to refer to each piece with a base class pointer,
- >       which will reduce spaghetti code. This way, a user could specify a piece they'd like to move and we could simply call
- >       Piece.move(some location), problems may arise when a piece (such as 2 knights) can move to the same square
- >   * Strategy Pattern 
- >       * Have a separated area where we it would be separated. Uses an algorithm to make a simple chess computer. A Chess game isn't playable without an opponent. Due to the lack of
- >       knowledge on implementing a wide multiplayer game. A computer controlled opponent would be suitable. Problems may arise when designing the chess engine itself Strategy Pattern
- >       would prove to be a good solution rather than random moves by the computer as it would prove to be a bit more challenging to the player.
+ 	* Language:
+        * C++
+            * Chosen because all three of us are familiar with C++
+    * Chess
+    * Focus on the base game then deviate with different rules and/or gameplay(create variants such as no castling, etc.)
+    * This project is interesting to us as we have never done a project like this before.
+    * As children one of the board games that we have been playing for a long time is chess, which is why it is important for us to recreate chess.
+    * Input/Output:
+        * input is mouse/keyboard
+        * output is screen in the console (GUI if we have time.)
+    * Composite Design Pattern
+        * Uses composite design pattern that starts with a base class that is being inheritted. We will have a base class
+        Piece that all other pieces will inherit from. This will allow us to refer to each piece with a base class pointer,
+        which will reduce spaghetti code. This way, a user could specify a piece they'd like to move and we could simply call
+        Piece.move(some location), problems may arise when a piece (such as 2 knights) can move to the same square
+    * Strategy Pattern 
+        * Have a separated area where we it would be separated. Uses an algorithm to make a simple chess computer. A Chess game isn't playable without an opponent. Due to the lack of
+        knowledge on implementing a wide multiplayer game. A computer controlled opponent would be suitable. Problems may arise when designing the chess engine itself Strategy Pattern
+        would prove to be a good solution rather than random moves by the computer as it would prove to be a bit more challenging to the player.
  
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
