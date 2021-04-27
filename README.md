@@ -15,7 +15,7 @@
     * This project is interesting to us as we have never done a project like this before.
     * As children one of the board games that we have been playing for a long time is chess, which is why it is important for us to recreate chess.
     * Technologies
-    	* We will be using Stockfish, an open source chess engine
+        * We will be using Stockfish, an open source chess engine
     * Input/Output:
         * input is mouse/keyboard
         * output is screen in the console (GUI if we have time.)
