@@ -36,8 +36,14 @@
   * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
     * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
     * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-## Class Diagram
-  Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+    * 
+  ## Class Diagram
+  ![diagram](https://i.imgur.com/I4ay8aV.png)
+  This diagram shows both of our design patterns. Within the Board class, we have used the Singleton pattern to make sure only one instance of a Board() object gets allocated at a time. This is accomplished by using a private constructor that is only called when variable instance is nullptr. Our other design pattern is the Strategy pattern; we have created an abstract class AIStrategy that other classes can inherit from. These inherited classes have to implement the getBestMove() function. The Board class contains a reference to an AIStrategy object so that it can generate a computer move independent of the engine being used.
+  
+  The Board class contains data for the position of the board -- a 8x8 2d array of chars representing the pieces ('n' = knight, 'p' = pawn, etc.), 2 chars representing castling rights for each player (0 = no castling, 1 = O-O only, 2 = O-O-O only, 3 = both), and an en-passant square if the last move was a pawn going two squares (0 if not). The class also contains a generateFEN() function that will be used by the engines. The function playMove() will take in a string representing a move (ex. "a1 c2" would move a knight from square a1 to c2 if possible), returning false if the move isn't legal. The Board constructor should set up the pieces in their starting positions among other actions.
+  
+  The engines would be instantiated by the setStrategy(AIStrategy*) method of the Board class. We'll use the convention that a nullptr strategy will mean that the game is between two human players and not a player and an engine.
  
   ## Phase III
   You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
