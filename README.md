@@ -19,12 +19,10 @@
     * Input/Output:
         * input is mouse/keyboard
         * output is screen in the console (GUI if we have time.)
-    * Singleton Design Pattern
-        * We will be using Singleton as the main design pattern for this project. Since we are creating a chess game, we will only create a single instance of a chess board and have other components such as chess pieces using that single instance. 
-	      This way, our single instance makes sure no other instances of the chess board arises especially when we do not need it and configuration of the single instance is more clear.
+    * Composite Design Pattern
+        * We will be using the Composite pattern for this project. We intend to use it to create a base class for every object in our chess game, from the board to the pieces, and use a Board class as the composite class in the pattern. This way, we can reference every object in the game with a single ChessObject type. This base class will have a playMove() and a getColor() method, which can be applied to both the game board and the pieces. This pattern will solve the issue of redudant code and will help organize all of the different classes being used.
     * Strategy Pattern 
-        * We will be using the Strategy pattern for our chess AI's. We will be developing several different types of AI's (various Stockfish levels to go against and a bot that only makes random moves) and to organize these different engines we will make an interface ChessAI that captures common functionality between the engines.
-          This design pattern solves the problem of updating a class whenever a new engine is designed or updated or removed. We believe this design pattern will lead to a good solution since the Strategy pattern very nicely groups all the chess engines into a single ChessAI interface that other classes can use.
+        * We will be using the Strategy pattern for our chess AI's. We will be developing several different types of AI's (various Stockfish levels to go against and a bot that only makes random moves) and to organize these different engines we will make an interface ChessAI that captures common functionality between the engines. This design pattern solves the problem of updating a class whenever a new engine is designed or updated or removed. We believe this design pattern will lead to a good solution since the Strategy pattern very nicely groups all the chess engines into a single ChessAI interface that other classes can use.
  
   ## Phase II
   In addition to completing the "Class Diagram" section below, you will need to 
@@ -38,12 +36,10 @@
     * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
     * 
   ## Class Diagram
-  ![diagram](https://i.imgur.com/I4ay8aV.png)
-  This diagram shows both of our design patterns. Within the Board class, we have used the Singleton pattern to make sure only one instance of a Board() object gets allocated at a time. This is accomplished by using a private constructor that is only called when variable instance is nullptr. Our other design pattern is the Strategy pattern; we have created an abstract class AIStrategy that other classes can inherit from. These inherited classes have to implement the getBestMove() function. The Board class contains a reference to an AIStrategy object so that it can generate a computer move independent of the engine being used.
+  ![diagram](https://i.imgur.com/kOBLUrA.png)
+  This diagram shows both of our design patterns. We have used the composite pattern -- the ChessObject class is the component, the Knight, Pawn, Bishop, etc. classes (all derived from a Piece class) are leafs, and the Board class is the composite class. We also used the strategy pattern for our chess ai's, enabling us to reference each ai with one AIStrategy type.
   
-  The Board class contains data for the position of the board -- a 8x8 2d array of chars representing the pieces ('n' = knight, 'p' = pawn, etc.), 2 chars representing castling rights for each player (0 = no castling, 1 = O-O only, 2 = O-O-O only, 3 = both), and an en-passant square if the last move was a pawn going two squares (0 if not). The class also contains a generateFEN() function that will be used by the engines. The function playMove() will take in a string representing a move (ex. "a1 c2" would move a knight from square a1 to c2 if possible), returning false if the move isn't legal. The Board constructor should set up the pieces in their starting positions among other actions.
-  
-  The engines would be instantiated by the setStrategy(AIStrategy*) method of the Board class. We'll use the convention that a nullptr strategy will mean that the game is between two human players and not a player and an engine.
+  The Board class contains data for the position of the board -- a 8x8 2d array of Piece*, 1 string representing castling rights for each player ("-" = no castling, "KkQq" = both sides can castle queen and kingside, etc.), and an en-passant square if the last move was a pawn going two squares ("-" if not). The class also contains a generateFEN() function that will be used by the engines. The function playMove(), aided by the isInCheck() and getLegalMoves() functions, will take in a string representing a move (ex. "a1 c2" would move a knight from square a1 to c2 if possible), returning false if the move isn't legal. The Board constructor should set up the pieces in their starting positions among other actions.
  
   ## Phase III
   You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
