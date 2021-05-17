@@ -34,6 +34,8 @@ private:
     Board() {};
 
 public:
+    Board(AIStrategy*);
+    
     void setPosition(const std::vector<std::vector<char>>&);
 
     // Returns a pointer to a list of legal moves for the current player.
