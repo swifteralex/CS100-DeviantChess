@@ -31,7 +31,7 @@ void Board::printBoard() const {
 
 }
 
-char Board::getColor() {
+char Board::getColor() const{
 
 }
 
