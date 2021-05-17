@@ -30,3 +30,13 @@ bool Board::playMove(const std::string& move) {
 void Board::printBoard() const {
 
 }
+
+char Board::getColor() {
+
+}
+
+void Board::setColor(char c) {
+
+
+
+}
