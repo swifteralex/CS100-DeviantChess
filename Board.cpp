@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <iostream>
 
 void Board::setPosition(const std::vector<std::vector<char>>& pos) {
 
@@ -28,7 +29,12 @@ bool Board::playMove(const std::string& move) {
 }
 
 void Board::printBoard() const {
-
+    for (int i = 0; i < pos.size(); ++i) {
+        for (int j = 0; j < pos[i].size(); ++j) {
+            std::cout << pos[i][j]->getPieceName() << ' ';
+        }
+        std::cout << std::endl;
+    }
 }
 
 char Board::getColor() const{
