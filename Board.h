@@ -59,7 +59,7 @@ public:
 
     void printBoard() const;
     
-    char getColor();
+    char getColor() const;
     
     void setColor(char);
     
