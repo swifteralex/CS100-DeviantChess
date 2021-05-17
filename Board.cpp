@@ -1,6 +1,11 @@
 #include "Board.h"
 #include <iostream>
 
+Board::Board(AIStrategy* ) {
+
+
+}
+
 void Board::setPosition(const std::vector<std::vector<char>>& pos) {
 
 }
