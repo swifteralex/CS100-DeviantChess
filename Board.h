@@ -8,15 +8,7 @@ class Board {
 private: 
     // 8x8 array of chars that represent the pieces on the board from white's perspective.
     // 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
-    std::vector<std::vector<char>> pos = {
-        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
-        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
-        {  0,   0,   0,   0,   0,   0,   0,   0  },
-        {  0,   0,   0,   0,   0,   0,   0,   0  },
-        {  0,   0,   0,   0,   0,   0,   0,   0  },
-        {  0,   0,   0,   0,   0,   0,   0,   0  },
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
-        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    std::vector<std::vector<ChessObject*>> pos = {
     };
 
     // This MUST be set to nullptr outside of the class before any code is run; setting to
@@ -66,6 +58,11 @@ public:
     bool playMove(const std::string&);
 
     void printBoard() const;
+    
+    char getColor();
+    
+    void setColor(char);
+    
 };
 
 #endif
