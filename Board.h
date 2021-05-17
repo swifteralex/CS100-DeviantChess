@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class Board {
+class Board :public ChessObject{
 private: 
     // 8x8 array of chars that represent the pieces on the board from white's perspective.
     // 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
