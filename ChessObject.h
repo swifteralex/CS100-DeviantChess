@@ -14,9 +14,9 @@ char getColor();
   
 char getLabel();
   
-void setColor();
+void setColor(char);
 
-void setLabel();
+void setLabel(string);
 
 
 #endif
