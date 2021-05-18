@@ -28,5 +28,14 @@ bool Board::playMove(const std::string& move) {
 }
 
 void Board::printBoard() const {
-
+	cout << "=====================================" << endl;
+        for(int i = 0; i < pos.size(); i++){
+		cout << "|   ";
+                for(int j = 0; j < pos.at(i).size(); j++){
+                	cout << pos.at(i).at(j) << "   ";
+                }
+            	cout << "|" <<endl <<"|                                   |"<< endl;
+        }
+        cout << "=====================================";
 }
+
