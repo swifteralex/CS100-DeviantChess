@@ -79,7 +79,12 @@ void Board::printBoard() const {
 char Board::getColor(){
 	return currentTurn;
 }
-
+char Board::getLabel(){
+	return title;
+}
+void Board::setLabel(char l){
+	title = l;
+}
 void setColor(char turn){
 	currentTurn = turn;
 }

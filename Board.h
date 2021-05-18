@@ -25,7 +25,7 @@ Class Board: public ChessObject{
 		// This MUST be set to nullptr outside of the class before any code is run; setting to
 		// nullptr here is a compiler error.
 		static Board* instance;
-
+		char title = 'C'
 		// AIStrategy* strategy;
 	
 		// Holds data about where each player can castle.
@@ -59,4 +59,6 @@ Class Board: public ChessObject{
 		
 		Piece getPieceAt(string &position);
    		void printBoard() const;
+		char getLabel();
+		void setLabel(char l);
 };
