@@ -9,7 +9,7 @@ char ChessObject::getColor() {
   return color;
 }
 
-char ChessObject::getLabel() {
+string ChessObject::getLabel() {
   return label;
 }
 
