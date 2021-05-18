@@ -1,12 +1,10 @@
 #include "Board.h"
 
-void Board::setPosition(const std::vector<std::vector<char>>& pos) {
-
+void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
+	this->pos = pos;
 }
 
-std::vector<std::string>* Board::getLegalMoves() const {
-    return new std::vector<std::string>();
-}
+
 
 bool Board::isInCheck() const {
     return false;
@@ -23,8 +21,43 @@ std::string Board::generateFEN() const {
     return "";
 }
 
-bool Board::playMove(const std::string& move) {
-    return false;
+vector<int> findVPos(string &pos){
+    vector<int> posit(2);
+    string num = pos.substr(1,2);
+    sstream g(num);
+    int n = 0;
+    g >> n;
+    posit(0) = n;
+    string post = pos.substr(0,1);
+    if(post == 'a'|| post == 'A'){
+        posit[1] = 0;
+    }
+    else(post == "b" || post == "B"){
+        posit[1] = 1;
+    }
+    else(post == "c" || post == "C"){
+        posit[1] = 2;
+    }
+    else(post == "d" || post == "D"){
+        posit[1] = 3;
+    }
+    else(post == "e" || post == "E"){
+        posit[1] = 4;
+    }
+    else(post == "f" || post == "F"){
+        posit[1] = 5;
+    }
+    else(post == "g" || post == "G"){
+        posit[1] = 6;
+    }
+    else(post == "h" || post == "H"){
+        posit[1] = 7;
+    }
+    return posit;
+}
+Piece Board::getPieceAt(string &position){
+    vector<int> vPos = findVPos(position);
+    return pos.at(vPos.at(0)).at(vPos.at(1));
 }
 
 void Board::printBoard() const {
