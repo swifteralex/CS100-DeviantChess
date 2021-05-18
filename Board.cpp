@@ -76,4 +76,10 @@ void Board::printBoard() const {
             cout << "   ====================================="<< endl;
             cout << "       A   B   C   D   E   F   G   H" << endl;
 }
+char Board::getColor(){
+	return currentTurn;
+}
 
+void setColor(char turn){
+	currentTurn = turn;
+}

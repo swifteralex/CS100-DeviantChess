@@ -13,14 +13,14 @@ Class Board: public ChessObject{
 		// 8x8 array of chars that represent the pieces on the board from white's perspective.
 		// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
 		std::vector<std::vector<ChessObject*>> pos = {
-        { new Rook(instance, 'r', "black"), new Knight(instance, 'n', "black"), new Bishop(instance, 'b', "black"), new Queen(instance,'q', "queen"), new King(instance, 'k', "black"), new Bishop(instance, 'b', "black"), new Knight(instance, 'n', "black", new Rook(instance, 'r', "black"  },
-        { new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black"), new Pawn(instance, 'p', "black") },
+        { new Rook(instance, 'r', 'b'), new Knight(instance, 'n', 'b'), new Bishop(instance, 'b', 'b'), new Queen(instance,'q', 'b'), new King(instance, 'k', 'b'), new Bishop(instance, 'b', 'b'), new Knight(instance, 'n', 'b', new Rook(instance, 'r', 'b'  },
+        { new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b') },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        { new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white"), new Pawn(instance, 'P', "white") },
-        { new Rook(instance, 'R', "White"), new Knight(instance, 'N', "white"), new Bishop(instance, 'B', "white"), new Queen(instance,'Q', "white"), new King(instance, 'K', "white"), new Bishop(instance, 'B', "white"), new Knight(instance, 'N', "White", new Rook(instance, 'R', "White" }
+        { new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w') },
+        { new Rook(instance, 'R', 'w'), new Knight(instance, 'N', 'w'), new Bishop(instance, 'B', 'w'), new Queen(instance,'Q', 'w'), new King(instance, 'K', 'w'), new Bishop(instance, 'B', 'w'), new Knight(instance, 'N', 'w', new Rook(instance, 'R', 'w' }
     	};
 		// This MUST be set to nullptr outside of the class before any code is run; setting to
 		// nullptr here is a compiler error.
