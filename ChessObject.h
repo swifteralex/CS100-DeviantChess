@@ -12,7 +12,7 @@ ChessObject(char,string);
 
 char getColor();
   
-char getLabel();
+string getLabel();
   
 void setColor(char);
 
