@@ -1,6 +1,6 @@
 #include "Board.h"
 
-void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
+void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
 	this->pos = pos;
 }
 

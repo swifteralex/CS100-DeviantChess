@@ -12,7 +12,7 @@ Class Board: public ChessObject{
 	private:
 		// 8x8 array of chars that represent the pieces on the board from white's perspective.
 		// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
-		std::vector<std::vector<ChessObject*>> pos = {
+		std::vector<std::vector<Piece*>> pos = {
         { new Rook('r', 'b'), new Knight('n', 'b'), new Bishop('b', 'b'), new Queen('q', 'b'), new King('k', 'b'), new Bishop('b', 'b'), new Knight('n', 'b', new Rook('r', 'b'  },
         { new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b') },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
