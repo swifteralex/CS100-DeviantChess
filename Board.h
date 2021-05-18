@@ -13,18 +13,18 @@ Class Board: public ChessObject{
 		// 8x8 array of chars that represent the pieces on the board from white's perspective.
 		// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
 		std::vector<std::vector<ChessObject*>> pos = {
-        { new Rook(instance, 'r', 'b'), new Knight(instance, 'n', 'b'), new Bishop(instance, 'b', 'b'), new Queen(instance,'q', 'b'), new King(instance, 'k', 'b'), new Bishop(instance, 'b', 'b'), new Knight(instance, 'n', 'b', new Rook(instance, 'r', 'b'  },
-        { new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b'), new Pawn(instance, 'p', 'b') },
+        { new Rook('r', 'b'), new Knight('n', 'b'), new Bishop('b', 'b'), new Queen('q', 'b'), new King('k', 'b'), new Bishop('b', 'b'), new Knight('n', 'b', new Rook('r', 'b'  },
+        { new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b') },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
         {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        { new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w'), new Pawn(instance, 'P', 'w') },
-        { new Rook(instance, 'R', 'w'), new Knight(instance, 'N', 'w'), new Bishop(instance, 'B', 'w'), new Queen(instance,'Q', 'w'), new King(instance, 'K', 'w'), new Bishop(instance, 'B', 'w'), new Knight(instance, 'N', 'w', new Rook(instance, 'R', 'w' }
+        { new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w') },
+        { new Rook('R', 'w'), new Knight('N', 'w'), new Bishop('B', 'w'), new Queen('Q', 'w'), new King('K', 'w'), new Bishop('B', 'w'), new Knight('N', 'w'), new Rook('R', 'w') }
     	};
 		// This MUST be set to nullptr outside of the class before any code is run; setting to
 		// nullptr here is a compiler error.
-		static Board* instance;
+		//static Board* instance;
 		char title = 'C'
 		// AIStrategy* strategy;
 	
