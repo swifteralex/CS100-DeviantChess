@@ -69,7 +69,7 @@ void Board::printBoard() const {
                 num = num-1;
                 cout << "|   ";
                 for(int j = 0; j < pos.at(i).size(); j++){
-                    cout << pos.at(i).at(j) << "   ";
+                    cout << pos.at(i).at(j)->getLabel() << "   ";
                 }
             cout << "|" <<endl <<"   |                                   |"<< endl;
             }
