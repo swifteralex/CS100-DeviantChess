@@ -3,20 +3,21 @@
 
 
 class ChessObject {
+  
 private:
-char color;
-string label;
+  char color;
+  string label;
 
 public:
-ChessObject(char,string);
+  ChessObject(char,string);
 
-char getColor();
+  char getColor();
   
-string getLabel();
+  string getLabel();
   
-void setColor(char);
+  void setColor(char);
 
-void setLabel(string);
+  void setLabel(string);
 
 
 #endif
