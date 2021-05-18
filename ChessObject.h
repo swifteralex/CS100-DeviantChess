@@ -5,14 +5,18 @@
 class ChessObject {
 private:
 char color;
-char pieceName;
+string label;
 
 public:
-ChessObject(char);
+ChessObject(char,string);
 
-char getColor() const;
+char getColor();
+  
+char getLabel();
+  
+void setColor();
 
-char getPieceName() const;
+void setLabel();
 
 
 #endif
