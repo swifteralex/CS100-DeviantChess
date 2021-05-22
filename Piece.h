@@ -1,16 +1,18 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-class Piece: public ChessObject {
+#include "Board.h"
+#include "ChessObject.h"
+
+class Piece : public ChessObject {
   
 private:
-  string pos;
-  Board* chessBoard;
+  std::string pos;
+  //Board* chessBoard;
   
 public:
-  bool playMove(string);
-  vector<string>* getLegalMoves();
-  
-  
+  virtual bool playMove(const std::string&) = 0;
+  virtual std::vector<std::string>* getLegalMoves() = 0;
 };
+
 #endif

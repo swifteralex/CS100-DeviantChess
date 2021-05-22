@@ -1,10 +1,9 @@
 #include "Board.h"
-Board* Board::instance = nullptr;
 
 int main() {
-    Board* board = board->getInstance();
+    Board board;
 
-    board->printBoard();
+    board.printBoard();
 
     return 0;
 }

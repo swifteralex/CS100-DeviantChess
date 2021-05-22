@@ -1,23 +1,24 @@
 #ifndef CHESSOBJECT_H
 #define CHESSOBJECT_H
 
+#include <string>
 
 class ChessObject {
   
 private:
   char color;
-  string label;
+  std::string label;
 
 public:
-  ChessObject(char,string);
+  ChessObject(char,const std::string&);
 
-  char getColor();
+  char getColor() const;
   
-  string getLabel();
+  std::string getLabel() const;
   
   void setColor(char);
 
-  void setLabel(string);
-
+  void setLabel(const std::string&);
+};
 
 #endif
