@@ -8,24 +8,13 @@
 #include "ChessObject.h"
 #include "Piece.h"
 
+class Piece;
+
 class Board : public ChessObject {
 private:
 	// 8x8 array of chars that represent the pieces on the board from white's perspective.
 	// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
-	std::vector<std::vector<Piece*>> pos = {
-//        	{ new Rook(this, 'r', 'b'), new Knight(this, 'n', 'b'), new Bishop(this, 'b', 'b'), new Queen(this,'q', 'b'), new King(this, 'k', 'b'), new Bishop(this, 'b', 'b'), new Knight(this, 'n', 'b'), new Rook(this, 'r', 'b')  },
-//        	{ new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b'), new Pawn(this, 'p', 'b') },
-        	{  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        	{  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        	{  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        	{  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-		{  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-                {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-                {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-                {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  }
-//        	{ new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w'), new Pawn(this, 'P', 'w') },
-//        	{ new Rook(this, 'R', 'w'), new Knight(this, 'N', 'w'), new Bishop(this, 'B', 'w'), new Queen(this,'Q', 'w'), new King(this, 'K', 'w'), new Bishop(this, 'B', 'w'), new Knight(this, 'N', 'w'), new Rook(this, 'R', 'w') }
-    	};
+	std::vector<std::vector<Piece*>> pos;
 
 	char title = 'C';
 
@@ -46,6 +35,8 @@ private:
 
 public:
 	Board();
+
+        ~Board();
                 
 	void setPosition(const std::vector<std::vector<Piece*>>&);
 

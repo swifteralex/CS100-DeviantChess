@@ -2,7 +2,28 @@
 #include "Piece.h"
 #include <sstream>
 
-Board::Board() : ChessObject('w', "board") {}
+Board::Board() : ChessObject('w', "board") {
+    pos = {
+        { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
+        { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        { new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P") },
+        { new Rook(this, 'w', "R"), new Knight(this, 'w', "N"), new Bishop(this, 'w', "B"), new Queen(this, 'w', "Q"), new King(this, 'w', "K"), new Bishop(this, 'w', "B"), new Knight(this, 'w', "N"), new Rook(this, 'w', "R") }
+    };
+}
+
+Board::~Board() {
+    for (std::vector<Piece*> row : pos) {
+        for (Piece* piece : row) {
+            if (piece) {
+                delete piece;
+            }
+        }
+    }
+}
 
 void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
     this->pos = pos;
@@ -65,8 +86,11 @@ void Board::printBoard() const {
             std::cout << "|   ";
             for(int j = 0; j < pos.at(i).size(); j++){
                 if (pos.at(i).at(j)) {
-                    std::cout << pos.at(i).at(j)->getLabel() << "   ";
+                    std::cout << pos.at(i).at(j)->getLabel();
+                } else {
+                    std::cout << " ";
                 }
+                std::cout << "   ";
             }
             std::cout << "|" << std::endl <<"   |                                   |"<< std::endl;
         }
