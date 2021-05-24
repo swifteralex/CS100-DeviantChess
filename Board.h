@@ -40,6 +40,8 @@ public:
                 
 	void setPosition(const std::vector<std::vector<Piece*>>&);
 
+	void setPosition(const std::vector<std::vector<char>>&);
+
 	// Returns true if the current player is in check
 	bool isInCheck() const;
 

@@ -29,6 +29,43 @@ void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
     this->pos = pos;
 }
 
+void Board::setPosition(const std::vector<std::vector<char>>& in) {
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (pos[r][c]) {
+                delete pos[r][c];
+            }
+            if (in[r][c] == '0') {
+                pos[r][c] = nullptr;
+            } else if (in[r][c] == 'r') {
+                pos[r][c] = new Rook(this, 'b', "r");
+            } else if (in[r][c] == 'n') {
+                pos[r][c] = new Knight(this, 'b', "n");
+            } else if (in[r][c] == 'b') {
+                pos[r][c] = new Bishop(this, 'b', "b");
+            } else if (in[r][c] == 'q') {
+                pos[r][c] = new Queen(this, 'b', "q");
+            } else if (in[r][c] == 'k') {
+                pos[r][c] = new King(this, 'b', "k");
+            } else if (in[r][c] == 'p') {
+                pos[r][c] = new Pawn(this, 'b', "p");
+            } else if (in[r][c] == 'R') {
+                pos[r][c] = new Rook(this, 'w', "R");
+            } else if (in[r][c] == 'N') {
+                pos[r][c] = new Knight(this, 'w', "N");
+            } else if (in[r][c] == 'B') {
+                pos[r][c] = new Bishop(this, 'w', "B");
+            } else if (in[r][c] == 'Q') {
+                pos[r][c] = new Queen(this, 'w', "Q");
+            } else if (in[r][c] == 'K') {
+                pos[r][c] = new King(this, 'w', "K");
+            } else {
+                pos[r][c] = new Pawn(this, 'w', "P");
+            }
+        }
+    }
+}
+
 bool Board::isInCheck() const {
     // find king position
     int kingRow = -1;
