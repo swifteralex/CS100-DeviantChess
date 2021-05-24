@@ -5,7 +5,7 @@
 
 class ChessObject {
   
-private:
+protected:
   char color;
   std::string label;
 

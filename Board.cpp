@@ -39,7 +39,7 @@ bool Board::isInCheck() const {
             if (!p) {
                 continue;
             }
-            if (((color == 'w') && (p->getLabel() == 'K')) || ((color == 'b') && (p->getLabel() == 'k'))) {
+            if (((color == 'w') && (p->getLabel() == "K")) || ((color == 'b') && (p->getLabel() == "k"))) {
                 kingRow = row;
                 kingCol = col;
                 break;
@@ -53,19 +53,19 @@ bool Board::isInCheck() const {
     // check if enemy pawn is attacking king
     if (color == 'w') {
         if (kingRow >= 1) {
-            if (kingCol >= 1 && pos[kingRow - 1][kingCol - 1] && (pos[kingRow - 1][kingCol - 1])->getLabel() == 'p') {
+            if (kingCol >= 1 && pos[kingRow - 1][kingCol - 1] && (pos[kingRow - 1][kingCol - 1])->getLabel() == "p") {
                 return true;
             }
-            if (kingCol <= 6 && pos[kingRow - 1][kingCol + 1] && (pos[kingRow - 1][kingCol + 1])->getLabel() == 'p') {
+            if (kingCol <= 6 && pos[kingRow - 1][kingCol + 1] && (pos[kingRow - 1][kingCol + 1])->getLabel() == "p") {
                 return true;
             }
         }
     } else {
         if (kingRow <= 6) {
-            if (kingCol >= 1 && pos[kingRow + 1][kingCol - 1] && (pos[kingRow + 1][kingCol - 1])->getLabel() == 'P') {
+            if (kingCol >= 1 && pos[kingRow + 1][kingCol - 1] && (pos[kingRow + 1][kingCol - 1])->getLabel() == "P") {
                 return true;
             }
-            if (kingCol <= 6 && pos[kingRow + 1][kingCol + 1] && (pos[kingRow + 1][kingCol + 1])->getLabel() == 'P') {
+            if (kingCol <= 6 && pos[kingRow + 1][kingCol + 1] && (pos[kingRow + 1][kingCol + 1])->getLabel() == "P") {
                 return true;
             }
         }
@@ -83,7 +83,7 @@ bool Board::isInCheck() const {
                 if (!p) {
                     continue;
                 }
-                if ((p->getLabel() == 'n' && color == 'w') || (p->getLabel() == 'N' && color == 'b')) {
+                if ((p->getLabel() == "n" && color == 'w') || (p->getLabel() == "N" && color == 'b')) {
                     return true;
                 }
             }
@@ -103,10 +103,10 @@ bool Board::isInCheck() const {
             if (!p) {
                 continue;
             }
-            if (color == 'w' && (p->getLabel() == 'q' || p->getLabel() == 'b')) {
+            if (color == 'w' && (p->getLabel() == "q" || p->getLabel() == "b")) {
                 return true;
             }
-            if (color == 'b' && (p->getLabel() == 'Q' || p->getLabel() == 'B')) {
+            if (color == 'b' && (p->getLabel() == "Q" || p->getLabel() == "B")) {
                 return true;
             }
             break;
@@ -126,10 +126,10 @@ bool Board::isInCheck() const {
             if (!p) {
                 continue;
             }
-            if (color == 'w' && (p->getLabel() == 'q' || p->getLabel() == 'r')) {
+            if (color == 'w' && (p->getLabel() == "q" || p->getLabel() == "r")) {
                 return true;
             }
-            if (color == 'b' && (p->getLabel() == 'Q' || p->getLabel() == 'R')) {
+            if (color == 'b' && (p->getLabel() == "Q" || p->getLabel() == "R")) {
                 return true;
             }
             break;
