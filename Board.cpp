@@ -35,7 +35,7 @@ bool Board::isInCheck() const {
     int kingCol = -1;
     for (char row = 0; row < 8; row++) {
         for (char col = 0; col < 8; col++) {
-            ChessObject* p = pos[row][col];
+            Piece* p = pos[row][col];
             if (!p) {
                 continue;
             }
@@ -79,7 +79,7 @@ bool Board::isInCheck() const {
                 continue;
             }
             if (kingRow + rowDiff >= 0 && kingRow + rowDiff <= 7 && kingCol + colDiff >= 0 && kingCol + colDiff <= 7) {
-                ChessObject* p = pos[kingRow + rowDiff][kingCol + colDiff];
+                Piece* p = pos[kingRow + rowDiff][kingCol + colDiff];
                 if (!p) {
                     continue;
                 }
@@ -97,7 +97,7 @@ bool Board::isInCheck() const {
         int row = kingRow + rowDiff;
         int col = kingCol + colDiff;
         while (row >= 0 && row <= 7 && col >= 0 && col <= 7) {
-            ChessObject* p = pos[row][col];
+            Piece* p = pos[row][col];
             row += rowDiff;
             col += colDiff;
             if (!p) {
@@ -120,7 +120,7 @@ bool Board::isInCheck() const {
         int row = kingRow + rowDiff;
         int col = kingCol + colDiff;
         while (row >= 0 && row <= 7 && col >= 0 && col <= 7) {
-            ChessObject* p = pos[row][col];
+            Piece* p = pos[row][col];
             row += rowDiff;
             col += colDiff;
             if (!p) {
