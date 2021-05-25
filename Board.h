@@ -50,7 +50,7 @@ Class Board: public ChessObject{
 		bool isInCheck() const;
 
     		// Returns a pointer to the only Board object.
-    		static Board* getInstance();
+    		// static Board* getInstance();
 
     		// void setStrategy(AIStrategy*)
 
@@ -58,6 +58,7 @@ Class Board: public ChessObject{
    	   	std::string generateFEN() const;
 		
 		Piece getPieceAt(string &position);
+		void updateBoard();
    		void printBoard() const;
 		char getLabel();
 		void setLabel(char l);
