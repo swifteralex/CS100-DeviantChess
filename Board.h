@@ -12,16 +12,7 @@ Class Board: public ChessObject{
 	private:
 		// 8x8 array of chars that represent the pieces on the board from white's perspective.
 		// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
-		std::vector<std::vector<Piece*>> pos = {
-        { new Rook('r', 'b'), new Knight('n', 'b'), new Bishop('b', 'b'), new Queen('q', 'b'), new King('k', 'b'), new Bishop('b', 'b'), new Knight('n', 'b', new Rook('r', 'b'  },
-        { new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b'), new Pawn('p', 'b') },
-        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
-        { new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w'), new Pawn('P', 'w') },
-        { new Rook('R', 'w'), new Knight('N', 'w'), new Bishop('B', 'w'), new Queen('Q', 'w'), new King('K', 'w'), new Bishop('B', 'w'), new Knight('N', 'w'), new Rook('R', 'w') }
-    	};
+		std::vector<std::vector<Piece*>> pos;
 		// This MUST be set to nullptr outside of the class before any code is run; setting to
 		// nullptr here is a compiler error.
 		//static Board* instance;
@@ -41,10 +32,14 @@ Class Board: public ChessObject{
 
 		// 'w' = next move will be played by white, 'b' = next move by black
 		char currentTurn = 'w';
-    		vector<int> findVPos(string &pos);
-    		Board() {};
+    		vector<int> findVPos(std::string &pos);
+    		//Board() {};
 	public:
+		Board();
+		~Board();
+
 		void setPosition(const std::vector<std::vector<ChessObject*>>&);
+		void setPosition(const std:vector<std::vector<char>>&);
 
 		// Returns true if the current player is in check
 		bool isInCheck() const;
@@ -63,3 +58,5 @@ Class Board: public ChessObject{
 		char getLabel();
 		void setLabel(char l);
 };
+
+#endif

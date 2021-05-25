@@ -1,27 +1,106 @@
 #include "Board.h"
 
+
+Board::Board() : ChessObject('w', "board") {
+    pos = {
+        { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
+        { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        {  nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr,   nullptr  },
+        { new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P"), new Pawn(this, 'w', "P") },
+        { new Rook(this, 'w', "R"), new Knight(this, 'w', "N"), new Bishop(this, 'w', "B"), new Queen(this, 'w', "Q"), new King(this, 'w', "K"), new Bishop(this, 'w', "B"), new Knight(this, 'w', "N"), new Rook(this, 'w', "R") }
+    };
+}
+
+Board::~Board() {
+    for (std::vector<Piece*> row : pos) {
+        for (Piece* piece : row) {
+            if (piece) {
+                delete piece;
+            }
+        }
+    }
+}
+
+void Board::setPosition(const std::vector<std::vector<char>>& in) {
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (pos[r][c]) {
+                delete pos[r][c];
+            }
+            if (in[r][c] == '0') {
+                pos[r][c] = nullptr;
+            } else if (in[r][c] == 'r') {
+                pos[r][c] = new Rook(this, 'b', "r");
+            } else if (in[r][c] == 'n') {
+                pos[r][c] = new Knight(this, 'b', "n");
+            } else if (in[r][c] == 'b') {
+                pos[r][c] = new Bishop(this, 'b', "b");
+            } else if (in[r][c] == 'q') {
+                pos[r][c] = new Queen(this, 'b', "q");
+            } else if (in[r][c] == 'k') {
+                pos[r][c] = new King(this, 'b', "k");
+            } else if (in[r][c] == 'p') {
+                pos[r][c] = new Pawn(this, 'b', "p");
+            } else if (in[r][c] == 'R') {
+                pos[r][c] = new Rook(this, 'w', "R");
+            } else if (in[r][c] == 'N') {
+                pos[r][c] = new Knight(this, 'w', "N");
+            } else if (in[r][c] == 'B') {
+                pos[r][c] = new Bishop(this, 'w', "B");
+            } else if (in[r][c] == 'Q') {
+                pos[r][c] = new Queen(this, 'w', "Q");
+            } else if (in[r][c] == 'K') {
+                pos[r][c] = new King(this, 'w', "K");
+            } else {
+                pos[r][c] = new Pawn(this, 'w', "P");
+            }
+        }
+    }
+}
+
 void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
 	this->pos = pos;
 }
 
+bool Board::updateBoard(string& pos1, string& pos2){
+    vector<int> pos1v = findVPos(pos1);
+    if(pos.at(pos1v.at(0).at(pos1v.at(1) == nullptr){
+        cout << "No piece at" << pos1 << endl;
+        return false;
+    }
+    if(pos.at(pos1v.at(0)).at(pos1v.at(1))->playMove(pos2) == true){
+        vector<int> pos2v = findVPos(pos2);
+        pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
+        pos[pos1v[0]][pos1v[1]] = nullptr;
+        return true;
+    }
+    else{
+        cout << "Not a Valid Move"<< endl;
+        return false;
+    }
 
+    return false;
+}
 
 bool Board::isInCheck() const {
     return false;
 }
 
-Board* Board::getInstance() {
-    if (!instance) {
-        instance = new Board();
-    }
-    return instance;
-}
+// Board* Board::getInstance() {
+//     if (!instance) {
+//         instance = new Board();
+//     }
+//     return instance;
+// }
 
 std::string Board::generateFEN() const {
     return "";
 }
 
-vector<int> findVPos(string &pos){
+vector<int> findVPos(std::string &pos){
     vector<int> posit(2);
     string num = pos.substr(1,2);
     sstream g(num);
