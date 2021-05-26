@@ -26,14 +26,14 @@ private:
 	// "-" = no players can castle.
 	std::string castlingPrivileges = "KQkq";
 
-	// If the last move was a pawn moving up two squares, this will be set
-	// to the square where that pawn can be captured en-passant.
-	// Any other move will set this to "-".
-	std::string enPassantSquare = "-";
-
 	std::vector<int> findVPos(const std::string &pos) const;
 
 public:
+	// If the last move was a pawn moving up two squares, this will be set
+        // to the square where that pawn can be captured en-passant.
+        // Any other move will set this to "-".
+        std::string enPassantSquare = "-";
+
 	friend class Pawn;
 	friend class Knight;
 	friend class Bishop;
