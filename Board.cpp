@@ -67,20 +67,33 @@ void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
 
 bool Board::updateBoard(string& pos1, string& pos2){
     vector<int> pos1v = findVPos(pos1);
-    if(pos.at(pos1v.at(0).at(pos1v.at(1) == nullptr){
+    if(pos.at(pos1v.at(0)).at(pos1v.at(1) == nullptr){
         cout << "No piece at" << pos1 << endl;
         return false;
     }
-    if(pos.at(pos1v.at(0)).at(pos1v.at(1))->playMove(pos2) == true){
-        vector<int> pos2v = findVPos(pos2);
-        pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
-        pos[pos1v[0]][pos1v[1]] = nullptr;
-        return true;
+    Piece* currentPiece = pos[pos1v[0]][pos1v[1]];
+    vector<std::string> moves = currentPiece->getLegalMoves();
+    for(int i = 0; i < moves.size(); i++){
+        if(moves.[i] == pos2){
+            vector<int> pos2v = findVPos(pos2);
+            pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
+            pos[pos1v[0]][pos1v[1]] = nullptr;
+            cout << "Move Made" << endl;
+            return true;
+        }
     }
-    else{
-        cout << "Not a Valid Move"<< endl;
-        return false;
-    }
+    cout << "Not A Valid Move" << endl;
+    
+    // if()){
+    //     vector<int> pos2v = findVPos(pos2);
+    //     pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
+    //     pos[pos1v[0]][pos1v[1]] = nullptr;
+    //     return true;
+    // }
+    // else{
+    //     cout << "Not a Valid Move"<< endl;
+    //     return false;
+    // }
 
     return false;
 }
