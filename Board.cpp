@@ -111,19 +111,7 @@ bool Board::updateBoard(string& pos1, string& pos2){
         pos[pos2v[0]][pos2v[1]] = prev;
         return false;
     }
-    
-    
-    // if()){
-    //     vector<int> pos2v = findVPos(pos2);
-    //     pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
-    //     pos[pos1v[0]][pos1v[1]] = nullptr;
-    //     return true;
-    // }
-    // else{
-    //     cout << "Not a Valid Move"<< endl;
-    //     return false;
-    // }
-
+    //just here b/c otherwise i have an error. 
     return false;
 }
 
