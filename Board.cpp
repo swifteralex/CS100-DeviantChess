@@ -66,38 +66,62 @@ void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
 }
 
 //makes the move.
-bool Board::updateBoard(string& pos1, string& pos2){
-    vector<int> pos1v = findVPos(pos1); //vector location
+bool Board::updateBoard(std::string& pos1, std::string& pos2){
+    std::vector<int> pos1v = findVPos(pos1); //vector location
     //checks if there is a piece at the said location.
-    if(pos.at(pos1v.at(0)).at(pos1v.at(1) == nullptr){
-        cout << "No piece at" << pos1 << endl;
+    if(pos[pos1v[0]][pos1v[1]] == nullptr){
+        std::cout << "No piece at" << pos1 << std::endl;
         return false;
     }
-    
+    std::vector<int> pos2v = findVPos(pos2); // second piece vector location
     Piece* prev; //stores the move location in case of a revert move. 
     bool moved = false; // checks if move is valid. 
     Piece* currentPiece = pos[pos1v[0]][pos1v[1]]; // stores a pointer to the piece needing to be moved. 
+    //special case for pawn movement. 
+    if(currentPiece->getLabel() == 'p' || currentPiece->getLabel() == 'P'){
+        if(pos2v[0] == pos1v[0]){
+            if(pos[pos2v[0]][pos2v[1]] != nullptr){
+                std::cout << "Invalide Pawn Placement" << std::endl;
+                return false;
+            }
+        }
+    }
+
     // if the piece is not the currentTurn's piece it doesnt move. 
-    if(currentPiece.getColor() != currentTurn){
-        cout << "Not Your Piece" << endl;
+    if(currentPiece->getColor() != currentTurn){
+        std::cout << "Not Your Piece" << std::endl;
         return false;
     }
-    vector<std::string> moves = currentPiece->getLegalMoves(); //string of all possible moves
-    vector<int> pos2v = findVPos(pos2); // second piece vector location
+    std::vector<std::string> moves = currentPiece->getLegalMoves(); //string of all possible moves
+    
     //this moves if the piece is a legal move. 
     for(int i = 0; i < moves.size(); i++){
-        if(moves.[i] == pos2){
-            //swaps pieces.
-            prev = pos[pos2v[0]][pos2v[1]];
-            pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
-            pos[pos1v[0]][pos1v[1]] = nullptr;
-            cout << "Move Made" << endl;
-            moved = true;
+        if(moves[i] == pos2){
+            if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
+                //swaps pieces.
+                prev = pos[pos2v[0]][pos2v[1]];
+                pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
+                pos[pos1v[0]][pos1v[1]] = nullptr;
+                std::cout << "Move Made" << std::endl;
+                moved = true;
+            }
+            else {
+                if(pos[pos2v[0]][pos2v[1]]->getColor() != currentTurn){ //only moves if the space is filled with a different colored piece. i.e. 
+                    prev = pos[pos2v[0]][pos2v[1]];
+                    pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
+                    pos[pos1v[0]][pos1v[1]] = nullptr;
+                    std::cout << "Move Made" << std::endl;
+                    moved = true;
+                }
+                else{
+                    moved = false;
+                }
+            }
         }
     }
     //invalid move. returns false
     if(!moved){
-        cout << "Invalid Move" << endl;
+        std::cout << "Invalid Move" << std::endl;
         return false;
     }
     
