@@ -70,7 +70,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
     std::vector<int> pos1v = findVPos(pos1); //vector location
     //checks if there is a piece at the said location.
     if(pos[pos1v[0]][pos1v[1]] == nullptr){
-        std::cout << "No piece at" << pos1 << std::endl;
+        std::cout << "No piece at: " << pos1 << std::endl;
         return false;
     }
     std::vector<int> pos2v = findVPos(pos2); // second piece vector location
@@ -89,7 +89,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
 
     // if the piece is not the currentTurn's piece it doesnt move. 
     if(currentPiece->getColor() != currentTurn){
-        std::cout << "Not Your Piece" << std::endl;
+        std::cout << "Cannot Move Enemy Pieces. " << std::endl;
         return false;
     }
     std::vector<std::string> moves = currentPiece->getLegalMoves(); //string of all possible moves
@@ -102,7 +102,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
                 prev = pos[pos2v[0]][pos2v[1]];
                 pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
                 pos[pos1v[0]][pos1v[1]] = nullptr;
-                std::cout << "Move Made" << std::endl;
+                std::cout << "Move Successful" << std::endl;
                 moved = true;
             }
             else {
@@ -110,10 +110,11 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
                     prev = pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
                     pos[pos1v[0]][pos1v[1]] = nullptr;
-                    std::cout << "Move Made" << std::endl;
+                    std::cout << "Move Successful" << std::endl;
                     moved = true;
                 }
                 else{
+                    //std::cout << "Space Filled with own Color." << std:: endl;
                     moved = false;
                 }
             }
@@ -133,6 +134,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
     if(isInCheck() == true){
         pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
         pos[pos2v[0]][pos2v[1]] = prev;
+        std::cout << "King is in Check. Invalid Move" << std::endl;
         return false;
     }
     //just here b/c otherwise i have an error. 
