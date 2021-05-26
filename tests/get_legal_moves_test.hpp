@@ -930,4 +930,172 @@ TEST(BlackRookLegalMovesTest, InCheckCanPrevent) {
     delete moves;
 }
 
+TEST(WhiteQueenLegalMovesTest, EmptyPosition) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { '0', '0', '0', '0', 'k', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', 'Q', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' }
+    };
+    board.setPosition(pos);
+    board.setColor('w');
+    Piece* p = board.getPieceAt("c4");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "c4d3", "c4e2", "c4f1", "c4b3", "c4a2", "c4d5", "c4e6", "c4f7", "c4g8", "c4b5", "c4a6", "c4b4", "c4a4", "c4d4", "c4e4", "c4f4", "c4g4", "c4h4", "c4c3", "c4c2", "c4c1", "c4c5", "c4c6", "c4c7", "c4c8" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(BlackQueenLegalMovesTest, EmptyPosition) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { '0', '0', '0', '0', 'k', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', 'q' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("h7");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "h7g6", "h7f5", "h7e4", "h7d3", "h7c2", "h7b1", "h7g8", "h7g7", "h7f7", "h7e7", "h7d7", "h7c7", "h7b7", "h7a7", "h7h6", "h7h5", "h7h4", "h7h3", "h7h2", "h7h1", "h7h8" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(WhiteQueenLegalMovesTest, PartiallyBlocked) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', '0', 'p', 'p' },
+        { '0', '0', '0', '0', '0', 'p', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'P', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', '0', '0', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    board.setPosition(pos);
+    board.setColor('w');
+    Piece* p = board.getPieceAt("d1");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "d1e2", "d1f3", "d1g4", "d1h5", "d1d2", "d1d3", "d1d4", "d1d5", "d1d6", "d1d7" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(BlackQueenLegalMovesTest, PartiallyBlocked) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', 'p', '0', '0', '0', '0' },
+        { 'P', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', 'q', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("b3");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "b3c2", "b3a2", "b3c4", "b3a4", "b3a3", "b3c3", "b3d3", "b3e3", "b3f3", "b3g3", "b3h3", "b3b2", "b3b4", "b3b5", "b3b6" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(WhiteQueenLegalMovesTest, Pinned) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', '0', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', 'p', 'p', 'q', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', 'Q', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', '0', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    board.setPosition(pos);
+    board.setColor('w');
+    Piece* p = board.getPieceAt("e6");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "e6e5", "e6e4", "e6e3", "e6e2", "e6e7" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(BlackQueenLegalMovesTest, Pinned) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', '0', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', '0', 'q', '0', '0', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'B', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("d7");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "d7c6", "d7b5", "d7a4" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(WhiteQueenLegalMovesTest, InCheckCanPrevent) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', 'Q', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', 'P', 'P', 'P' },
+        { '0', 'r', '0', '0', '0', '0', 'K', '0' }
+    };
+    board.setPosition(pos);
+    board.setColor('w');
+    Piece* p = board.getPieceAt("d3");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "d3f1", "d3b1", "d3d1" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
+TEST(BlackQueenLegalMovesTest, InCheckCanPrevent) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
+        { 'p', 'p', 'p', '0', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', 'Q', '0', 'q', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("d5");
+    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> expected = { "d5c6", "d5b5", "d5d7" };
+    EXPECT_EQ((*moves) == expected, true);
+    delete moves;
+}
+
 #endif

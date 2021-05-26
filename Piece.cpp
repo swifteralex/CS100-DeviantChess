@@ -312,7 +312,37 @@ std::vector<std::string>* Rook::getLegalMoves() {
 Queen::Queen(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
 std::vector<std::string>* Queen::getLegalMoves() {
-    return new std::vector<std::string>();
+    int row = -1;
+    int col = -1;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (chessBoard->pos[r][c] == this) {
+                row = r;
+                col = c;
+                break;
+            }
+        }
+        if (row != -1) {
+            break;
+        }
+    }
+    
+    Piece* queen = chessBoard->pos[row][col];
+    Piece* bishop = new Bishop(chessBoard, color, color == 'w' ? "B" : "b");
+    Piece* rook = new Rook(chessBoard, color, color == 'w' ? "R" : "r");
+    chessBoard->pos[row][col] = bishop;
+    std::vector<std::string>* moves = bishop->getLegalMoves();
+    delete bishop;
+    chessBoard->pos[row][col] = rook;
+    std::vector<std::string>* rook_moves = rook->getLegalMoves();
+    delete rook;
+    for (int i = 0; i < rook_moves->size(); i++) {
+        moves->push_back(rook_moves->at(i));
+    }
+    delete rook_moves;
+    chessBoard->pos[row][col] = queen;
+
+    return moves;
 }
 
 King::King(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
