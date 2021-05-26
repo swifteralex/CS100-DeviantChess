@@ -65,24 +65,53 @@ void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
 	this->pos = pos;
 }
 
+//makes the move.
 bool Board::updateBoard(string& pos1, string& pos2){
-    vector<int> pos1v = findVPos(pos1);
+    vector<int> pos1v = findVPos(pos1); //vector location
+    //checks if there is a piece at the said location.
     if(pos.at(pos1v.at(0)).at(pos1v.at(1) == nullptr){
         cout << "No piece at" << pos1 << endl;
         return false;
     }
-    Piece* currentPiece = pos[pos1v[0]][pos1v[1]];
-    vector<std::string> moves = currentPiece->getLegalMoves();
+    
+    Piece* prev; //stores the move location in case of a revert move. 
+    bool moved = false; // checks if move is valid. 
+    Piece* currentPiece = pos[pos1v[0]][pos1v[1]]; // stores a pointer to the piece needing to be moved. 
+    // if the piece is not the currentTurn's piece it doesnt move. 
+    if(currentPiece.getColor() != currentTurn){
+        cout << "Not Your Piece" << endl;
+        return false;
+    }
+    vector<std::string> moves = currentPiece->getLegalMoves(); //string of all possible moves
+    vector<int> pos2v = findVPos(pos2); // second piece vector location
+    //this moves if the piece is a legal move. 
     for(int i = 0; i < moves.size(); i++){
         if(moves.[i] == pos2){
-            vector<int> pos2v = findVPos(pos2);
+            //swaps pieces.
+            prev = pos[pos2v[0]][pos2v[1]];
             pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
             pos[pos1v[0]][pos1v[1]] = nullptr;
             cout << "Move Made" << endl;
-            return true;
+            moved = true;
         }
     }
-    cout << "Not A Valid Move" << endl;
+    //invalid move. returns false
+    if(!moved){
+        cout << "Invalid Move" << endl;
+        return false;
+    }
+    
+    //just checks if king is in check
+    if(isInCheck() == false){
+        return true;
+    }
+    //if after move the player's  king is in check, reverts the board. 
+    if(isInCheck() == true){
+        pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+        pos[pos2v[0]][pos2v[1]] = prev;
+        return false;
+    }
+    
     
     // if()){
     //     vector<int> pos2v = findVPos(pos2);
