@@ -101,8 +101,8 @@ std::vector<std::string>* Pawn::getLegalMoves() {
     }
     
     std::string start;
-    start.push_back((char)col + 97);
-    start.push_back(56 - (char)row);
+    start.push_back(col + 97);
+    start.push_back(56 - row);
     for (int i = 0; i < moves->size(); i++) {
         std::string move = moves->at(i);
         moves->at(i) = start + move;
@@ -121,7 +121,60 @@ std::vector<std::string>* Pawn::getLegalMoves() {
 Knight::Knight(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
 std::vector<std::string>* Knight::getLegalMoves() {
-    return new std::vector<std::string>();
+    std::vector<std::string>* moves = new std::vector<std::string>();
+    int row = -1;
+    int col = -1;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (chessBoard->pos[r][c] == this) {
+                row = r;
+                col = c;
+                break;
+            }
+        }
+        if (row != -1) {
+            break;
+        }
+    }
+
+    for (int rowDiff = -2; rowDiff < 3; rowDiff++) {
+        for (int colDiff = -2; colDiff < 3; colDiff++) {
+            if (rowDiff == 0 || colDiff == 0 || abs(colDiff) == abs(rowDiff)) {
+                continue;
+            }
+            if (row + rowDiff >= 0 && row + rowDiff <= 7 && col + colDiff >= 0 && col + colDiff <= 7) {
+                if (chessBoard->pos[row + rowDiff][col + colDiff] && chessBoard->pos[row + rowDiff][col + colDiff]->getColor() == color) {
+                    continue;
+                }
+                std::string new_move;
+                new_move.push_back(col + colDiff + 97);
+                new_move.push_back(56 - (row + rowDiff));
+                moves->push_back(new_move);
+            }
+        }
+    }
+
+    for (int i = 0; i < moves->size(); i++) {
+        std::string move = moves->at(i);
+        Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
+        chessBoard->pos[56 - move[1]][move[0] - 97] = this;
+        chessBoard->pos[row][col] = nullptr;
+        if (chessBoard->isInCheck()) {
+            moves->erase(moves->begin() + i);
+            i--;
+        }
+        chessBoard->pos[row][col] = this;
+        chessBoard->pos[56 - move[1]][move[0] - 97] = temp;
+    }
+
+    std::string start;
+    start.push_back(col + 97);
+    start.push_back(56 - row);
+    for (int i = 0; i < moves->size(); i++) {
+        moves->at(i) = start + moves->at(i);
+    }
+
+    return moves;
 }
 
 Bishop::Bishop(Board* b, char c, const std::string& l) : Piece(b, c, l) {}

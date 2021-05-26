@@ -218,7 +218,8 @@ std::vector<int> Board::findVPos(const std::string &pos) const {
 Piece* Board::getPieceAt(const std::string &position) const {
     //std::vector<int> vPos = findVPos(position);
     //return pos.at(vPos.at(0)).at(vPos.at(1));
-    return pos[56 - position[1]][position[0] - 97]; 
+    char lowercase = position[0] | 32;
+    return pos[56 - position[1]][lowercase - 97]; 
 }
 
 void Board::printBoard() const {
