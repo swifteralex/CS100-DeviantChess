@@ -20,12 +20,6 @@ private:
 
 	// AIStrategy* strategy;
 	
-	// Holds data about where each player can castle.
-	// KQkq = both players can castle king and queenside.
-	// Kkq = white can only castle kingside, and black can castle both sides.
-	// "-" = no players can castle.
-	std::string castlingPrivileges = "KQkq";
-
 	std::vector<int> findVPos(const std::string &pos) const;
 
 public:
@@ -33,6 +27,12 @@ public:
 	// to the square where that pawn can be captured en-passant.
 	// Any other move will set this to "-".
         std::string enPassantSquare = "-";
+
+	// Holds data about where each player can castle.
+	// KQkq = both players can castle king and queenside.
+	// Kkq = white can only castle kingside, and black can castle both sides.
+	// "-" = no players can castle.
+	std::string castlingPrivileges = "KQkq";
 
 	friend class Pawn;
 	friend class Knight;

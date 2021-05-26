@@ -348,5 +348,145 @@ std::vector<std::string>* Queen::getLegalMoves() {
 King::King(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
 std::vector<std::string>* King::getLegalMoves() {
-    return new std::vector<std::string>();
+    std::vector<std::string>* moves = new std::vector<std::string>();
+    int row = -1;
+    int col = -1;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (chessBoard->pos[r][c] == this) {
+                row = r;
+                col = c;
+                break;
+            }
+        }
+        if (row != -1) {
+            break;
+        }
+    }
+
+    for (int i = 0; i < 9; i++) {
+        if (i == 4) {
+            continue;
+        }
+        int rowDiff = (i / 3) - 1;
+        int colDiff = (i % 3) - 1;
+        int r = row + rowDiff;
+        int c = col + colDiff;
+        if (r >= 0 && r <= 7 && c >= 0 && c <= 7) {
+            if (chessBoard->pos[r][c] && chessBoard->pos[r][c]->getColor() == color) {
+                continue;
+            }
+            std::string new_move;
+            new_move.push_back(c + 97);
+            new_move.push_back(56 - r);
+            moves->push_back(new_move);
+        }
+    }
+
+    for (int i = 0; i < moves->size(); i++) {
+        std::string move = moves->at(i);
+        Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
+        chessBoard->pos[56 - move[1]][move[0] - 97] = this;
+        chessBoard->pos[row][col] = nullptr;
+        if (chessBoard->isInCheck()) {
+            moves->erase(moves->begin() + i);
+            i--;
+        }
+        chessBoard->pos[row][col] = this;
+        chessBoard->pos[56 - move[1]][move[0] - 97] = temp;
+    }
+
+    if (color == 'w' && chessBoard->castlingPrivileges.find('K') != std::string::npos) {
+        if (chessBoard->pos[7][5] == nullptr && chessBoard->pos[7][6] == nullptr) {
+            bool canCastle = !(chessBoard->isInCheck());
+            Piece* king = chessBoard->pos[7][4];
+            chessBoard->pos[7][4] = nullptr;
+            chessBoard->pos[7][5] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[7][5] = nullptr;
+            chessBoard->pos[7][6] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[7][6] = nullptr;
+            chessBoard->pos[7][4] = king;
+            if (canCastle) {
+                moves->push_back("g1");
+            }
+        }
+    }
+    if (color == 'w' && chessBoard->castlingPrivileges.find('Q') != std::string::npos) {
+        if (chessBoard->pos[7][3] == nullptr && chessBoard->pos[7][2] == nullptr && chessBoard->pos[7][1] == nullptr) {
+            bool canCastle = !(chessBoard->isInCheck());
+            Piece* king = chessBoard->pos[7][4];
+            chessBoard->pos[7][4] = nullptr;
+            chessBoard->pos[7][3] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[7][3] = nullptr;
+            chessBoard->pos[7][2] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[7][2] = nullptr;
+            chessBoard->pos[7][4] = king;
+            if (canCastle) {
+                moves->push_back("c1");
+            }
+        }
+    }
+    if (color == 'b' && chessBoard->castlingPrivileges.find('k') != std::string::npos) {
+        if (chessBoard->pos[0][5] == nullptr && chessBoard->pos[0][6] == nullptr) {
+            bool canCastle = !(chessBoard->isInCheck());
+            Piece* king = chessBoard->pos[0][4];
+            chessBoard->pos[0][4] = nullptr;
+            chessBoard->pos[0][5] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[0][5] = nullptr;
+            chessBoard->pos[0][6] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[0][6] = nullptr;
+            chessBoard->pos[0][4] = king;
+            if (canCastle) {
+                moves->push_back("g8");
+            }
+        }
+    }
+    if (color == 'b' && chessBoard->castlingPrivileges.find('q') != std::string::npos) {
+        if (chessBoard->pos[0][3] == nullptr && chessBoard->pos[0][2] == nullptr && chessBoard->pos[0][1] == nullptr) {
+            bool canCastle = !(chessBoard->isInCheck());
+            Piece* king = chessBoard->pos[0][4];
+            chessBoard->pos[0][4] = nullptr;
+            chessBoard->pos[0][3] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[0][3] = nullptr;
+            chessBoard->pos[0][2] = king;
+            if (chessBoard->isInCheck()) {
+                canCastle = false;
+            }
+            chessBoard->pos[0][2] = nullptr;
+            chessBoard->pos[0][4] = king;
+            if (canCastle) {
+                moves->push_back("c8");
+            }
+        }
+    }
+
+    std::string start;
+    start.push_back(col + 97);
+    start.push_back(56 - row);
+    for (int i = 0; i < moves->size(); i++) {
+        moves->at(i) = start + moves->at(i);
+    }
+
+    return moves;
 }
