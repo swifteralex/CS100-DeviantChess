@@ -179,8 +179,68 @@ std::vector<std::string>* Knight::getLegalMoves() {
 
 Bishop::Bishop(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Bishop::getLegalMoves() {
-    return new std::vector<std::string>();
+std::vector<std::string>* Bishop::getLegalMoves() { 
+    std::vector<std::string>* moves = new std::vector<std::string>();
+    int row = -1;
+    int col = -1;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (chessBoard->pos[r][c] == this) {
+                row = r;
+                col = c;
+                break;
+            }
+        }
+        if (row != -1) {
+            break;
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        int rowDiff = 1 + ((-i / 2) * 2);
+        int colDiff = 1 + ((i % 2) * -2);
+        int r = row + rowDiff;
+        int c = col + colDiff;
+        while (r >= 0 && r <= 7 && c >= 0 && c <= 7) {
+            if (chessBoard->pos[r][c] && chessBoard->pos[r][c]->getColor() == color) {
+                break;
+            } else if (chessBoard->pos[r][c]) {
+                std::string new_move;
+                new_move.push_back(c + 97);
+                new_move.push_back(56 - r);
+                moves->push_back(new_move);
+                break;
+            }
+            std::string new_move;
+            new_move.push_back(c + 97);
+            new_move.push_back(56 - r);
+            moves->push_back(new_move);
+            r += rowDiff;
+            c += colDiff;
+        }
+    }
+
+    for (int i = 0; i < moves->size(); i++) {
+        std::string move = moves->at(i);
+        Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
+        chessBoard->pos[56 - move[1]][move[0] - 97] = this;
+        chessBoard->pos[row][col] = nullptr;
+        if (chessBoard->isInCheck()) {
+            moves->erase(moves->begin() + i);
+            i--;
+        }
+        chessBoard->pos[row][col] = this;
+        chessBoard->pos[56 - move[1]][move[0] - 97] = temp;
+    }
+
+    std::string start;
+    start.push_back(col + 97);
+    start.push_back(56 - row);
+    for (int i = 0; i < moves->size(); i++) {
+        moves->at(i) = start + moves->at(i);
+    }
+
+    return moves;
 }
 
 Rook::Rook(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
