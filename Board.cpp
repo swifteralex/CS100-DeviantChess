@@ -78,14 +78,14 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
     bool moved = false; // checks if move is valid. 
     Piece* currentPiece = pos[pos1v[0]][pos1v[1]]; // stores a pointer to the piece needing to be moved. 
     //special case for pawn movement. 
-    if(currentPiece->getLabel() == 'p' || currentPiece->getLabel() == 'P'){
-        if(pos2v[0] == pos1v[0]){
-            if(pos[pos2v[0]][pos2v[1]] != nullptr){
-                std::cout << "Invalide Pawn Placement" << std::endl;
-                return false;
-            }
-        }
-    }
+    // if(currentPiece->getLabel() == 'p' || currentPiece->getLabel() == 'P'){
+    //     if(pos2v[0] == pos1v[0]){
+    //         if(pos[pos2v[0]][pos2v[1]] != nullptr){
+    //             std::cout << "Invalide Pawn Placement" << std::endl;
+    //             return false;
+    //         }
+    //     }
+    // }
 
     // if the piece is not the currentTurn's piece it doesnt move. 
     if(currentPiece->getColor() != currentTurn){
@@ -125,16 +125,16 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
         return false;
     }
     
-    //just checks if king is in check
-    if(isInCheck() == false){
-        return true;
-    }
-    //if after move the player's  king is in check, reverts the board. 
-    if(isInCheck() == true){
-        pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
-        pos[pos2v[0]][pos2v[1]] = prev;
-        return false;
-    }
+    // //just checks if king is in check
+    // if(isInCheck() == false){
+    //     return true;
+    // }
+    // //if after move the player's  king is in check, reverts the board. 
+    // if(isInCheck() == true){
+    //     pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+    //     pos[pos2v[0]][pos2v[1]] = prev;
+    //     return false;
+    // }
     //just here b/c otherwise i have an error. 
     return false;
 }
