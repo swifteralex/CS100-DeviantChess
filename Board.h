@@ -31,9 +31,16 @@ private:
 	// Any other move will set this to "-".
 	std::string enPassantSquare = "-";
 
-    	std::vector<int> findVPos(const std::string &pos) const;
+	std::vector<int> findVPos(const std::string &pos) const;
 
 public:
+	friend class Pawn;
+	friend class Knight;
+	friend class Bishop;
+	friend class Rook;
+	friend class Queen;
+	friend class King;
+
 	Board();
 
         ~Board();

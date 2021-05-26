@@ -7,7 +7,7 @@
 class Board;
 
 class Piece : public ChessObject {
-private:
+protected:
     std::string pos;
     Board* chessBoard;
   
