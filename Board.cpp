@@ -267,36 +267,23 @@ bool Board::isCheckmated(){
     return false;
 }
 
-bool Board::isStalemated(){
-    Piece* king;
-    if(currentTurn == 'w'){
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++){
-                if(pos[i][j]->getLabel() == 'K'){
-                    king = pos[i][j];
-                    break;
+bool Board::isStalemated() {
+    bool check = false;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (pos[i][j] != nullptr) {
+                Piece* temp = pos[i][j];
+                if ((temp->getLegalMoves()).size() == 0) {
+                    check = true;
+                }
+                else {
+                    return false;
                 }
             }
         }
     }
-    else if(currentTurn == 'b'){
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++){
-                if(pos[i][j]->getLabel() == 'k'){
-                    king = pos[i][j];
-                    break;
-                }
-            }
-        }
-    }
-    if(!isInCheck()){
-        std::vector<std::string> legalMoves = king->getLegalMoves();
-        if(legalMoves.size() == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+    if (!isInCheck() && check){
+        return true;
     }
     return false;
 }
