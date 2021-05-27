@@ -232,6 +232,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
 }
 
 bool Board::isCheckmated(){
+
     //this whole part finds the current turns king
     Piece* king;
     if(currentTurn == 'w'){
@@ -254,9 +255,22 @@ bool Board::isCheckmated(){
             }
         }
     }
+    std::vector<std::string> legalMoves = king->getLegalMoves();
+    int r;
+    int c;
+    while(r<9 && c < 9){
+        Piece p = pos[r][c];
+        if(p != nullptr){
+            if(p->getColor() == currentTurn){
+                std::vector<std::string> lm = p->getLegalMoves();
+                for(int i = 0; i < lm.size(); i++){
+                    legalMoves.push_back(lm[i]);
+                }
+            }
+        }
+    }
     //if in check check if any possible moves. else no.
     if(isInCheck()){
-        std::vector<std::string> legalMoves = king->getLegalMoves();
         if(legalMoves.size() == 0){
             return true;
         }
