@@ -29,7 +29,7 @@ Class Board: public ChessObject{
 		// to the square where that pawn can be captured en-passant.
 		// Any other move will set this to "-".
 		 std::string enPassantSquare = "-";
-
+		void swap(vector<int> pos1, vector<int> pos2);
 		// 'w' = next move will be played by white, 'b' = next move by black
 		char currentTurn = 'w';
     		vector<int> findVPos(std::string &pos);
