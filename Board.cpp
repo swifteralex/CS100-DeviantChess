@@ -261,7 +261,7 @@ bool Board::isCheckmated() {
                 break;
             }
         }
-        King* kingPosition = pos[kingRow][kingCol];
+        Piece* kingPosition = pos[kingRow][kingCol];
         if ((kingPosition->getLegalMoves()).size() == 0) {
             return true;
         }
@@ -270,9 +270,23 @@ bool Board::isCheckmated() {
 }
 
 bool Board::isStalemated() {
-
-
-
-
+    bool check = false;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (pos[i][j] != nullptr) {
+                Piece* temp = pos[i][j];
+                if ((temp->getLegalMoves()).size() == 0) {
+                    check = true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!isInCheck() && check){
+        return true;
+    }
+    return false;
 }
     
