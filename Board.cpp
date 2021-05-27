@@ -29,7 +29,150 @@ void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
     this->pos = pos;
 }
 
+void Board::setPosition(const std::vector<std::vector<char>>& in) {
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (pos[r][c]) {
+                delete pos[r][c];
+            }
+            if (in[r][c] == '0') {
+                pos[r][c] = nullptr;
+            } else if (in[r][c] == 'r') {
+                pos[r][c] = new Rook(this, 'b', "r");
+            } else if (in[r][c] == 'n') {
+                pos[r][c] = new Knight(this, 'b', "n");
+            } else if (in[r][c] == 'b') {
+                pos[r][c] = new Bishop(this, 'b', "b");
+            } else if (in[r][c] == 'q') {
+                pos[r][c] = new Queen(this, 'b', "q");
+            } else if (in[r][c] == 'k') {
+                pos[r][c] = new King(this, 'b', "k");
+            } else if (in[r][c] == 'p') {
+                pos[r][c] = new Pawn(this, 'b', "p");
+            } else if (in[r][c] == 'R') {
+                pos[r][c] = new Rook(this, 'w', "R");
+            } else if (in[r][c] == 'N') {
+                pos[r][c] = new Knight(this, 'w', "N");
+            } else if (in[r][c] == 'B') {
+                pos[r][c] = new Bishop(this, 'w', "B");
+            } else if (in[r][c] == 'Q') {
+                pos[r][c] = new Queen(this, 'w', "Q");
+            } else if (in[r][c] == 'K') {
+                pos[r][c] = new King(this, 'w', "K");
+            } else {
+                pos[r][c] = new Pawn(this, 'w', "P");
+            }
+        }
+    }
+}
+
 bool Board::isInCheck() const {
+    // find king position
+    int kingRow = -1;
+    int kingCol = -1;
+    for (char row = 0; row < 8; row++) {
+        for (char col = 0; col < 8; col++) {
+            Piece* p = pos[row][col];
+            if (!p) {
+                continue;
+            }
+            if (((color == 'w') && (p->getLabel() == "K")) || ((color == 'b') && (p->getLabel() == "k"))) {
+                kingRow = row;
+                kingCol = col;
+                break;
+            }
+        }
+        if (kingRow != -1) {
+            break;
+        }
+    }
+
+    // check if enemy pawn is attacking king
+    if (color == 'w') {
+        if (kingRow >= 1) {
+            if (kingCol >= 1 && pos[kingRow - 1][kingCol - 1] && (pos[kingRow - 1][kingCol - 1])->getLabel() == "p") {
+                return true;
+            }
+            if (kingCol <= 6 && pos[kingRow - 1][kingCol + 1] && (pos[kingRow - 1][kingCol + 1])->getLabel() == "p") {
+                return true;
+            }
+        }
+    } else {
+        if (kingRow <= 6) {
+            if (kingCol >= 1 && pos[kingRow + 1][kingCol - 1] && (pos[kingRow + 1][kingCol - 1])->getLabel() == "P") {
+                return true;
+            }
+            if (kingCol <= 6 && pos[kingRow + 1][kingCol + 1] && (pos[kingRow + 1][kingCol + 1])->getLabel() == "P") {
+                return true;
+            }
+        }
+    }
+
+
+    // check if enemy knight is attacking king
+    for (int rowDiff = -2; rowDiff < 3; rowDiff++) {
+        for (int colDiff = -2; colDiff < 3; colDiff++) {
+            if (rowDiff == 0 || colDiff == 0 || abs(colDiff) == abs(rowDiff)) {
+                continue;
+            }
+            if (kingRow + rowDiff >= 0 && kingRow + rowDiff <= 7 && kingCol + colDiff >= 0 && kingCol + colDiff <= 7) {
+                Piece* p = pos[kingRow + rowDiff][kingCol + colDiff];
+                if (!p) {
+                    continue;
+                }
+                if ((p->getLabel() == "n" && color == 'w') || (p->getLabel() == "N" && color == 'b')) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    // check if enemy bishop or queen is attacking king diagonally
+    for (int i = 0; i < 4; i++) {
+        int rowDiff = 1 + ((-i / 2) * 2);
+        int colDiff = 1 + ((i % 2) * -2);
+        int row = kingRow + rowDiff;
+        int col = kingCol + colDiff;
+        while (row >= 0 && row <= 7 && col >= 0 && col <= 7) {
+            Piece* p = pos[row][col];
+            row += rowDiff;
+            col += colDiff;
+            if (!p) {
+                continue;
+            }
+            if (color == 'w' && (p->getLabel() == "q" || p->getLabel() == "b")) {
+                return true;
+            }
+            if (color == 'b' && (p->getLabel() == "Q" || p->getLabel() == "B")) {
+                return true;
+            }
+            break;
+        }
+    }
+
+    // check if enemy rook or queen is attacking king orthogonally
+    for (int i = 0; i < 4; i++) {
+        int rowDiff = (1 - 2 * (i == 3)) * (i > 1);
+        int colDiff = (1 - 2 * (i == 0)) * (i < 2);
+        int row = kingRow + rowDiff;
+        int col = kingCol + colDiff;
+        while (row >= 0 && row <= 7 && col >= 0 && col <= 7) {
+            Piece* p = pos[row][col];
+            row += rowDiff;
+            col += colDiff;
+            if (!p) {
+                continue;
+            }
+            if (color == 'w' && (p->getLabel() == "q" || p->getLabel() == "r")) {
+                return true;
+            }
+            if (color == 'b' && (p->getLabel() == "Q" || p->getLabel() == "R")) {
+                return true;
+            }
+            break;
+        }
+    }
+
     return false;
 }
 
@@ -98,3 +241,38 @@ void Board::printBoard() const {
         std::cout << "       A   B   C   D   E   F   G   H" << std::endl;
 }
 
+bool Board::isCheckmated() {
+    if (isInCheck()) {
+        int kingRow = -1;
+        int kingCol = -1;
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                Piece* p = pos[row][col];
+                if (!p) {
+                    continue;
+                }
+                if (((color == 'w') && (p->getLabel() == "K")) || ((color == 'b') && (p->getLabel() == "k"))) {
+                    kingRow = row;
+                    kingCol = col;
+                    break;
+                }
+            }
+            if (kingRow != -1) {
+                break;
+            }
+        }
+        King* kingPosition = pos[kingRow][kingCol];
+        if ((kingPosition->getLegalMoves()).size() == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Board::isStalemated() {
+
+
+
+
+}
+    
