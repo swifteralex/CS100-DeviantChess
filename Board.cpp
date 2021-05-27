@@ -232,7 +232,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     return false;
 }
 
-void Board::swap(std::vector<int> pos1, vector<int> pos2){
+void Board::swap(std::vector<int> pos1, std::vector<int> pos2){
     Piece* prev = pos[pos2[0]][pos2[1]];
     pos[pos2v[0]][pos2v[1]] = pos[pos1[0]][pos1[1]];
     pos[pos1[0]][pos1[1]] = prev;
