@@ -95,12 +95,12 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     
     //king and queen slide. 
     if(currentPiece->getLabel() == 'k' || currentPiece->getLabel() == 'K'){
-        if(castlingPrivileges == "-"){
-            if(pos1 == "e1" && pos2 == "g1" || pos1 == "e8" && pos2 == "g8"){
-                std::cout << "Castling KingSide not allowed" << std::endl;
-                return false;
-            }
-        }
+        // if(castlingPrivileges == "-"){
+        //     if(pos1 == "e1" && pos2 == "g1" || pos1 == "e8" && pos2 == "g8"){
+        //         std::cout << "Castling KingSide not allowed" << std::endl;
+        //         return false;
+        //     }
+        // }
         //this portion swaps. if the slide is part of legal moves.
         for(int i = 0; i < move.size(); i++){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
@@ -149,8 +149,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
             if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
                 //swaps pieces.
                 prev = pos[pos2v[0]][pos2v[1]];
-                // pos[pos2v[0]][pos2v[1]] = pos[pos1v[0]][pos1v[1]];
-                // pos[pos1v[0]][pos1v[1]] = prev;
+                
                 swap(pos1v, pos2v);
                 std::cout << "Move Successful" << std::endl;
                 moved = true;
@@ -164,7 +163,6 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
                     moved = true;
                 }
                 else{
-                    //std::cout << "Space Filled with own Color." << std:: endl;
                     moved = false;
                 }
             }
