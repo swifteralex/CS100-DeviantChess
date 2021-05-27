@@ -20,20 +20,27 @@ private:
 
 	// AIStrategy* strategy;
 	
+	std::vector<int> findVPos(const std::string &pos) const;
+
+public:
+	// If the last move was a pawn moving up two squares, this will be set
+	// to the square where that pawn can be captured en-passant.
+	// Any other move will set this to "-".
+        std::string enPassantSquare = "-";
+
 	// Holds data about where each player can castle.
 	// KQkq = both players can castle king and queenside.
 	// Kkq = white can only castle kingside, and black can castle both sides.
 	// "-" = no players can castle.
 	std::string castlingPrivileges = "KQkq";
 
-	// If the last move was a pawn moving up two squares, this will be set
-	// to the square where that pawn can be captured en-passant.
-	// Any other move will set this to "-".
-	std::string enPassantSquare = "-";
+	friend class Pawn;
+	friend class Knight;
+	friend class Bishop;
+	friend class Rook;
+	friend class Queen;
+	friend class King;
 
-    	std::vector<int> findVPos(const std::string &pos) const;
-
-public:
 	Board();
 
         ~Board();
