@@ -51,7 +51,8 @@ Class Board: public ChessObject{
 
    	   	// Used by Stockfish to get the current position.
    	   	std::string generateFEN() const;
-		
+		bool isCheckMated();
+		bool isStaleMated();
 		Piece getPieceAt(string &position);
 		void updateBoard();
    		void printBoard() const;

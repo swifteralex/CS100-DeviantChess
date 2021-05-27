@@ -231,6 +231,74 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     return false;
 }
 
+bool Board::isCheckmated(){
+    Piece* king;
+    if(currentTurn == 'w'){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(pos[i][j]->getLabel() == 'K'){
+                    king = pos[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    else if(currentTurn == 'b'){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(pos[i][j]->getLabel() == 'k'){
+                    king = pos[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    if(isInCheck()){
+        std::vector<std::string> legalMoves = king->getLegalMoves();
+        if(legalMoves.size() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    return false;
+}
+
+bool Board::isStalemated(){
+    Piece* king;
+    if(currentTurn == 'w'){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(pos[i][j]->getLabel() == 'K'){
+                    king = pos[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    else if(currentTurn == 'b'){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(pos[i][j]->getLabel() == 'k'){
+                    king = pos[i][j];
+                    break;
+                }
+            }
+        }
+    }
+    if(!isInCheck()){
+        std::vector<std::string> legalMoves = king->getLegalMoves();
+        if(legalMoves.size() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    return false;
+}
+
 void Board::swap(std::vector<int> pos1, std::vector<int> pos2){
     Piece* prev = pos[pos2[0]][pos2[1]];
     pos[pos2v[0]][pos2v[1]] = pos[pos1[0]][pos1[1]];
