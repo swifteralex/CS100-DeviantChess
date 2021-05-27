@@ -51,6 +51,8 @@ public:
 	Piece* getPieceAt(const std::string &position) const;
 
    	void printBoard() const;
+	bool isCheckmated();
+	bool isStalemated();
 };
 
 #endif
