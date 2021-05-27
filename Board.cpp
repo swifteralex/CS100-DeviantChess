@@ -193,7 +193,30 @@ bool Board::isInCheck() const {
 }
 
 std::string Board::generateFEN() const {
-    return "";
+    std::string res;
+    int empty_run = 0;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (pos[r][c]) {
+                if (empty_run != 0) {
+                    res.push_back(empty_run + 48);
+                }
+                empty_run = 0;
+                res += pos[r][c]->getLabel();
+            } else {
+                empty_run++;
+            }
+        }
+        if (empty_run != 0) {
+            res.push_back(empty_run + 48);
+            empty_run = 0;
+        }
+        if (r != 7) {
+            res.push_back('/');
+        }
+    }
+    res += (" " + std::string(1, color) + " " + castlingPrivileges + " " + enPassantSquare + " 0 1");
+    return res;
 }
 
 std::vector<int> Board::findVPos(const std::string &pos) const {
