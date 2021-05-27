@@ -92,7 +92,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2){
         std::cout << "Cannot Move Enemy Pieces. " << std::endl;
         return false;
     }
-    std::vector<std::string> moves = currentPiece->getLegalMoves(); //string of all possible moves
+    std::vector<std::string> moves = currentPiece->getLegalMoves().substr(2,4); //string of all possible moves
     
     //this moves if the piece is a legal move. 
     for(int i = 0; i < moves.size(); i++){
