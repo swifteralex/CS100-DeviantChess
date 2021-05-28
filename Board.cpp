@@ -262,7 +262,7 @@ bool Board::isCheckmated() {
             }
         }
         Piece* kingPosition = pos[kingRow][kingCol];
-        if ((kingPosition->getLegalMoves())->size() == 0) {
+        if ((kingPosition->getLegalMoves()).size() == 0) {
             return true;
         }
     }
@@ -273,9 +273,9 @@ bool Board::isStalemated() {
     bool check = false;
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
-            if (pos[i][j] != nullptr) {
+            if (pos[i][j] != nullptr && (this->getColor() == pos[i][j]->getColor())) {
                 Piece* temp = pos[i][j];
-                if ((temp->getLegalMoves())->size() == 0 && (this->getColor() == temp->getColor())) {
+                if ((temp->getLegalMoves()).size() == 0) {
                     check = true;
                 }
                 else {
@@ -289,4 +289,3 @@ bool Board::isStalemated() {
     }
     return false;
 }
-    
