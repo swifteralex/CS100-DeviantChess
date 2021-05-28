@@ -73,9 +73,9 @@ std::string Random::getBestMove() {
             square.push_back(r);
             Piece* piece = board->getPieceAt(square);
             if (piece && piece->getColor() == board->getColor()) {
-                std::vector<std::string>* ret = piece->getLegalMoves();
-                for (int i = 0; i < ret->size(); i++) {
-                    moves.push_back(ret->at(i));
+                std::vector<std::string> ret = piece->getLegalMoves();
+                for (int i = 0; i < ret.size(); i++) {
+                    moves.push_back(ret.at(i));
                 }
                 delete ret;
             }
