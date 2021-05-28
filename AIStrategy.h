@@ -3,6 +3,8 @@
 
 #include "Board.h"
 
+class Board;
+
 class AIStrategy {
 protected:
     Board* board;
