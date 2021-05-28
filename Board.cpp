@@ -1,5 +1,5 @@
 #include "Board.h"
-
+#include <sstream>
 
 Board::Board() : ChessObject('w', "board") {
     pos = {
@@ -61,9 +61,9 @@ void Board::setPosition(const std::vector<std::vector<char>>& in) {
     }
 }
 
-void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
-	this->pos = pos;
-}
+// void Board::setPosition(const std::vector<std::vector<Piece*>>& pos) {
+// 	this->pos = pos;
+// }
 
 //makes the move.
 bool Board::updateBoard(std::string& pos1, std::string& pos2c){
@@ -79,7 +79,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     bool moved = false; // checks if move is valid. 
     Piece* currentPiece = pos[pos1v[0]][pos1v[1]]; // stores a pointer to the piece needing to be moved. 
     //special case for pawn movement. 
-    if(currentPiece->getLabel() == 'p' || currentPiece->getLabel() == 'P'){
+    if(currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P"){
         if(pos2v[0] == pos1v[0]){
             if(pos[pos2v[0]][pos2v[1]] != nullptr){
                 std::cout << "Invalide Pawn Placement" << std::endl;
@@ -94,7 +94,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     }
     
     //king and queen slide. 
-    if(currentPiece->getLabel() == 'k' || currentPiece->getLabel() == 'K'){
+    if(currentPiece->getLabel() == "k" || currentPiece->getLabel() == "K"){
         // if(castlingPrivileges == "-"){
         //     if(pos1 == "e1" && pos2 == "g1" || pos1 == "e8" && pos2 == "g8"){
         //         std::cout << "Castling KingSide not allowed" << std::endl;
@@ -105,31 +105,39 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
         for(int i = 0; i < move.size(); i++){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
                 swap(pos1v, pos2v);
-                std::vector<int> h = findVPos("h1");
-                std::vector<int> f = findVPos("f1");
+                std::string h1 = "h1";
+                std::string f1 = "f1";
+                std::vector<int> h = findVPos(h1);
+                std::vector<int> f = findVPos(f1);
                 swap(h, f);
                 moved = true;
             }
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
                 swap(pos1v, pos2v);
-                std::vector<int> a = findVPos("a1");
-                std::vector<int> d = findVPos("d1");
+                std::string a1 = "a1";
+                std::string d1 = "d1";
+                std::vector<int> a = findVPos(a1);
+                std::vector<int> d = findVPos(d1);
 
                 swap(a, d);
                 moved = true;
             }
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
                 swap(pos1v, pos2v);
-                std::vector<int> h = findVPos("h8");
-                std::vector<int> f = findVPos("f8");
+                std::string h = "h8";
+                std::string f = "f8";
+                std::vector<int> h1 = findVPos(h);
+                std::vector<int> f1 = findVPos(f);
 
-                swap(h, f);
+                swap(h1, f1);
                 moved = true;
             }
             else if(move[i] == "e8c8" && move[i].substr(2,4) == pos2){
                 swap(pos1v, pos2v);
-                std::vector<int> a = findVPos("a8");
-                std::vector<int> d = findVPos("d8");
+                std::string a1 = "a8";
+                std::string d1 = "d8";
+                std::vector<int> a = findVPos(a1);
+                std::vector<int> d = findVPos(d1);
 
                 swap(a, d);
                 moved = true;
@@ -137,7 +145,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
         }
     }
     // if the piece is not the currentTurn's piece it doesnt move. 
-    if(currentPiece->getColor() != currentTurn){
+    if(currentPiece->getColor() != color){
         std::cout << "Cannot Move Enemy Pieces. " << std::endl;
         return false;
     }
@@ -155,7 +163,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
                 moved = true;
             }
             else {
-                if(pos[pos2v[0]][pos2v[1]]->getColor() != currentTurn){ //only moves if the space is filled with a different colored piece. i.e. 
+                if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
@@ -180,38 +188,38 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
             legalPromo.push_back(move[i].substr(4,5));
         }
     }
-    if(currentPiece->getLabel() == 'p' && pos2v[0] == 7){
+    if(currentPiece->getLabel() == "p" && pos2v[0] == 7){
         for(int i = 0; i < legalPromo.size(); i++){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
-                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', 'b');
+                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
                 }
                 else if(legalPromo[i]== "q"){
-                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', 'q');
+                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
                 }
                 else if(legalPromo[i] == "n"){
-                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', 'n');
+                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
                 }
                 else if(legalPromo[i] == "r"){
-                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', 'r');
+                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
                 }
             }
         }
     }
-    if(currentPiece->getLabel() == 'P' && pos2v[0] == 0){
+    if(currentPiece->getLabel() == "P" && pos2v[0] == 0){
         for(int i = 0; i < legalPromo.size(); i++){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
-                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', 'B');
+                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
                 }
                 else if(legalPromo[i]== "q"){
-                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', 'Q');
+                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
                 }
                 else if(legalPromo[i] == "n"){
-                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', 'N');
+                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
                 }
                 else if(legalPromo[i] == "r"){
-                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', 'R');
+                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
                 }
             }
         }
@@ -234,7 +242,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
 
 void Board::swap(std::vector<int> pos1, std::vector<int> pos2){
     Piece* prev = pos[pos2[0]][pos2[1]];
-    pos[pos2v[0]][pos2v[1]] = pos[pos1[0]][pos1[1]];
+    pos[pos2[0]][pos2[1]] = pos[pos1[0]][pos1[1]];
     pos[pos1[0]][pos1[1]] = prev;
 }
 
@@ -253,75 +261,62 @@ std::string Board::generateFEN() const {
     return "";
 }
 
-vector<int> findVPos(std::string &pos){
-    vector<int> posit(2);
-    string num = pos.substr(1,2);
-    sstream g(num);
+std::vector<int> findVPos(std::string &pos){
+    std::vector<int> posit(2);
+    std::string num = pos.substr(1,2);
     int n = 0;
-    g >> n;
+    n = std::stoi(num);
     posit.at(0) = 8-n;
-    string post = pos.substr(0,1);
-    if(post == 'a'|| post == 'A'){
+    std::string post = pos.substr(0,1);
+    if(post == "a"|| post == "A"){
         posit.at(1) = 0;
     }
-    else(post == "b" || post == "B"){
+    else if(post == "b" || post == "B"){
         posit.at(1) = 1;
     }
-    else(post == "c" || post == "C"){
+    else if(post == "c" || post == "C"){
         posit.at(1) = 2;
     }
-    else(post == "d" || post == "D"){
+    else if(post == "d" || post == "D"){
         posit.at(1) = 3;
     }
-    else(post == "e" || post == "E"){
+    else if(post == "e" || post == "E"){
         posit.at(1) = 4;
     }
-    else(post == "f" || post == "F"){
+    else if(post == "f" || post == "F"){
         posit.at(1) = 5;
     }
-    else(post == "g" || post == "G"){
+    else if(post == "g" || post == "G"){
         posit.at(1) = 6;
     }
-    else(post == "h" || post == "H"){
+    else if(post == "h" || post == "H"){
         posit.at(1) = 7;
     }
     return posit;
 }
-Piece Board::getPieceAt(string &position){
-    vector<int> vPos = findVPos(position);
+Piece* Board::getPieceAt(std::string &position){
+    std::vector<int> vPos = findVPos(position);
     return pos.at(vPos.at(0)).at(vPos.at(1));
 }
 
 void Board::printBoard() const {
-	cout << "   =====================================" << endl;
+	std::cout << "   =====================================" << std::endl;
             int num = 9;
             for(int i = 0; i < pos.size(); i++){
                 
-                cout << num-1 << "  ";
+                std::cout << num-1 << "  ";
                 num = num-1;
-                cout << "|   ";
+                std::cout << "|   ";
                 for(int j = 0; j < pos.at(i).size(); j++){
 		    if(pos.at(i).at(j) != nullptr){
-                        cout << pos.at(i).at(j)->getLabel() << "   ";
+                        std::cout << pos.at(i).at(j)->getLabel() << "   ";
 		    }
 		    else{
-			cout << "0   ";
+			std::cout << "0   ";
 		    }
                 }
-            cout << "|" <<endl <<"   |                                   |"<< endl;
+            std::cout << "|" <<std::endl <<"   |                                   |"<< std::endl;
             }
-            cout << "   ====================================="<< endl;
-            cout << "       A   B   C   D   E   F   G   H" << endl;
-}
-char Board::getColor(){
-	return currentTurn;
-}
-char Board::getLabel(){
-	return title;
-}
-void Board::setLabel(char l){
-	title = l;
-}
-void setColor(char turn){
-	currentTurn = turn;
+            std::cout << "   ====================================="<< std::endl;
+            std::cout << "       A   B   C   D   E   F   G   H" << std::endl;
 }

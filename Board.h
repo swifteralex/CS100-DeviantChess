@@ -4,19 +4,20 @@
 #include <vector>
 #include<string>
 #include <iostream>
-
+#include "Piece.h"
+#include "ChessObject.h"
 #include <sstream>
 
 
-Class Board: public ChessObject{
-	private:
+class Board: public ChessObject{
+	protected:
 		// 8x8 array of chars that represent the pieces on the board from white's perspective.
 		// 0 = empty square, 'N' = white knight, 'p' = black pawn, etc.
 		std::vector<std::vector<Piece*>> pos;
 		// This MUST be set to nullptr outside of the class before any code is run; setting to
 		// nullptr here is a compiler error.
 		//static Board* instance;
-		char title = 'C'
+		char title = 'C';
 		// AIStrategy* strategy;
 	
 		// Holds data about where each player can castle.
@@ -29,17 +30,17 @@ Class Board: public ChessObject{
 		// to the square where that pawn can be captured en-passant.
 		// Any other move will set this to "-".
 		 std::string enPassantSquare = "-";
-		void swap(vector<int> pos1, vector<int> pos2);
+		void swap(std::vector<int> pos1, std::vector<int> pos2);
 		// 'w' = next move will be played by white, 'b' = next move by black
 		char currentTurn = 'w';
-    		vector<int> findVPos(std::string &pos);
+    		std::vector<int> findVPos(std::string &pos);
     		//Board() {};
 	public:
 		Board();
 		~Board();
 
-		void setPosition(const std::vector<std::vector<ChessObject*>>&);
-		void setPosition(const std:vector<std::vector<char>>&);
+		// void setPosition(const std::vector<std::vector<ChessObject*>>&);
+		void setPosition(const std::vector<std::vector<char>>&);
 
 		// Returns true if the current player is in check
 		bool isInCheck() const;
@@ -53,8 +54,8 @@ Class Board: public ChessObject{
    	   	std::string generateFEN() const;
 		bool isCheckMated();
 		bool isStaleMated();
-		Piece getPieceAt(string &position);
-		void updateBoard();
+		Piece* getPieceAt(std::string &position);
+		bool updateBoard(std::string& pos1, std::string& pos2c);
    		void printBoard() const;
 		char getLabel();
 		void setLabel(char l);
