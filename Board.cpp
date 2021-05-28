@@ -262,7 +262,7 @@ bool Board::isCheckmated() {
             }
         }
         Piece* kingPosition = pos[kingRow][kingCol];
-        if ((kingPosition->getLegalMoves()).size() == 0) {
+        if ((kingPosition->getLegalMoves())->size() == 0) {
             return true;
         }
     }
@@ -275,7 +275,7 @@ bool Board::isStalemated() {
         for (int j = 0; j < 8; ++j) {
             if (pos[i][j] != nullptr) {
                 Piece* temp = pos[i][j];
-                if ((temp->getLegalMoves()).size() == 0) {
+                if ((temp->getLegalMoves())->size() == 0 && (this->getColor() == temp->getColor())) {
                     check = true;
                 }
                 else {
