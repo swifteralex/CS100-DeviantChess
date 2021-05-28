@@ -22,7 +22,6 @@ TEST(WhitePawnLegalMovesTest, StartingPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e2e3", "e2e4" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, StartingPosition) {
@@ -43,7 +42,6 @@ TEST(BlackPawnLegalMovesTest, StartingPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e7e6", "e7e5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, CanTake) {
@@ -64,7 +62,6 @@ TEST(WhitePawnLegalMovesTest, CanTake) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4e5", "d4d5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, CanTake) {
@@ -85,7 +82,6 @@ TEST(BlackPawnLegalMovesTest, CanTake) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5d4", "e5f4", "e5e4" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, OnBoardEdge) {
@@ -106,7 +102,6 @@ TEST(WhitePawnLegalMovesTest, OnBoardEdge) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a6b7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, OnBoardEdge) {
@@ -127,7 +122,6 @@ TEST(BlackPawnLegalMovesTest, OnBoardEdge) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a7b6", "a7a6", "a7a5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, Promotion) {
@@ -148,7 +142,6 @@ TEST(WhitePawnLegalMovesTest, Promotion) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b7a8n", "b7a8b", "b7a8r", "b7a8q", "b7c8n", "b7c8b", "b7c8r", "b7c8q", "b7b8n", "b7b8b", "b7b8r", "b7b8q" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, Promotion) {
@@ -169,7 +162,6 @@ TEST(BlackPawnLegalMovesTest, Promotion) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "h2g1n", "h2g1b", "h2g1r", "h2g1q", "h2h1n", "h2h1b", "h2h1r", "h2h1q" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, OwnPieces) {
@@ -190,7 +182,6 @@ TEST(WhitePawnLegalMovesTest, OwnPieces) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, OwnPieces) {
@@ -211,7 +202,6 @@ TEST(BlackPawnLegalMovesTest, OwnPieces) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, InCheckCanPrevent) {
@@ -232,7 +222,6 @@ TEST(WhitePawnLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "f4e5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, InCheckCanPrevent) {
@@ -253,7 +242,6 @@ TEST(BlackPawnLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c7c5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, InCheckNoMoves) {
@@ -274,7 +262,6 @@ TEST(WhitePawnLegalMovesTest, InCheckNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, InCheckNoMoves) {
@@ -295,7 +282,6 @@ TEST(BlackPawnLegalMovesTest, InCheckNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhitePawnLegalMovesTest, EnPassant) {
@@ -317,7 +303,6 @@ TEST(WhitePawnLegalMovesTest, EnPassant) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5e6", "d5d6" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackPawnLegalMovesTest, EnPassant) {
@@ -339,7 +324,6 @@ TEST(BlackPawnLegalMovesTest, EnPassant) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b4a3", "b4c3", "b4b3" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKnightLegalMovesTest, StartingPosition) {
@@ -360,7 +344,6 @@ TEST(WhiteKnightLegalMovesTest, StartingPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b1a3", "b1c3" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKnightLegalMovesTest, StartingPosition) {
@@ -381,7 +364,6 @@ TEST(BlackKnightLegalMovesTest, StartingPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g8f6", "g8h6" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKnightLegalMovesTest, MiddleOfBoard) {
@@ -402,7 +384,6 @@ TEST(WhiteKnightLegalMovesTest, MiddleOfBoard) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c6b8", "c6d8", "c6a7", "c6e7", "c6a5", "c6e5", "c6b4", "c6d4" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKnightLegalMovesTest, MiddleOfBoard) {
@@ -423,7 +404,6 @@ TEST(BlackKnightLegalMovesTest, MiddleOfBoard) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4c6", "d4e6", "d4b5", "d4f5", "d4b3", "d4f3", "d4c2", "d4e2" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKnightLegalMovesTest, NoMoves) {
@@ -444,7 +424,6 @@ TEST(WhiteKnightLegalMovesTest, NoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKnightLegalMovesTest, NoMoves) {
@@ -465,7 +444,6 @@ TEST(BlackKnightLegalMovesTest, NoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKnightLegalMovesTest, InCheckCanPrevent) {
@@ -486,7 +464,6 @@ TEST(WhiteKnightLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4c2" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKnightLegalMovesTest, InCheckCanPrevent) {
@@ -507,7 +484,6 @@ TEST(BlackKnightLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g8e7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKnightLegalMovesTest, InCheckNoMoves) {
@@ -528,7 +504,6 @@ TEST(WhiteKnightLegalMovesTest, InCheckNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKnightLegalMovesTest, InCheckNoMoves) {
@@ -549,7 +524,6 @@ TEST(BlackKnightLegalMovesTest, InCheckNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteBishopLegalMovesTest, EmptyPosition) {
@@ -570,7 +544,6 @@ TEST(WhiteBishopLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e4f3", "e4g2", "e4h1", "e4d3", "e4c2", "e4b1", "e4f5", "e4g6", "e4h7", "e4d5", "e4c6", "e4b7", "e4a8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackBishopLegalMovesTest, EmptyPosition) {
@@ -591,7 +564,6 @@ TEST(BlackBishopLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b6c5", "b6d4", "b6e3", "b6f2", "b6g1", "b6a5", "b6c7", "b6d8", "b6a7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteBishopLegalMovesTest, PartiallyBlocked) {
@@ -612,7 +584,6 @@ TEST(WhiteBishopLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c1d2", "c1e3" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackBishopLegalMovesTest, PartiallyBlocked) {
@@ -633,7 +604,6 @@ TEST(BlackBishopLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5f4", "e5d4", "e5c3", "e5b2" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteBishopLegalMovesTest, NoMoves) {
@@ -654,7 +624,6 @@ TEST(WhiteBishopLegalMovesTest, NoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackBishopLegalMovesTest, NoMoves) {
@@ -675,7 +644,6 @@ TEST(BlackBishopLegalMovesTest, NoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteBishopLegalMovesTest, InCheckCanPrevent) {
@@ -696,7 +664,6 @@ TEST(WhiteBishopLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a6d3" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackBishopLegalMovesTest, InCheckCanPrevent) {
@@ -717,7 +684,6 @@ TEST(BlackBishopLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "f4e3", "f4e5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteBishopLegalMovesTest, InCheckNoMoves) {
@@ -738,7 +704,6 @@ TEST(WhiteBishopLegalMovesTest, InCheckNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackBishopLegalMovesTest, PinnedNoMoves) {
@@ -759,7 +724,6 @@ TEST(BlackBishopLegalMovesTest, PinnedNoMoves) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteRookLegalMovesTest, EmptyPosition) {
@@ -780,7 +744,6 @@ TEST(WhiteRookLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g5f5", "g5e5", "g5d5", "g5c5", "g5b5", "g5a5", "g5h5", "g5g4", "g5g3", "g5g2", "g5g1", "g5g6", "g5g7", "g5g8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackRookLegalMovesTest, EmptyPosition) {
@@ -801,7 +764,6 @@ TEST(BlackRookLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c4b4", "c4a4", "c4d4", "c4e4", "c4f4", "c4g4", "c4h4", "c4c3", "c4c2", "c4c1", "c4c5", "c4c6", "c4c7", "c4c8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteRookLegalMovesTest, PartiallyBlocked) {
@@ -822,7 +784,6 @@ TEST(WhiteRookLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5d5", "e5f5", "e5e4", "e5e3", "e5e6", "e5e7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackRookLegalMovesTest, PartiallyBlocked) {
@@ -843,7 +804,6 @@ TEST(BlackRookLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c7c6", "c7c5" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteRookLegalMovesTest, Pinned) {
@@ -864,7 +824,6 @@ TEST(WhiteRookLegalMovesTest, Pinned) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e3e2", "e3e4", "e3e5", "e3e6", "e3e7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackRookLegalMovesTest, Pinned) {
@@ -885,7 +844,6 @@ TEST(BlackRookLegalMovesTest, Pinned) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteRookLegalMovesTest, InCheckCanPrevent) {
@@ -906,7 +864,6 @@ TEST(WhiteRookLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5d1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackRookLegalMovesTest, InCheckCanPrevent) {
@@ -927,7 +884,6 @@ TEST(BlackRookLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c5b5", "c5c6" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteQueenLegalMovesTest, EmptyPosition) {
@@ -948,7 +904,6 @@ TEST(WhiteQueenLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c4d3", "c4e2", "c4f1", "c4b3", "c4a2", "c4d5", "c4e6", "c4f7", "c4g8", "c4b5", "c4a6", "c4b4", "c4a4", "c4d4", "c4e4", "c4f4", "c4g4", "c4h4", "c4c3", "c4c2", "c4c1", "c4c5", "c4c6", "c4c7", "c4c8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackQueenLegalMovesTest, EmptyPosition) {
@@ -969,7 +924,6 @@ TEST(BlackQueenLegalMovesTest, EmptyPosition) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "h7g6", "h7f5", "h7e4", "h7d3", "h7c2", "h7b1", "h7g8", "h7g7", "h7f7", "h7e7", "h7d7", "h7c7", "h7b7", "h7a7", "h7h6", "h7h5", "h7h4", "h7h3", "h7h2", "h7h1", "h7h8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteQueenLegalMovesTest, PartiallyBlocked) {
@@ -990,7 +944,6 @@ TEST(WhiteQueenLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d1e2", "d1f3", "d1g4", "d1h5", "d1d2", "d1d3", "d1d4", "d1d5", "d1d6", "d1d7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackQueenLegalMovesTest, PartiallyBlocked) {
@@ -1011,7 +964,6 @@ TEST(BlackQueenLegalMovesTest, PartiallyBlocked) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b3c2", "b3a2", "b3c4", "b3a4", "b3a3", "b3c3", "b3d3", "b3e3", "b3f3", "b3g3", "b3h3", "b3b2", "b3b4", "b3b5", "b3b6" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteQueenLegalMovesTest, Pinned) {
@@ -1032,7 +984,6 @@ TEST(WhiteQueenLegalMovesTest, Pinned) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e6e5", "e6e4", "e6e3", "e6e2", "e6e7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackQueenLegalMovesTest, Pinned) {
@@ -1053,7 +1004,6 @@ TEST(BlackQueenLegalMovesTest, Pinned) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d7c6", "d7b5", "d7a4" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteQueenLegalMovesTest, InCheckCanPrevent) {
@@ -1074,7 +1024,6 @@ TEST(WhiteQueenLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d3f1", "d3b1", "d3d1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackQueenLegalMovesTest, InCheckCanPrevent) {
@@ -1095,7 +1044,6 @@ TEST(BlackQueenLegalMovesTest, InCheckCanPrevent) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5c6", "d5b5", "d5d7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, CanCastleBothSides) {
@@ -1116,7 +1064,6 @@ TEST(WhiteKingLegalMovesTest, CanCastleBothSides) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1e2", "e1f2", "e1d1", "e1f1", "e1g1", "e1c1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, CanCastleBothSides) {
@@ -1137,7 +1084,6 @@ TEST(BlackKingLegalMovesTest, CanCastleBothSides) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8d7", "e8e7", "e8f7", "e8g8", "e8c8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, InCheck) {
@@ -1158,7 +1104,6 @@ TEST(WhiteKingLegalMovesTest, InCheck) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1f2", "e1d1", "e1f1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, InCheck) {
@@ -1179,7 +1124,6 @@ TEST(BlackKingLegalMovesTest, InCheck) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8d7", "e8f7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, CastlingBlockedByEnemy) {
@@ -1200,7 +1144,6 @@ TEST(WhiteKingLegalMovesTest, CastlingBlockedByEnemy) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1e2", "e1f1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, CastlingBlockedByEnemy) {
@@ -1221,7 +1164,6 @@ TEST(BlackKingLegalMovesTest, CastlingBlockedByEnemy) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8f8", "e8e7", "e8f7", "e8g8" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, CastlingBlockedByPiece) {
@@ -1242,7 +1184,6 @@ TEST(WhiteKingLegalMovesTest, CastlingBlockedByPiece) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1e2", "e1f1" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, CastlingBlockedByPiece) {
@@ -1263,7 +1204,6 @@ TEST(BlackKingLegalMovesTest, CastlingBlockedByPiece) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8e7", "e8f7" };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, CantMoveIntoCheck) {
@@ -1284,7 +1224,6 @@ TEST(WhiteKingLegalMovesTest, CantMoveIntoCheck) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, CantMoveIntoCheck) {
@@ -1305,7 +1244,6 @@ TEST(BlackKingLegalMovesTest, CantMoveIntoCheck) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(WhiteKingLegalMovesTest, CheckMate) {
@@ -1326,7 +1264,6 @@ TEST(WhiteKingLegalMovesTest, CheckMate) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 TEST(BlackKingLegalMovesTest, CheckMate) {
@@ -1347,7 +1284,6 @@ TEST(BlackKingLegalMovesTest, CheckMate) {
     std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
-    delete moves;
 }
 
 #endif
