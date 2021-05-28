@@ -77,7 +77,6 @@ std::string Random::getBestMove() {
                 for (int i = 0; i < ret.size(); i++) {
                     moves.push_back(ret.at(i));
                 }
-                delete ret;
             }
         }
     }
