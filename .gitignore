@@ -1,3 +1,10 @@
 .vscode/launch.json
 a.exe
 a.out
+main
+test
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+lib/

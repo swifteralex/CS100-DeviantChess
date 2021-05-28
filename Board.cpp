@@ -173,6 +173,22 @@ bool Board::isInCheck() const {
         }
     }
 
+    // check if enemy king is attacking king (used for move legality checking)
+    for (int i = 0; i < 9; i++) {
+        if (i == 4) {
+            continue;
+        }
+        int rowDiff = (i / 3) - 1;
+        int colDiff = (i % 3) - 1;
+        int r = kingRow + rowDiff;
+        int c = kingCol + colDiff;
+        if (r >= 0 && r <= 7 && c >= 0 && c <= 7) {
+            if (pos[r][c] && pos[r][c]->getColor() != color && (pos[r][c]->getLabel() == "k" || pos[r][c]->getLabel() == "K")) {
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 
@@ -216,8 +232,10 @@ std::vector<int> Board::findVPos(const std::string &pos) const {
 }
 
 Piece* Board::getPieceAt(const std::string &position) const {
-    std::vector<int> vPos = findVPos(position);
-    return pos.at(vPos.at(0)).at(vPos.at(1));
+    //std::vector<int> vPos = findVPos(position);
+    //return pos.at(vPos.at(0)).at(vPos.at(1));
+    char lowercase = position[0] | 32;
+    return pos[56 - position[1]][lowercase - 97]; 
 }
 
 void Board::printBoard() const {
