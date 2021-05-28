@@ -19,6 +19,7 @@ TEST(CheckmateTest, FirstPosition) {
     };
     board.setPosition(pos);
     board.setColor('b');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), true);
 }
 
@@ -37,6 +38,7 @@ TEST(CheckmateTest, SecondPosition) {
     };
     board.setPosition(pos);
     board.setColor('w');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), true);
 }
 
@@ -55,6 +57,7 @@ TEST(CheckmateTest, ThirdPosition) {
     };
     board.setPosition(pos);
     board.setColor('b');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), true);
 }
 
@@ -73,6 +76,7 @@ TEST(CheckmateTest, FourthPosition) {
     };
     board.setPosition(pos);
     board.setColor('w');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), false);
 }
 
@@ -91,6 +95,7 @@ TEST(CheckmateTest, FifthPosition) {
     };
     board.setPosition(pos);
     board.setColor('w');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), false);
 }
 
@@ -108,6 +113,7 @@ TEST(StalemateTest, FirstPosition) {
     };
     board.setPosition(pos);
     board.setColor('b');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isStalemated(), true);
 }
 
@@ -126,6 +132,7 @@ TEST(StalemateTest, SecondPosition) {
     };
     board.setPosition(pos);
     board.setColor('b');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isStalemated(), true);
 }
 
@@ -144,6 +151,7 @@ TEST(StalemateTest, ThirdPosition) {
     };
     board.setPosition(pos);
     board.setColor('b');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isStalemated(), true);
 }
 
@@ -162,6 +170,7 @@ TEST(StalemateTest, FourthPosition) {
     };
     board.setPosition(pos);
     board.setColor('w');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isStalemated(), false);
 }
 
@@ -180,6 +189,7 @@ TEST(StalemateTest, FifthPosition) {
     };
     board.setPosition(pos);
     board.setColor('w');
+    castlingPrivileges = "-";
     EXPECT_EQ(board.isStalemated(), false);
 }
 
