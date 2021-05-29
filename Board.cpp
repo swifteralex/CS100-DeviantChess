@@ -152,6 +152,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     
     
     //this moves if the piece is a legal move. 
+    std::cout << moves.size();
     for(int i = 0; i < moves.size(); i++){
         std::cout << "hey" << std::endl;
         if(moves[i] == pos2 && moved == false){
@@ -164,7 +165,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 moved = true;
             }
             else {
-                if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
+                // if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
@@ -172,9 +173,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     // std::cout << "Move Successful" << std::endl;
                     moved = true;
                 }
-                else{
+                // else{
                     moved = false;
-                }
+                // }
             }
         }
     }
