@@ -153,6 +153,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     
     //this moves if the piece is a legal move. 
     for(int i = 0; i < moves.size(); i++){
+        std::cout << "hey" << std::endl;
         if(moves[i] == pos2 && moved == false){
             if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
                 //swaps pieces.
@@ -233,7 +234,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         return true;
     }
     //if after move the player's  king is in check, reverts the board. 
-    if(isInCheck() == true){
+    else if(isInCheck() == true){
         pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
         pos[pos2v[0]][pos2v[1]] = prev;
         // std::cout << "King is in Check. Invalid Move" << std::endl;
