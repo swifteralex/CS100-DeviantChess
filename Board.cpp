@@ -383,36 +383,35 @@ std::string Board::generateFEN() const {
 }
 
 std::vector<int> Board::findVPos(const std::string &pos) const {
-    std::vector<int> posit(2);
+   std::vector<int> posit(2);
     std::string num = pos.substr(1,2);
-    std::istringstream g(num);
     int n = 0;
-    g >> n;
-    posit[0] = n;
+    n = std::stoi(num);
+    posit.at(0) = 8-n;
     std::string post = pos.substr(0,1);
     if(post == "a"|| post == "A"){
-        posit[1] = 0;
+        posit.at(1) = 0;
     }
     else if(post == "b" || post == "B"){
-        posit[1] = 1;
+        posit.at(1) = 1;
     }
     else if(post == "c" || post == "C"){
-        posit[1] = 2;
+        posit.at(1) = 2;
     }
     else if(post == "d" || post == "D"){
-        posit[1] = 3;
+        posit.at(1) = 3;
     }
     else if(post == "e" || post == "E"){
-        posit[1] = 4;
+        posit.at(1) = 4;
     }
     else if(post == "f" || post == "F"){
-        posit[1] = 5;
+        posit.at(1) = 5;
     }
     else if(post == "g" || post == "G"){
-        posit[1] = 6;
+        posit.at(1) = 6;
     }
     else if(post == "h" || post == "H"){
-        posit[1] = 7;
+        posit.at(1) = 7;
     }
     return posit;
 }
