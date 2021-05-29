@@ -136,8 +136,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         //this portion swaps. if the slide is part of legal moves.
         for(int i = 0; i < move.size(); i++){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
-                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
-                    getPieceAt(pos2)->setMoved(true);
+                if(getPieceAt("h1")->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt("h1")->setMoved(true);
                     currentPiece->setMoved(true);
                     swap(pos1v, pos2v);
                     std::string h1 = "h1";
@@ -149,8 +149,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 }
             }
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
-                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
-                    getPieceAt(pos2)->setMoved(true);
+                if(getPieceAt("a1")->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt("a1")->setMoved(true);
                     swap(pos1v, pos2v);
                     std::string a1 = "a1";
                     std::string d1 = "d1";
@@ -162,8 +162,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 }
             }
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
-                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
-                    getPieceAt(pos2)->setMoved(true);
+                if(getPieceAt("h8")->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt("h8")->setMoved(true);
                     currentPiece->setMoved(true);
                     swap(pos1v, pos2v);
                     std::string h = "h8";
@@ -176,8 +176,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 }
             }
             else if(move[i] == "e8c8" && move[i].substr(2,4) == pos2){
-                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
-                    getPieceAt(pos2)->setMoved(true);
+                Piece* r = getPieceAt("a8");
+                if(r->getMoved() == false && currentPiece->getMoved() == false){
+                    r->setMoved(true);
                     currentPiece->setMoved(true);
                     swap(pos1v, pos2v);
                     std::string a1 = "a8";
