@@ -159,7 +159,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
                 //swaps pieces.
                 prev = pos[pos2v[0]][pos2v[1]];
-                std::cout <<  "this works" << std::endl;
+                //std::cout <<  "this works" << std::endl;
                 swap(pos1v, pos2v);
                 pos[pos1v[0]][pos1v[1]] = nullptr;
                 // std::cout << "Move Successful" << std::endl;
@@ -170,7 +170,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
-                    std::cout <<  "this works" << std::endl;
+                    //std::cout <<  "this works" << std::endl;
                     // std::cout << "Move Successful" << std::endl;
                     moved = true;
                 //}
@@ -181,10 +181,10 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         }
     }
     //invalid move. returns false
-    // if(!moved){
-    //     // std::cout << "Invalid Move" << std::endl;
-    //     return false;
-    // }
+    if(!moved){
+        // std::cout << "Invalid Move" << std::endl;
+        return false;
+    }
     //pawn promotion
     std::vector<std::string> legalPromo;
     for(int i = 0; i < move.size(); i++){

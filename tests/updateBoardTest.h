@@ -153,6 +153,24 @@ TEST(updateBoardTest, castlingQueenSide){
     EXPECT_EQ(board.printBoard(), ans);
 }
 
+TEST(updateBoardTest, castlingKingSide){
+    std::string ans ="   =====================================\n8  |   r   n   b   q   0   r   k   0   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   P   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   Q   K   B   N   R   |\n   |                                   |\n   =====================================\n       A   B   C   D   E   F   G   H\n";
+    std::vector<std::vector<char>> sp = {
+        { 'r', 'n', 'b', 'q', 'k', '0', '0', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', '0', 'K', 'B', 'N', 'R' }
+    };
+    Board board;
+    board.setPosition(sp);
+    board.setColor('b');
+    board.updateBoard("e8", "g8");
+    EXPECT_EQ(board.printBoard(), ans);
+}
 // TEST(updateBoardTest,invalidMove){
 //     Board board;
 //     board.setColor('w');
