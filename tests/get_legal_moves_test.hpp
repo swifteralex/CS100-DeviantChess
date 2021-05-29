@@ -1301,7 +1301,7 @@ TEST(mytest, mtest) {
     board.setColor('w');
     Piece* p = board.getPieceAt("a1");
     std::vector<std::string> moves = p->getLegalMoves();
-    std::vector<std::string> expected = {"a1b1", "a1c1", "a1d1", "a1e1" };
+    std::vector<std::string> expected = { };
     EXPECT_EQ(moves == expected, true);
 }
 
