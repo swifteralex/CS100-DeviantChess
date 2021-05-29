@@ -149,7 +149,7 @@ TEST(updateBoardTest, castlingQueenSide){
     Board board;
     board.setPosition(sp);
     board.setColor('b');
-    board.updateBoard("a7", "a8q");
+    board.updateBoard("e8", "c8");
     EXPECT_EQ(board.printBoard(), ans);
 }
 
