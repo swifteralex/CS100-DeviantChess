@@ -240,7 +240,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             }
         }
     }
-    if(!promo){
+    if(!promo && (currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P")){
         pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
         pos[pos2v[0]][pos2v[1]] = prev;
         // std::cout << "King is in Check. Invalid Move" << std::endl;
