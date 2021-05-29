@@ -418,25 +418,27 @@ Piece* Board::getPieceAt(const std::string &position) const {
     return pos[56 - position[1]][lowercase - 97]; 
 }
 
-void Board::printBoard() const {
-    std::cout << "   =====================================" << std::endl;
+std::string Board::printBoard() const {
+    std::string output;
+    output += "   =====================================\n";
     int num = 9;
         for(int i = 0; i < pos.size(); i++){     
-            std::cout << num-1 << "  ";
+            output += num-1 + "  ";
             num = num-1;
-            std::cout << "|   ";
+            output += "|   ";
             for(int j = 0; j < pos.at(i).size(); j++){
                 if (pos.at(i).at(j)) {
-                    std::cout << pos.at(i).at(j)->getLabel();
+                    output += pos.at(i).at(j)->getLabel();
                 } else {
-                    std::cout << " ";
+                    output += " ";
                 }
-                std::cout << "   ";
+                output += "   ";
             }
-            std::cout << "|" << std::endl <<"   |                                   |"<< std::endl;
+            output += "|\n   |                                   |\n";
         }
-        std::cout << "   ====================================="<< std::endl;
-        std::cout << "       A   B   C   D   E   F   G   H" << std::endl;
+        output += "   =====================================\n";
+        output += "       A   B   C   D   E   F   G   H\n";
+    return output;
 }
 
 bool Board::isCheckmated() {

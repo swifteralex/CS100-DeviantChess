@@ -22,7 +22,7 @@ TEST(updateBoardTest, knightMove){
 
 TEST(updateBoardTest, rookMoveEatsPawn){
     std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   R   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   0   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   0   N   B   Q   K   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
@@ -41,7 +41,7 @@ TEST(updateBoardTest, rookMoveEatsPawn){
 
 TEST(updateBoardTest, bishopMove){
     std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   B   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   P   0   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   0   Q   K   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
@@ -60,7 +60,7 @@ TEST(updateBoardTest, bishopMove){
 
 TEST(updateBoardTest, queenMove){
     std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   Q   0   0   0   0   0   0   |\n   |                                   |\n2  |   P   P   0   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   0   K   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
@@ -79,7 +79,7 @@ TEST(updateBoardTest, queenMove){
 
 TEST(updateBoardTest, kingMove){
     std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   P   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   K   0   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
@@ -98,7 +98,7 @@ TEST(updateBoardTest, kingMove){
 
 TEST(updateBoardTest,pawnEatpawn){
     std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   0   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   P   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   0   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   Q   K   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'p', '0', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
@@ -117,7 +117,7 @@ TEST(updateBoardTest,pawnEatpawn){
 
 TEST(updateBoardTest, pawnPromo){
     std::string ans =  "   =====================================\n8  |   Q   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   0   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   0   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   0   K   B   N   R   |\n   |                                   |\n";
-    std::vector<char> sp = {
+    std::vector<std::vector<char>> sp = {
         { '0', 'n', 'b', 'q', 'k', 'b', 'n', 'r' },
         { 'P', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
