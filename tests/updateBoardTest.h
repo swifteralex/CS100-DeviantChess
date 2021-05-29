@@ -145,3 +145,5 @@ TEST(updateBoardTest, pawnPromo){
 //     board.setColor('b');
 //     EXPECT_EQ(board.updateBoard("a2", "a4") == false, true);
 // }
+
+#endif
