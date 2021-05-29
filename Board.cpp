@@ -152,9 +152,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     
     
     //this moves if the piece is a legal move. 
-    std::cout << moves.size();
+    // std::cout << moves.size();
     for(int i = 0; i < moves.size(); i++){
-        std::cout << "hey" << std::endl;
+        // std::cout << "hey" << std::endl;
         if(moves[i] == pos2 && moved == false){
             if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
                 //swaps pieces.
@@ -192,7 +192,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             legalPromo.push_back(move[i].substr(4,5));
         }
     }
-    std::cout << pos2c.substr(2,3) << std::endl;
+    // std::cout << pos2c.substr(2,3) << std::endl;
     if( currentPiece->getLabel() == "p"  && pos2v[0] == 0){
         for(int i = 0; i < legalPromo.size(); i++){
             // std::cout << pos2c.substr(1,3) << std::endl;
