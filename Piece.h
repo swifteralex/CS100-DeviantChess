@@ -8,11 +8,18 @@ class Board;
 
 class Piece : public ChessObject {
 protected:
+    bool moved = false;
     std::string pos;
     Board* chessBoard;
   
 public:
     Piece(Board*, char, const std::string&);
+    bool getMoved(){
+        return moved;
+    }
+    bool setMoved(bool m){
+        moved = m;
+    }
     virtual std::vector<std::string> getLegalMoves() = 0;
 };
 

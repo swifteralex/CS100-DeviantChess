@@ -136,43 +136,58 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         //this portion swaps. if the slide is part of legal moves.
         for(int i = 0; i < move.size(); i++){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
-                swap(pos1v, pos2v);
-                std::string h1 = "h1";
-                std::string f1 = "f1";
-                std::vector<int> h = findVPos(h1);
-                std::vector<int> f = findVPos(f1);
-                swap(h, f);
-                moved = true;
+                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt(pos2)->setMoved(true);
+                    currentPiece->setMoved(true);
+                    swap(pos1v, pos2v);
+                    std::string h1 = "h1";
+                    std::string f1 = "f1";
+                    std::vector<int> h = findVPos(h1);
+                    std::vector<int> f = findVPos(f1);
+                    swap(h, f);
+                    moved = true;
+                }
             }
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
-                swap(pos1v, pos2v);
-                std::string a1 = "a1";
-                std::string d1 = "d1";
-                std::vector<int> a = findVPos(a1);
-                std::vector<int> d = findVPos(d1);
-
-                swap(a, d);
-                moved = true;
+                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt(pos2)->setMoved(true);
+                    swap(pos1v, pos2v);
+                    std::string a1 = "a1";
+                    std::string d1 = "d1";
+                    std::vector<int> a = findVPos(a1);
+                    std::vector<int> d = findVPos(d1);
+                    swap(a, d);
+                    moved = true;
+                    currentPiece->setMoved(true);
+                }
             }
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
-                swap(pos1v, pos2v);
-                std::string h = "h8";
-                std::string f = "f8";
-                std::vector<int> h1 = findVPos(h);
-                std::vector<int> f1 = findVPos(f);
+                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt(pos2)->setMoved(true);
+                    currentPiece->setMoved(true);
+                    swap(pos1v, pos2v);
+                    std::string h = "h8";
+                    std::string f = "f8";
+                    std::vector<int> h1 = findVPos(h);
+                    std::vector<int> f1 = findVPos(f);
 
-                swap(h1, f1);
-                moved = true;
+                    swap(h1, f1);
+                    moved = true;
+                }
             }
             else if(move[i] == "e8c8" && move[i].substr(2,4) == pos2){
-                swap(pos1v, pos2v);
-                std::string a1 = "a8";
-                std::string d1 = "d8";
-                std::vector<int> a = findVPos(a1);
-                std::vector<int> d = findVPos(d1);
+                if(getPieceAt(pos2)->getMoved() == false && currentPiece->getMoved() == false){
+                    getPieceAt(pos2)->setMoved(true);
+                    currentPiece->setMoved(true);
+                    swap(pos1v, pos2v);
+                    std::string a1 = "a8";
+                    std::string d1 = "d8";
+                    std::vector<int> a = findVPos(a1);
+                    std::vector<int> d = findVPos(d1);
 
-                swap(a, d);
-                moved = true;
+                    swap(a, d);
+                    moved = true;
+                }
             }
         }
     }
@@ -196,19 +211,21 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 pos[pos1v[0]][pos1v[1]] = nullptr;
                 // std::cout << "Move Successful" << std::endl;
                 moved = true;
+                currentPiece->setMoved(true);
             }
             else {
-                // if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
+                if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
                     //std::cout <<  "this works" << std::endl;
                     // std::cout << "Move Successful" << std::endl;
                     moved = true;
-                //}
-                // else{
-                //    moved = false;
-                // }
+                    currentPiece->setMoved(true);
+                }
+                else{
+                   moved = false;
+                }
             }
         }
     }
@@ -256,18 +273,22 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
+                    pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
+                    pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
+                    pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
+                    pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 promo = true;
