@@ -240,10 +240,18 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             }
         }
     }
-    if(!promo && (currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P")){
+    if(!promo && (currentPiece->getLabel() == "p")){
         if(pos2v[0] == 0 || pos2v[0] == 7){
             pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
-            pos[pos2v[0]][pos2v[1]] = prev;
+            pos[pos2v[0]][pos2v[1]] = new Pawn(this, 'b', "p");
+            // std::cout << "King is in Check. Invalid Move" << std::endl;
+            return false;
+        }
+    }
+    if(!promo && (currentPiece->getLabel() == "P")){
+        if(pos2v[0] == 0 || pos2v[0] == 7){
+            pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+            pos[pos2v[0]][pos2v[1]] = new Pawn(this, 'w', "P");
             // std::cout << "King is in Check. Invalid Move" << std::endl;
             return false;
         }
