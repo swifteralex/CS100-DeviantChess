@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <sstream>
 
-Board::Board() : ChessObject('w', "board"), strategy(nullptr) {
+Board::Board() : ChessObject('w', "board") {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
         { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
@@ -23,16 +23,6 @@ Board::~Board() {
             }
         }
     }
-    if (strategy) {
-        delete strategy;
-    }
-}
-
-void Board::setStrategy(AIStrategy* strat) {
-    if (strategy) {
-        delete strategy;
-    }
-    strategy = strat;
 }
 
 // void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
@@ -199,32 +189,32 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     std::vector<std::string> legalPromo;
     for(int i = 0; i < move.size(); i++){
         if(move[i].length() == 5){
-            legalPromo.push_back(move[i].substr(3,4));
+            legalPromo.push_back(move[i].substr(4,5));
         }
     }
-    bool promot = false;
+    bool promo = false;
     // std::cout << pos2c.substr(2,3) << std::endl;
     if( currentPiece->getLabel() == "p"  && pos2v[0] == 7){
         for(int i = 0; i < legalPromo.size(); i++){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
-                if(pos2c.substr(2,3) == "b"){
+                if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "q"){
+                else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "n"){
+                else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "r"){
+                else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
-                    promot = true;
+                    promo = true;
                 }
-                promot = true;
+                promo = true;
             }
         }
     }
@@ -232,27 +222,27 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         for(int i = 0; i < legalPromo.size(); i++){
             //std::cout << pos2c.substr(2,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
-                if(pos2c.substr(2,3) == "b"){
+                if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "q"){
+                else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "n"){
+                else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
-                    promot = true;
+                    promo = true;
                 }
-                else if(pos2c.substr(2,3) == "r"){
+                else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
-                    promot = true;
+                    promo = true;
                 }
-                promot = true;
+                promo = true;
             }
         }
     }
-    if(promot == false && currentPiece->getLabel() == "p"){
+    if(promo == false && currentPiece->getLabel() == "p"){
         if(pos2v[0] == 7){
             pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
             pos[pos2v[0]][pos2v[1]] = prev;
@@ -260,7 +250,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             return false;
         }
     }
-    if(promot == false && currentPiece->getLabel() == "P"){
+    else if(promo == false && currentPiece->getLabel() == "P"){
         if(pos2v[0] == 0){
             pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
             pos[pos2v[0]][pos2v[1]] = prev;
@@ -417,30 +407,7 @@ bool Board::isInCheck() const {
 }
 
 std::string Board::generateFEN() const {
-    std::string res;
-    int empty_run = 0;
-    for (int r = 0; r < 8; r++) {
-        for (int c = 0; c < 8; c++) {
-            if (pos[r][c]) {
-                if (empty_run != 0) {
-                    res.push_back(empty_run + 48);
-                }
-                empty_run = 0;
-                res += pos[r][c]->getLabel();
-            } else {
-                empty_run++;
-            }
-        }
-        if (empty_run != 0) {
-            res.push_back(empty_run + 48);
-            empty_run = 0;
-        }
-        if (r != 7) {
-            res.push_back('/');
-        }
-    }
-    res += (" " + std::string(1, color) + " " + castlingPrivileges + " " + enPassantSquare + " 0 1");
-    return res;
+    return "";
 }
 
 std::vector<int> Board::findVPos(const std::string &pos) const {
