@@ -1286,23 +1286,4 @@ TEST(BlackKingLegalMovesTest, CheckMate) {
     EXPECT_EQ(moves == expected, true);
 }
 
-TEST(mytest, mtest){
-    std::vector<std::vector<char>> pos = {
-        { '0', '0', 'b', 'q', 'k', 'b', 'n', 'r' },
-        { 'P', 'p', 'p', 'p', 'p', '0', '0', 'p' },
-        { '0', '0', '0', '0', '0', '0', '0', '0' },
-        { '0', '0', '0', '0', '0', '0', 'p', 'Q' },
-        { '0', '0', '0', '0', '0', '0', '0', '0' },
-        { '0', '0', '0', '0', '0', '0', '0', '0' },
-        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
-        { '0', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
-    };
-    Board board;
-    board.setPosition(pos);
-    Piece* p = board.getPieceAt("a7");
-    std::vector<std::string> moves = p->getLegalMoves();
-    std::vector<std::string> ans = { "a7a8r"};
-    EXPECT_EQ(moves == ans, true);
-}
-
 #endif
