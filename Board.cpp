@@ -192,6 +192,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             legalPromo.push_back(move[i].substr(4,5));
         }
     }
+    bool promo = false;
     // std::cout << pos2c.substr(2,3) << std::endl;
     if( currentPiece->getLabel() == "p"  && pos2v[0] == 0){
         for(int i = 0; i < legalPromo.size(); i++){
@@ -199,15 +200,19 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
+                    promo == true;
                 }
                 else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
+                    promo == true;
                 }
                 else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
+                    promo == true;
                 }
                 else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
+                    promo == true;
                 }
             }
         }
@@ -218,18 +223,28 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
+                    promo == true;
                 }
                 else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
+                    promo == true;
                 }
                 else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
+                    promo == true;
                 }
                 else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
+                    promo == true;
                 }
             }
         }
+    }
+    if(!promo){
+        pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+        pos[pos2v[0]][pos2v[1]] = prev;
+        // std::cout << "King is in Check. Invalid Move" << std::endl;
+        return false;
     }
     //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
     if(isInCheck() == false){
