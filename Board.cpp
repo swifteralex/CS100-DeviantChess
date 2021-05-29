@@ -191,10 +191,10 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         }
     }
     //invalid move. returns false
-    if(!moved){
-        // std::cout << "Invalid Move" << std::endl;
-        return false;
-    }
+    // if(!moved){
+    //     // std::cout << "Invalid Move" << std::endl;
+    //     return false;
+    // }
     //pawn promotion
     std::vector<std::string> legalPromo;
     for(int i = 0; i < move.size(); i++){
