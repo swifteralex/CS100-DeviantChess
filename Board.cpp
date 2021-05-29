@@ -66,7 +66,7 @@ void Board::setPosition(const std::vector<std::vector<char>>& in) {
     }
 }
 
-bool Board::updateBoard(std::string& pos1, std::string& pos2c){
+bool Board::updateBoard(std::string pos1, std::string pos2c){
     std::string pos2 = pos2c.substr(0,2);
     std::vector<int> pos1v = findVPos(pos1); //vector location
     //checks if there is a piece at the said location.

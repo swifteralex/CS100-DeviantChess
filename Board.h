@@ -58,7 +58,7 @@ public:
 	std::string generateFEN() const;
 		
 	Piece* getPieceAt(const std::string &position) const;
-	bool updateBoard(std::string&, std::string&);
+	bool updateBoard(std::string, std::string);
    	std::string printBoard() const;
 	bool isCheckmated();
 	bool isStalemated();
