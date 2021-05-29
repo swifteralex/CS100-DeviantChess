@@ -3,7 +3,7 @@
 int main() {
     Board board;
 
-    board.printBoard();
+    std::cout << board.printBoard();
 
     return 0;
 }
