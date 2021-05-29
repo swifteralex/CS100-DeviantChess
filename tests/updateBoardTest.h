@@ -264,4 +264,21 @@ TEST(kingTest, kingNextking){
     board.setColor('w');
     EXPECT_EQ(board.updateBoard("e4", "e5"), false);
 }
+
+TEST(pawnTest, pawnPromotestoInvalidepiece){
+    std::vector<std::vector<char>> sp = {
+        { '0', 'n', 'b', 'q', 'k', '0', '0', 'r' },
+        { 'P', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
+    };
+    Board board;
+    board.setPosition(sp);
+    board.setColor('w');
+    EXPECT_EQ(board.updateBoard("a7","a8b"));
+}
 #endif
