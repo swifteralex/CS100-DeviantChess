@@ -9,9 +9,9 @@ int main() {
 	char secondInput;
 	bool playAgain = true;
 	while (playAgain) {
-		cout << "Enter 1 to play against a player or 2 to play against a computer." << endl;
+		cout << "Enter 1 to play against a player, 2 to play against Stockfish (Chess Engine), or 3 to play against a bot with random moves." << endl;
 		cin >> userInput;
-		while (userInput != '1' && userInput != '2' || !isdigit(userInput)) {
+		while (userInput != '1' && userInput != '2' && userInput != '3' || !isdigit(userInput)) {
 			cout << "Invalid input, try again." << endl;
 			cin >> userInput;
 		}
@@ -25,10 +25,11 @@ int main() {
         			cin >> userMove1;
         			cout << "Enter the location of where you want to move." << endl;
         			cin >> userMove2;
+				board.setColor('w');
         			//while(!(board.updateBoard(userMove1, userMove2))) {
 					//cout << "Invalid move, input move again." << endl;
-		                        //string userMove1 = "";
-                		        //string userMove2 = "";
+		                        //userMove1 = "";
+                		        //userMove2 = "";
                                		//board.printBoard();
                   			//cout << "Enter the location of the piece you want to move." << endl;
                    			//cin >> userMove1;
@@ -36,7 +37,29 @@ int main() {
                                 	//cin >> userMove2;
 	
 				//}
-        		break;
+                                userMove1 = "";
+                                userMove2 = "";
+                                board.printBoard();
+
+				if (board.isCheckmated() || board.isStalemated()) {
+					break;
+				}
+
+                                cout << "Enter the location of the piece you want to move." << endl;
+                                cin >> userMove1;
+                                cout << "Enter the location of where you want to move." << endl;
+                                cin >> userMove2;
+				board.setColor('b');
+				//while (!(board.updateBoard(userMove1, userMove2))) {
+					//cout << "Invalid move, input move again." << endl;
+					//userMove1 = "";
+					//userMove2 = "";
+					//board.printBoard();
+					//cout << "Enter the location of the piece you want to move." << endl;
+					//cin >> userMove1;
+					//cout << "Enter the location of where you want to move." << endl;
+					//cin >> userMove2;
+				//}
     			}
 		}
 
@@ -51,7 +74,7 @@ int main() {
 			}	
 			AIStrategy* AI = new Stockfish(&board, stockfishLevel);
 			board.setStrategy(AI);
-
+			board.setColor('w');
 			while (!board.isCheckmated() && board.isStalemated()){
 				string userMove1 = "";
 				string userMove2 = "";
@@ -61,17 +84,21 @@ int main() {
 				cout << "Enter the location of where you want to move." << endl;
 				cin >> userMove2;
 				//while (!(board.updateBoard(userMove1,userMove2))) {
-					//string userMove1 = "";
-                                	//string userMove2 = "";
+					//userMove1 = "";
+                                	//userMove2 = "";
                                 	//board.printBoard();
                                 	//cout << "Enter the location of the piece you want to move." << endl;
                                 	//cin >> userMove1;
                                 	//cout << "Enter the location of where you want to move." << endl;
                                 	//cin >> userMove2;
 				//}
-			//Board.playEngineMove();
+			board.setColor('b');
+			//board.playEngineMove();
 			}
 			delete AI;
+		}
+	    else if (userInput == '3') {
+	
 		}
 
 		else {
