@@ -5,7 +5,7 @@
 #include "../Board.h"
 
 TEST(updateBoardTest, pawnMove){
-    std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   P   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   0   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   Q   K   B   N   R   |\n   |                                   |\n";
+    std::string ans =  "   =====================================\n8  |   r   n   b   q   k   b   n   r   |\n   |                                   |\n7  |   p   p   p   p   p   p   p   p   |\n   |                                   |\n6  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n5  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n4  |   P   0   0   0   0   0   0   0   |\n   |                                   |\n3  |   0   0   0   0   0   0   0   0   |\n   |                                   |\n2  |   0   P   P   P   P   P   P   P   |\n   |                                   |\n1  |   R   N   B   Q   K   B   N   R   |\n   |                                   |\n   =====================================\n       A   B   C   D   E   F   G   H\n";
     Board board;
     board.setColor('w');
     board.updateBoard("a2", "a4");
