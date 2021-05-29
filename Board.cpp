@@ -188,7 +188,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             legalPromo.push_back(move[i].substr(4,5));
         }
     }
-    std::cout << pos2c.substr(2,3) << endl;
+    std::cout << pos2c.substr(2,3) << std::endl;
     if(currentPiece->getLabel() == "p" && pos2v[0] == 7){
         for(int i = 0; i < legalPromo.size(); i++){
             if(legalPromo[i] == pos2c.substr(2,3)){
