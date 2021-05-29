@@ -161,6 +161,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 prev = pos[pos2v[0]][pos2v[1]];
                 std::cout <<  "this works" << std::endl;
                 swap(pos1v, pos2v);
+                pos[pos1v[0]][pos1v[1]] = nullptr;
                 // std::cout << "Move Successful" << std::endl;
                 moved = true;
             }
