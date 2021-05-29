@@ -194,7 +194,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     }
     bool promo = false;
     // std::cout << pos2c.substr(2,3) << std::endl;
-    if( currentPiece->getLabel() == "p"  && pos2v[0] == 0){
+    if( currentPiece->getLabel() == "p"  && pos2v[0] == 7){
         for(int i = 0; i < legalPromo.size(); i++){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
@@ -241,10 +241,12 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         }
     }
     if(!promo && (currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P")){
-        pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
-        pos[pos2v[0]][pos2v[1]] = prev;
-        // std::cout << "King is in Check. Invalid Move" << std::endl;
-        return false;
+        if(pos2v[0] == 0 || pos2v[0] == 7){
+            pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+            pos[pos2v[0]][pos2v[1]] = prev;
+            // std::cout << "King is in Check. Invalid Move" << std::endl;
+            return false;
+        }
     }
     //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
     if(isInCheck() == false){
