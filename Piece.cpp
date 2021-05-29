@@ -4,8 +4,8 @@ Piece::Piece(Board* b, char c, const std::string& l) : ChessObject(c, l), chessB
 
 Pawn::Pawn(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Pawn::getLegalMoves() {
-    std::vector<std::string>* moves = new std::vector<std::string>();
+std::vector<std::string> Pawn::getLegalMoves() {
+    std::vector<std::string> moves;
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -26,62 +26,62 @@ std::vector<std::string>* Pawn::getLegalMoves() {
             std::string new_move;
             new_move.push_back(col + 96);
             new_move.push_back(57 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row > 0 && col < 7 && ((chessBoard->pos[row - 1][col + 1] && chessBoard->pos[row - 1][col + 1]->getColor() == 'b') || (chessBoard->enPassantSquare[0] == col + 98 && chessBoard->enPassantSquare[1] == 57 - row))) {
             std::string new_move;
             new_move.push_back(col + 98);
             new_move.push_back(57 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row > 0 && chessBoard->pos[row - 1][col] == nullptr) {
             std::string new_move;
             new_move.push_back(col + 97);
             new_move.push_back(57 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row == 6 && chessBoard->pos[5][col] == nullptr && chessBoard->pos[4][col] == nullptr) {
             std::string new_move;
             new_move.push_back(col + 97);
             new_move.push_back(58 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
     } else {
         if (row < 7 && col > 0 && ((chessBoard->pos[row + 1][col - 1] && chessBoard->pos[row + 1][col - 1]->getColor() == 'w') || (chessBoard->enPassantSquare[0] == (char)col + 96 && chessBoard->enPassantSquare[1] == 55 - (char)row))) {
             std::string new_move;
             new_move.push_back(col + 96);
             new_move.push_back(55 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row < 7 && col < 7 && ((chessBoard->pos[row + 1][col + 1] && chessBoard->pos[row + 1][col + 1]->getColor() == 'w') || (chessBoard->enPassantSquare[0] == (char)col + 98 && chessBoard->enPassantSquare[1] == 55 - (char)row))) {
             std::string new_move;
             new_move.push_back(col + 98);
             new_move.push_back(55 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row < 7 && chessBoard->pos[row + 1][col] == nullptr) {
             std::string new_move;
             new_move.push_back(col + 97);
             new_move.push_back(55 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
         if (row == 1 && chessBoard->pos[2][col] == nullptr && chessBoard->pos[3][col] == nullptr) {
             std::string new_move;
             new_move.push_back(col + 97);
             new_move.push_back(54 - row);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
     }
     
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
         if (move == chessBoard->enPassantSquare) {
             Piece* temp = chessBoard->pos[row][move[0] - 97];
             chessBoard->pos[56 - move[1]][move[0] - 97] = this;
             chessBoard->pos[row][col] = nullptr;
             chessBoard->pos[row][move[0] - 97] = nullptr;
             if (chessBoard->isInCheck()) {
-                moves->erase(moves->begin() + i);
+                moves.erase(moves.begin() + i);
                 i--;
             }
             chessBoard->pos[row][move[0] - 97] = temp;
@@ -92,7 +92,7 @@ std::vector<std::string>* Pawn::getLegalMoves() {
             chessBoard->pos[56 - move[1]][move[0] - 97] = this;
             chessBoard->pos[row][col] = nullptr;
             if (chessBoard->isInCheck()) {
-                moves->erase(moves->begin() + i);
+                moves.erase(moves.begin() + i);
                 i--;
             }
             chessBoard->pos[row][col] = this;
@@ -103,16 +103,16 @@ std::vector<std::string>* Pawn::getLegalMoves() {
     std::string start;
     start.push_back(col + 97);
     start.push_back(56 - row);
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
-        moves->at(i) = start + move;
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
+        moves.at(i) = start + move;
         if ((color == 'w' && move.back() == '8') || color == 'b' && move.back() == '1') {
-            moves->erase(moves->begin() + i);
+            moves.erase(moves.begin() + i);
             i--;
-            moves->push_back(move + "n");
-            moves->push_back(move + "b");
-            moves->push_back(move + "r");
-            moves->push_back(move + "q");
+            moves.push_back(move + "n");
+            moves.push_back(move + "b");
+            moves.push_back(move + "r");
+            moves.push_back(move + "q");
         }
     }
     return moves;
@@ -120,8 +120,8 @@ std::vector<std::string>* Pawn::getLegalMoves() {
 
 Knight::Knight(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Knight::getLegalMoves() {
-    std::vector<std::string>* moves = new std::vector<std::string>();
+std::vector<std::string> Knight::getLegalMoves() {
+    std::vector<std::string> moves;
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -149,18 +149,18 @@ std::vector<std::string>* Knight::getLegalMoves() {
                 std::string new_move;
                 new_move.push_back(col + colDiff + 97);
                 new_move.push_back(56 - (row + rowDiff));
-                moves->push_back(new_move);
+                moves.push_back(new_move);
             }
         }
     }
 
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
         Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
         chessBoard->pos[56 - move[1]][move[0] - 97] = this;
         chessBoard->pos[row][col] = nullptr;
         if (chessBoard->isInCheck()) {
-            moves->erase(moves->begin() + i);
+            moves.erase(moves.begin() + i);
             i--;
         }
         chessBoard->pos[row][col] = this;
@@ -170,8 +170,8 @@ std::vector<std::string>* Knight::getLegalMoves() {
     std::string start;
     start.push_back(col + 97);
     start.push_back(56 - row);
-    for (int i = 0; i < moves->size(); i++) {
-        moves->at(i) = start + moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        moves.at(i) = start + moves.at(i);
     }
 
     return moves;
@@ -179,8 +179,8 @@ std::vector<std::string>* Knight::getLegalMoves() {
 
 Bishop::Bishop(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Bishop::getLegalMoves() { 
-    std::vector<std::string>* moves = new std::vector<std::string>();
+std::vector<std::string> Bishop::getLegalMoves() { 
+    std::vector<std::string> moves;
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -208,25 +208,25 @@ std::vector<std::string>* Bishop::getLegalMoves() {
                 std::string new_move;
                 new_move.push_back(c + 97);
                 new_move.push_back(56 - r);
-                moves->push_back(new_move);
+                moves.push_back(new_move);
                 break;
             }
             std::string new_move;
             new_move.push_back(c + 97);
             new_move.push_back(56 - r);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
             r += rowDiff;
             c += colDiff;
         }
     }
 
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
         Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
         chessBoard->pos[56 - move[1]][move[0] - 97] = this;
         chessBoard->pos[row][col] = nullptr;
         if (chessBoard->isInCheck()) {
-            moves->erase(moves->begin() + i);
+            moves.erase(moves.begin() + i);
             i--;
         }
         chessBoard->pos[row][col] = this;
@@ -236,8 +236,8 @@ std::vector<std::string>* Bishop::getLegalMoves() {
     std::string start;
     start.push_back(col + 97);
     start.push_back(56 - row);
-    for (int i = 0; i < moves->size(); i++) {
-        moves->at(i) = start + moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        moves.at(i) = start + moves.at(i);
     }
 
     return moves;
@@ -245,8 +245,8 @@ std::vector<std::string>* Bishop::getLegalMoves() {
 
 Rook::Rook(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Rook::getLegalMoves() {
-    std::vector<std::string>* moves = new std::vector<std::string>();
+std::vector<std::string> Rook::getLegalMoves() {
+    std::vector<std::string> moves;
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -274,25 +274,25 @@ std::vector<std::string>* Rook::getLegalMoves() {
                 std::string new_move;
                 new_move.push_back(c + 97);
                 new_move.push_back(56 - r);
-                moves->push_back(new_move);
+                moves.push_back(new_move);
                 break;
             }
             std::string new_move;
             new_move.push_back(c + 97);
             new_move.push_back(56 - r);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
             r += rowDiff;
             c += colDiff;
         }
     }
 
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
         Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
         chessBoard->pos[56 - move[1]][move[0] - 97] = this;
         chessBoard->pos[row][col] = nullptr;
         if (chessBoard->isInCheck()) {
-            moves->erase(moves->begin() + i);
+            moves.erase(moves.begin() + i);
             i--;
         }
         chessBoard->pos[row][col] = this;
@@ -302,8 +302,8 @@ std::vector<std::string>* Rook::getLegalMoves() {
     std::string start;
     start.push_back(col + 97);
     start.push_back(56 - row);
-    for (int i = 0; i < moves->size(); i++) {
-        moves->at(i) = start + moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        moves.at(i) = start + moves.at(i);
     }
 
     return moves;
@@ -311,7 +311,7 @@ std::vector<std::string>* Rook::getLegalMoves() {
 
 Queen::Queen(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* Queen::getLegalMoves() {
+std::vector<std::string> Queen::getLegalMoves() {
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -331,15 +331,14 @@ std::vector<std::string>* Queen::getLegalMoves() {
     Piece* bishop = new Bishop(chessBoard, color, color == 'w' ? "B" : "b");
     Piece* rook = new Rook(chessBoard, color, color == 'w' ? "R" : "r");
     chessBoard->pos[row][col] = bishop;
-    std::vector<std::string>* moves = bishop->getLegalMoves();
+    std::vector<std::string> moves = bishop->getLegalMoves();
     delete bishop;
     chessBoard->pos[row][col] = rook;
-    std::vector<std::string>* rook_moves = rook->getLegalMoves();
+    std::vector<std::string> rook_moves = rook->getLegalMoves();
     delete rook;
-    for (int i = 0; i < rook_moves->size(); i++) {
-        moves->push_back(rook_moves->at(i));
+    for (int i = 0; i < rook_moves.size(); i++) {
+        moves.push_back(rook_moves.at(i));
     }
-    delete rook_moves;
     chessBoard->pos[row][col] = queen;
 
     return moves;
@@ -347,8 +346,8 @@ std::vector<std::string>* Queen::getLegalMoves() {
 
 King::King(Board* b, char c, const std::string& l) : Piece(b, c, l) {}
 
-std::vector<std::string>* King::getLegalMoves() {
-    std::vector<std::string>* moves = new std::vector<std::string>();
+std::vector<std::string> King::getLegalMoves() {
+    std::vector<std::string> moves;
     int row = -1;
     int col = -1;
     for (int r = 0; r < 8; r++) {
@@ -379,17 +378,17 @@ std::vector<std::string>* King::getLegalMoves() {
             std::string new_move;
             new_move.push_back(c + 97);
             new_move.push_back(56 - r);
-            moves->push_back(new_move);
+            moves.push_back(new_move);
         }
     }
 
-    for (int i = 0; i < moves->size(); i++) {
-        std::string move = moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        std::string move = moves.at(i);
         Piece* temp = chessBoard->pos[56 - move[1]][move[0] - 97];
         chessBoard->pos[56 - move[1]][move[0] - 97] = this;
         chessBoard->pos[row][col] = nullptr;
         if (chessBoard->isInCheck()) {
-            moves->erase(moves->begin() + i);
+            moves.erase(moves.begin() + i);
             i--;
         }
         chessBoard->pos[row][col] = this;
@@ -413,7 +412,7 @@ std::vector<std::string>* King::getLegalMoves() {
             chessBoard->pos[7][6] = nullptr;
             chessBoard->pos[7][4] = king;
             if (canCastle) {
-                moves->push_back("g1");
+                moves.push_back("g1");
             }
         }
     }
@@ -434,7 +433,7 @@ std::vector<std::string>* King::getLegalMoves() {
             chessBoard->pos[7][2] = nullptr;
             chessBoard->pos[7][4] = king;
             if (canCastle) {
-                moves->push_back("c1");
+                moves.push_back("c1");
             }
         }
     }
@@ -455,7 +454,7 @@ std::vector<std::string>* King::getLegalMoves() {
             chessBoard->pos[0][6] = nullptr;
             chessBoard->pos[0][4] = king;
             if (canCastle) {
-                moves->push_back("g8");
+                moves.push_back("g8");
             }
         }
     }
@@ -476,7 +475,7 @@ std::vector<std::string>* King::getLegalMoves() {
             chessBoard->pos[0][2] = nullptr;
             chessBoard->pos[0][4] = king;
             if (canCastle) {
-                moves->push_back("c8");
+                moves.push_back("c8");
             }
         }
     }
@@ -484,8 +483,8 @@ std::vector<std::string>* King::getLegalMoves() {
     std::string start;
     start.push_back(col + 97);
     start.push_back(56 - row);
-    for (int i = 0; i < moves->size(); i++) {
-        moves->at(i) = start + moves->at(i);
+    for (int i = 0; i < moves.size(); i++) {
+        moves.at(i) = start + moves.at(i);
     }
 
     return moves;

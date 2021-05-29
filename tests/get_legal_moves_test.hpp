@@ -19,10 +19,9 @@ TEST(WhitePawnLegalMovesTest, StartingPosition) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e2");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e2e3", "e2e4" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, StartingPosition) {
@@ -40,10 +39,9 @@ TEST(BlackPawnLegalMovesTest, StartingPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e7e6", "e7e5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, CanTake) {
@@ -61,10 +59,9 @@ TEST(WhitePawnLegalMovesTest, CanTake) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("d4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4e5", "d4d5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, CanTake) {
@@ -82,10 +79,9 @@ TEST(BlackPawnLegalMovesTest, CanTake) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5d4", "e5f4", "e5e4" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, OnBoardEdge) {
@@ -103,10 +99,9 @@ TEST(WhitePawnLegalMovesTest, OnBoardEdge) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("a6");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a6b7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, OnBoardEdge) {
@@ -124,10 +119,9 @@ TEST(BlackPawnLegalMovesTest, OnBoardEdge) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("a7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a7b6", "a7a6", "a7a5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, Promotion) {
@@ -145,10 +139,9 @@ TEST(WhitePawnLegalMovesTest, Promotion) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("b7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b7a8n", "b7a8b", "b7a8r", "b7a8q", "b7c8n", "b7c8b", "b7c8r", "b7c8q", "b7b8n", "b7b8b", "b7b8r", "b7b8q" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, Promotion) {
@@ -166,10 +159,9 @@ TEST(BlackPawnLegalMovesTest, Promotion) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("h2");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "h2g1n", "h2g1b", "h2g1r", "h2g1q", "h2h1n", "h2h1b", "h2h1r", "h2h1q" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, OwnPieces) {
@@ -187,10 +179,9 @@ TEST(WhitePawnLegalMovesTest, OwnPieces) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("h2");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, OwnPieces) {
@@ -208,10 +199,9 @@ TEST(BlackPawnLegalMovesTest, OwnPieces) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, InCheckCanPrevent) {
@@ -229,10 +219,9 @@ TEST(WhitePawnLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("f4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "f4e5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, InCheckCanPrevent) {
@@ -250,10 +239,9 @@ TEST(BlackPawnLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c7c5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, InCheckNoMoves) {
@@ -271,10 +259,9 @@ TEST(WhitePawnLegalMovesTest, InCheckNoMoves) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("a2");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, InCheckNoMoves) {
@@ -292,10 +279,9 @@ TEST(BlackPawnLegalMovesTest, InCheckNoMoves) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("b7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhitePawnLegalMovesTest, EnPassant) {
@@ -314,10 +300,9 @@ TEST(WhitePawnLegalMovesTest, EnPassant) {
     board.setColor('w');
     board.enPassantSquare = "e6";
     Piece* p = board.getPieceAt("d5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5e6", "d5d6" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackPawnLegalMovesTest, EnPassant) {
@@ -336,10 +321,9 @@ TEST(BlackPawnLegalMovesTest, EnPassant) {
     board.setColor('b');
     board.enPassantSquare = "a3";
     Piece* p = board.getPieceAt("b4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b4a3", "b4c3", "b4b3" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKnightLegalMovesTest, StartingPosition) {
@@ -357,10 +341,9 @@ TEST(WhiteKnightLegalMovesTest, StartingPosition) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("b1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b1a3", "b1c3" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKnightLegalMovesTest, StartingPosition) {
@@ -378,10 +361,9 @@ TEST(BlackKnightLegalMovesTest, StartingPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("g8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g8f6", "g8h6" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKnightLegalMovesTest, MiddleOfBoard) {
@@ -399,10 +381,9 @@ TEST(WhiteKnightLegalMovesTest, MiddleOfBoard) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("c6");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c6b8", "c6d8", "c6a7", "c6e7", "c6a5", "c6e5", "c6b4", "c6d4" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKnightLegalMovesTest, MiddleOfBoard) {
@@ -420,10 +401,9 @@ TEST(BlackKnightLegalMovesTest, MiddleOfBoard) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("d4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4c6", "d4e6", "d4b5", "d4f5", "d4b3", "d4f3", "d4c2", "d4e2" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKnightLegalMovesTest, NoMoves) {
@@ -441,10 +421,9 @@ TEST(WhiteKnightLegalMovesTest, NoMoves) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("g1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKnightLegalMovesTest, NoMoves) {
@@ -462,10 +441,9 @@ TEST(BlackKnightLegalMovesTest, NoMoves) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKnightLegalMovesTest, InCheckCanPrevent) {
@@ -483,10 +461,9 @@ TEST(WhiteKnightLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("d4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d4c2" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKnightLegalMovesTest, InCheckCanPrevent) {
@@ -504,10 +481,9 @@ TEST(BlackKnightLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("g8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g8e7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKnightLegalMovesTest, InCheckNoMoves) {
@@ -525,10 +501,9 @@ TEST(WhiteKnightLegalMovesTest, InCheckNoMoves) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("b1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKnightLegalMovesTest, InCheckNoMoves) {
@@ -546,10 +521,9 @@ TEST(BlackKnightLegalMovesTest, InCheckNoMoves) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("g8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteBishopLegalMovesTest, EmptyPosition) {
@@ -567,10 +541,9 @@ TEST(WhiteBishopLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e4f3", "e4g2", "e4h1", "e4d3", "e4c2", "e4b1", "e4f5", "e4g6", "e4h7", "e4d5", "e4c6", "e4b7", "e4a8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackBishopLegalMovesTest, EmptyPosition) {
@@ -588,10 +561,9 @@ TEST(BlackBishopLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("b6");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b6c5", "b6d4", "b6e3", "b6f2", "b6g1", "b6a5", "b6c7", "b6d8", "b6a7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteBishopLegalMovesTest, PartiallyBlocked) {
@@ -609,10 +581,9 @@ TEST(WhiteBishopLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("c1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c1d2", "c1e3" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackBishopLegalMovesTest, PartiallyBlocked) {
@@ -630,10 +601,9 @@ TEST(BlackBishopLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5f4", "e5d4", "e5c3", "e5b2" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteBishopLegalMovesTest, NoMoves) {
@@ -651,10 +621,9 @@ TEST(WhiteBishopLegalMovesTest, NoMoves) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("f1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackBishopLegalMovesTest, NoMoves) {
@@ -672,10 +641,9 @@ TEST(BlackBishopLegalMovesTest, NoMoves) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteBishopLegalMovesTest, InCheckCanPrevent) {
@@ -693,10 +661,9 @@ TEST(WhiteBishopLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("a6");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "a6d3" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackBishopLegalMovesTest, InCheckCanPrevent) {
@@ -714,10 +681,9 @@ TEST(BlackBishopLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("f4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "f4e3", "f4e5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteBishopLegalMovesTest, InCheckNoMoves) {
@@ -735,10 +701,9 @@ TEST(WhiteBishopLegalMovesTest, InCheckNoMoves) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("g3");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackBishopLegalMovesTest, PinnedNoMoves) {
@@ -756,10 +721,9 @@ TEST(BlackBishopLegalMovesTest, PinnedNoMoves) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteRookLegalMovesTest, EmptyPosition) {
@@ -777,10 +741,9 @@ TEST(WhiteRookLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("g5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "g5f5", "g5e5", "g5d5", "g5c5", "g5b5", "g5a5", "g5h5", "g5g4", "g5g3", "g5g2", "g5g1", "g5g6", "g5g7", "g5g8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackRookLegalMovesTest, EmptyPosition) {
@@ -798,10 +761,9 @@ TEST(BlackRookLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c4b4", "c4a4", "c4d4", "c4e4", "c4f4", "c4g4", "c4h4", "c4c3", "c4c2", "c4c1", "c4c5", "c4c6", "c4c7", "c4c8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteRookLegalMovesTest, PartiallyBlocked) {
@@ -819,10 +781,9 @@ TEST(WhiteRookLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e5d5", "e5f5", "e5e4", "e5e3", "e5e6", "e5e7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackRookLegalMovesTest, PartiallyBlocked) {
@@ -840,10 +801,9 @@ TEST(BlackRookLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c7c6", "c7c5" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteRookLegalMovesTest, Pinned) {
@@ -861,10 +821,9 @@ TEST(WhiteRookLegalMovesTest, Pinned) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e3");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e3e2", "e3e4", "e3e5", "e3e6", "e3e7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackRookLegalMovesTest, Pinned) {
@@ -882,10 +841,9 @@ TEST(BlackRookLegalMovesTest, Pinned) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("d7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteRookLegalMovesTest, InCheckCanPrevent) {
@@ -903,10 +861,9 @@ TEST(WhiteRookLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("d5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5d1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackRookLegalMovesTest, InCheckCanPrevent) {
@@ -924,10 +881,9 @@ TEST(BlackRookLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("c5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c5b5", "c5c6" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteQueenLegalMovesTest, EmptyPosition) {
@@ -945,10 +901,9 @@ TEST(WhiteQueenLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("c4");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "c4d3", "c4e2", "c4f1", "c4b3", "c4a2", "c4d5", "c4e6", "c4f7", "c4g8", "c4b5", "c4a6", "c4b4", "c4a4", "c4d4", "c4e4", "c4f4", "c4g4", "c4h4", "c4c3", "c4c2", "c4c1", "c4c5", "c4c6", "c4c7", "c4c8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackQueenLegalMovesTest, EmptyPosition) {
@@ -966,10 +921,9 @@ TEST(BlackQueenLegalMovesTest, EmptyPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("h7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "h7g6", "h7f5", "h7e4", "h7d3", "h7c2", "h7b1", "h7g8", "h7g7", "h7f7", "h7e7", "h7d7", "h7c7", "h7b7", "h7a7", "h7h6", "h7h5", "h7h4", "h7h3", "h7h2", "h7h1", "h7h8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteQueenLegalMovesTest, PartiallyBlocked) {
@@ -987,10 +941,9 @@ TEST(WhiteQueenLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("d1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d1e2", "d1f3", "d1g4", "d1h5", "d1d2", "d1d3", "d1d4", "d1d5", "d1d6", "d1d7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackQueenLegalMovesTest, PartiallyBlocked) {
@@ -1008,10 +961,9 @@ TEST(BlackQueenLegalMovesTest, PartiallyBlocked) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("b3");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "b3c2", "b3a2", "b3c4", "b3a4", "b3a3", "b3c3", "b3d3", "b3e3", "b3f3", "b3g3", "b3h3", "b3b2", "b3b4", "b3b5", "b3b6" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteQueenLegalMovesTest, Pinned) {
@@ -1029,10 +981,9 @@ TEST(WhiteQueenLegalMovesTest, Pinned) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e6");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e6e5", "e6e4", "e6e3", "e6e2", "e6e7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackQueenLegalMovesTest, Pinned) {
@@ -1050,10 +1001,9 @@ TEST(BlackQueenLegalMovesTest, Pinned) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("d7");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d7c6", "d7b5", "d7a4" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteQueenLegalMovesTest, InCheckCanPrevent) {
@@ -1071,10 +1021,9 @@ TEST(WhiteQueenLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("d3");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d3f1", "d3b1", "d3d1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackQueenLegalMovesTest, InCheckCanPrevent) {
@@ -1092,10 +1041,9 @@ TEST(BlackQueenLegalMovesTest, InCheckCanPrevent) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("d5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "d5c6", "d5b5", "d5d7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, CanCastleBothSides) {
@@ -1113,10 +1061,9 @@ TEST(WhiteKingLegalMovesTest, CanCastleBothSides) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1e2", "e1f2", "e1d1", "e1f1", "e1g1", "e1c1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, CanCastleBothSides) {
@@ -1134,10 +1081,9 @@ TEST(BlackKingLegalMovesTest, CanCastleBothSides) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8d7", "e8e7", "e8f7", "e8g8", "e8c8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, InCheck) {
@@ -1155,10 +1101,9 @@ TEST(WhiteKingLegalMovesTest, InCheck) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1f2", "e1d1", "e1f1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, InCheck) {
@@ -1176,10 +1121,9 @@ TEST(BlackKingLegalMovesTest, InCheck) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8d7", "e8f7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, CastlingBlockedByEnemy) {
@@ -1197,10 +1141,9 @@ TEST(WhiteKingLegalMovesTest, CastlingBlockedByEnemy) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1e2", "e1f1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, CastlingBlockedByEnemy) {
@@ -1218,10 +1161,9 @@ TEST(BlackKingLegalMovesTest, CastlingBlockedByEnemy) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8f8", "e8e7", "e8f7", "e8g8" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, CastlingBlockedByPiece) {
@@ -1239,10 +1181,9 @@ TEST(WhiteKingLegalMovesTest, CastlingBlockedByPiece) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e1");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e1d2", "e1e2", "e1f1" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, CastlingBlockedByPiece) {
@@ -1260,10 +1201,9 @@ TEST(BlackKingLegalMovesTest, CastlingBlockedByPiece) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { "e8d8", "e8f8", "e8e7", "e8f7" };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, CantMoveIntoCheck) {
@@ -1281,10 +1221,9 @@ TEST(WhiteKingLegalMovesTest, CantMoveIntoCheck) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e5");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, CantMoveIntoCheck) {
@@ -1302,10 +1241,9 @@ TEST(BlackKingLegalMovesTest, CantMoveIntoCheck) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(WhiteKingLegalMovesTest, CheckMate) {
@@ -1323,10 +1261,9 @@ TEST(WhiteKingLegalMovesTest, CheckMate) {
     board.setPosition(pos);
     board.setColor('w');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 TEST(BlackKingLegalMovesTest, CheckMate) {
@@ -1344,10 +1281,9 @@ TEST(BlackKingLegalMovesTest, CheckMate) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("e8");
-    std::vector<std::string>* moves = p->getLegalMoves();
+    std::vector<std::string> moves = p->getLegalMoves();
     std::vector<std::string> expected = { };
-    EXPECT_EQ((*moves) == expected, true);
-    delete moves;
+    EXPECT_EQ(moves == expected, true);
 }
 
 #endif
