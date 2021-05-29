@@ -7,7 +7,7 @@
 #include <sstream>
 #include "ChessObject.h"
 #include "Piece.h"
-
+#include <cstring>
 class Piece;
 
 class Board : public ChessObject {

@@ -189,7 +189,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         }
     }
     std::cout << pos2c.substr(2,3) << std::endl;
-    if(currentPiece->getLabel() == "p"  && pos2v[0] == 7){
+    if((currentPiece->getLabel() == "p" ||currentPiece->getLabel() == "P")  && pos2v[0] == 0){
         for(int i = 0; i < legalPromo.size(); i++){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
@@ -208,25 +208,25 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             }
         }
     }
-    if(currentPiece->getLabel() == "P" && pos2v[0] == 0){
-        for(int i = 0; i < legalPromo.size(); i++){
-            std::cout << pos2c.substr(2,3) << std::endl;
-            if(legalPromo[i] == pos2c.substr(2,3)){
-                if(legalPromo[i] == "b"){
-                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
-                }
-                else if(legalPromo[i]== "q"){
-                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
-                }
-                else if(legalPromo[i] == "n"){
-                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
-                }
-                else if(legalPromo[i] == "r"){
-                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
-                }
-            }
-        }
-    }
+    // if(currentPiece->getLabel() == "P" && pos2v[0] == 0){
+    //     for(int i = 0; i < legalPromo.size(); i++){
+    //         std::cout << pos2c.substr(2,3) << std::endl;
+    //         if(legalPromo[i] == pos2c.substr(2,3)){
+    //             if(legalPromo[i] == "b"){
+    //                 pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
+    //             }
+    //             else if(legalPromo[i]== "q"){
+    //                 pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
+    //             }
+    //             else if(legalPromo[i] == "n"){
+    //                 pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
+    //             }
+    //             else if(legalPromo[i] == "r"){
+    //                 pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
+    //             }
+    //         }
+    //     }
+    // }
     //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
     if(isInCheck() == false){
         return true;
