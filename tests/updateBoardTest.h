@@ -137,11 +137,11 @@ TEST(updateBoardTest, pawnPromo){
 TEST(updateBoardTest,invalidMove){
     Board board;
     board.setColor('w');
-    EXPECT_EQ(board.updateBoard("a1","a5"), false);
+    EXPECT_EQ(board.updateBoard("a1","a5") == false, true);
 }
 
 TEST(updateBoardTest, wrongColor){
     Board board;
     board.setColor('b');
-    EXPECT_EQ(board.updateBoard("a2", "a4"), false);
+    EXPECT_EQ(board.updateBoard("a2", "a4") == false, true);
 }
