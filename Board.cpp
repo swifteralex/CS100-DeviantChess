@@ -252,22 +252,22 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             }
         }
     }
-    if(promot == false && currentPiece->getLabel() == "p"){
-        if(pos2v[0] == 7){
-            pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
-            pos[pos2v[0]][pos2v[1]] = prev;
-            // std::cout << "King is in Check. Invalid Move" << std::endl;
-            return false;
-        }
-    }
-    if(promot == false && currentPiece->getLabel() == "P"){
-        if(pos2v[0] == 0){
-            pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
-            pos[pos2v[0]][pos2v[1]] = prev;
-            // std::cout << "King is in Check. Invalid Move" << std::endl;
-            return false;
-        }
-    }
+    // if(promot == false && currentPiece->getLabel() == "p"){
+    //     if(pos2v[0] == 7){
+    //         pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
+    //         pos[pos2v[0]][pos2v[1]] = prev;
+    //         // std::cout << "King is in Check. Invalid Move" << std::endl;
+    //         return false;
+    //     }
+    // }
+    // if(promot == false && currentPiece->getLabel() == "P"){
+    //     if(pos2v[0] == 0){
+    //         pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
+    //         pos[pos2v[0]][pos2v[1]] = prev;
+    //         // std::cout << "King is in Check. Invalid Move" << std::endl;
+    //         return false;
+    //     }
+    // }
     //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
     if(isInCheck() == false){
         return true;
