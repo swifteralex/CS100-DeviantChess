@@ -148,7 +148,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         swap(h, f);
                         moved = true;
                     }
+                    else {return false;}
                 }
+                else {return false;}
             }
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("a1")!= nullptr){
@@ -163,7 +165,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         moved = true;
                         currentPiece->setMoved(true);
                     }
+                    else {return false;}
                 }
+                else {return false;}
             }
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("h8") != nullptr){
@@ -179,7 +183,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         swap(h1, f1);
                         moved = true;
                     }
+                    else{ return false;}
                 }
+                else{ return false;}
             }
             else if(move[i] == "e8c8" && move[i].substr(2,4) == pos2){
                 Piece* r = getPieceAt("a8");
