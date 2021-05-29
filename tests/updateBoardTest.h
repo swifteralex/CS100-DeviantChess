@@ -163,7 +163,7 @@ TEST(updateBoardTest, castlingKingSide){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
-        { 'R', 'N', 'B', '0', 'K', 'B', 'N', 'R' }
+        { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
     };
     Board board;
     board.setPosition(sp);
