@@ -1297,6 +1297,7 @@ TEST(mytest, mtest){
         { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
         { '0', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
     };
+    Board board;
     board.setPosition(pos);
     Piece* p = board.getPieceAt("a7");
     std::vector<std::string> moves = p->getLegalMoves();
