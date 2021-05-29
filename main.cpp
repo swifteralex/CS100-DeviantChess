@@ -14,10 +14,12 @@ int main() {
     };
     board.setPosition(sp);
     board.setColor('w');
-    if(board.updateBoard("a7", "a8q")){
+    if(!board.updateBoard("a7", "a8q")){
         std::cout << board.printBoard();
     }
-    
+    else{
+	std::cout << "fail"<< std::endl;
+    }
     
     return 0;
 }
