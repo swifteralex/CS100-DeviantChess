@@ -90,7 +90,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     std::vector<std::string> move = currentPiece->getLegalMoves(); //string of all possible moves
     std::vector<std::string> moves;
     for(int i = 0; i < move.size();i++){
-        moves.push_back(move[i].substr(2,4));
+        moves.push_back(move[i].substr(2,2));
     }
     
     //king and queen slide. 
