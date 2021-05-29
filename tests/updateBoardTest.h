@@ -217,7 +217,7 @@ TEST(errorTest,invalidMove){
     EXPECT_EQ(board.updateBoard("a1","a5") == false, true);
 }
 
-TEST(erroTest, wrongColor){
+TEST(errorTest, wrongColor){
     Board board;
     board.setColor('b');
     EXPECT_EQ(board.updateBoard("a2", "a4") == false, true);
@@ -246,5 +246,22 @@ TEST(castlingTest, noCastling){
     board.setColor('b');
     // board.updateBoard("e8", "g8");
     EXPECT_EQ(board.updateBoard("e8", "g8"), false);
+}
+
+TEST(kingTest, kingNextking){
+    Board board;
+    std::vector<std::vector<char>> sp = {
+        { 'r', 'n', 'b', 'q', '0', '0', '0', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', 'k', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
+        { 'R', 'N', 'B', 'Q', '0', 'B', 'N', 'R' }
+    };
+    board.setPosition(sp);
+    board.setColor('w');
+    EXPECT_EQ(board.updateBoard("e4", "e5"), false);
 }
 #endif
