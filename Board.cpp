@@ -214,7 +214,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
                     promo = true;
                 }
+                promo = true;
             }
+
         }
     }
     else if(currentPiece->getLabel() == "P" && pos2v[0] == 0){
@@ -237,6 +239,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
                     promo = true;
                 }
+                promo = true;
             }
         }
     }
