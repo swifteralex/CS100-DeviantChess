@@ -31,7 +31,7 @@ TEST(updateBoardTest, rookMoveEatsPawn){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { '0', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
@@ -50,7 +50,7 @@ TEST(updateBoardTest, bishopMove){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { 'P', '0', 'P', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
@@ -69,7 +69,7 @@ TEST(updateBoardTest, queenMove){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { 'P', 'P', '0', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
@@ -88,7 +88,7 @@ TEST(updateBoardTest, kingMove){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { '0', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', '0', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
@@ -107,7 +107,7 @@ TEST(updateBoardTest,pawnEatpawn){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { '0', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
@@ -126,7 +126,7 @@ TEST(updateBoardTest, pawnPromo){
         { '0', '0', '0', '0', '0', '0', '0', '0' },
         { '0', 'P', 'P', 'P', 'P', 'P', 'P', 'P' },
         { 'R', 'N', 'B', '0', 'K', 'B', 'N', 'R' }
-    }
+    };
     Board board;
     board.setPosition(sp);
     board.setColor('w');
