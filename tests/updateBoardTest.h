@@ -140,7 +140,7 @@ TEST(updateBoardTest,invalidMove){
     EXPECT_EQ(board.updateBoard("a1","a5"), false);
 }
 
-TEST(updateBoardTest, wrong color){
+TEST(updateBoardTest, wrongColor){
     Board board;
     board.setColor('b');
     EXPECT_EQ(board.updateBoard("a2", "a4"), false);
