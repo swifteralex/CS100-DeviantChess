@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <sstream>
 
-Board::Board() : ChessObject('w', "board") {
+Board::Board() : ChessObject('w', "board"):strategy(nullptr) {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
         { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
@@ -29,6 +29,12 @@ Board::~Board() {
 //     this->pos = pos;
 // }
 
+void Board::setStrategy(AIStrategy* strat) {
+    if (strategy) {
+        delete strategy;
+    }
+    strategy = strat;
+}
 void Board::setPosition(const std::vector<std::vector<char>>& in) {
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {
