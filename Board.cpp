@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <sstream>
 
-Board::Board() : ChessObject('w', "board"):strategy(nullptr) {
+Board::Board() : ChessObject('w', "board"),strategy(nullptr) {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
         { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
