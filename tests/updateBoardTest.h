@@ -211,11 +211,11 @@ TEST(updateBoardTest, QueenHorizontalVertical){
     EXPECT_EQ(board.printBoard(), ans);
 }
 
-// TEST(updateBoardTest,invalidMove){
-//     Board board;
-//     board.setColor('w');
-//     EXPECT_EQ(board.updateBoard("a1","a5") == false, true);
-// }
+TEST(updateBoardTest,invalidMove){
+    Board board;
+    board.setColor('w');
+    EXPECT_EQ(board.updateBoard("a1","a5") == false, true);
+}
 
 // TEST(updateBoardTest, wrongColor){
 //     Board board;
