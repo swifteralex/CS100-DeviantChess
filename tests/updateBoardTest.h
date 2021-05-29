@@ -241,7 +241,7 @@ TEST(castlingTest, noCastling){
         { 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' }
     };
     Board board;
-    board.setCastling("-")
+    board.setCastling("-");
     board.setPosition(sp);
     board.setColor('b');
     // board.updateBoard("e8", "g8");
