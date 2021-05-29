@@ -208,19 +208,19 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         for(int i = 0; i < legalPromo.size(); i++){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
-                if(legalPromo[i] == "b"){
+                if(pos2c.substr(2,3) == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
                     promot = true;
                 }
-                else if(legalPromo[i]== "q"){
+                else if(pos2c.substr(2,3) == "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
                     promot = true;
                 }
-                else if(legalPromo[i] == "n"){
+                else if(pos2c.substr(2,3) == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
                     promot = true;
                 }
-                else if(legalPromo[i] == "r"){
+                else if(pos2c.substr(2,3) == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
                     promot = true;
                 }
@@ -232,19 +232,19 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         for(int i = 0; i < legalPromo.size(); i++){
             //std::cout << pos2c.substr(2,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
-                if(legalPromo[i] == "b"){
+                if(pos2c.substr(2,3) == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
                     promot = true;
                 }
-                else if(legalPromo[i]== "q"){
+                else if(pos2c.substr(2,3) == "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
                     promot = true;
                 }
-                else if(legalPromo[i] == "n"){
+                else if(pos2c.substr(2,3) == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
                     promot = true;
                 }
-                else if(legalPromo[i] == "r"){
+                else if(pos2c.substr(2,3) == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
                     promot = true;
                 }
@@ -252,22 +252,22 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             }
         }
     }
-    // if(promot == false && currentPiece->getLabel() == "p"){
-    //     if(pos2v[0] == 7){
-    //         pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
-    //         pos[pos2v[0]][pos2v[1]] = prev;
-    //         // std::cout << "King is in Check. Invalid Move" << std::endl;
-    //         return false;
-    //     }
-    // }
-    // if(promot == false && currentPiece->getLabel() == "P"){
-    //     if(pos2v[0] == 0){
-    //         pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
-    //         pos[pos2v[0]][pos2v[1]] = prev;
-    //         // std::cout << "King is in Check. Invalid Move" << std::endl;
-    //         return false;
-    //     }
-    // }
+    if(promot == false && currentPiece->getLabel() == "p"){
+        if(pos2v[0] == 7){
+            pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
+            pos[pos2v[0]][pos2v[1]] = prev;
+            // std::cout << "King is in Check. Invalid Move" << std::endl;
+            return false;
+        }
+    }
+    if(promot == false && currentPiece->getLabel() == "P"){
+        if(pos2v[0] == 0){
+            pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
+            pos[pos2v[0]][pos2v[1]] = prev;
+            // std::cout << "King is in Check. Invalid Move" << std::endl;
+            return false;
+        }
+    }
     //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
     if(isInCheck() == false){
         return true;
