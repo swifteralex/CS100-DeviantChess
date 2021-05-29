@@ -187,7 +187,7 @@ TEST(updateBoardTest, rookHorizontal){
     Board board;
     board.setPosition(sp);
     board.setColor('w');
-    board.updateBoard("a1", "g1");
+    board.updateBoard("a1", "f1");
     EXPECT_EQ(board.printBoard(), ans);
 }
 // TEST(updateBoardTest,invalidMove){
