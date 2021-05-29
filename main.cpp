@@ -15,7 +15,7 @@ int main() {
     board.setPosition(pos);
     Piece* p = board.getPieceAt("a7");
     std::vector<std::string> moves = p->getLegalMoves();
-    std::vector<std::string> ans = { "a7a8r", "a7a8n", "a7a8b", "a7a8q"};
+    std::vector<std::string> ans = { "a7a8r"};
     // EXPECT_EQ(moves == ans, true);
     for(int i = 0; i < moves.size(); i++){
         std::cout << moves[i] << std::endl;
