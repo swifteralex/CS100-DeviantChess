@@ -66,6 +66,186 @@ void Board::setPosition(const std::vector<std::vector<char>>& in) {
     }
 }
 
+bool Board::updateBoard(std::string& pos1, std::string& pos2c){
+    std::string pos2 = pos2c.substr(0,2);
+    std::vector<int> pos1v = findVPos(pos1); //vector location
+    //checks if there is a piece at the said location.
+    if(pos[pos1v[0]][pos1v[1]] == nullptr){
+        std::cout << "No piece at: " << pos1 << std::endl;
+        return false;
+    }
+    std::vector<int> pos2v = findVPos(pos2); // second piece vector location
+    Piece* prev; //stores the move location in case of a revert move. 
+    bool moved = false; // checks if move is valid. 
+    Piece* currentPiece = pos[pos1v[0]][pos1v[1]]; // stores a pointer to the piece needing to be moved. 
+    //special case for pawn movement. 
+    if(currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P"){
+        if(pos2v[0] == pos1v[0]){
+            if(pos[pos2v[0]][pos2v[1]] != nullptr){
+                std::cout << "Invalide Pawn Placement" << std::endl;
+                return false;
+            }
+        }
+    }
+    std::vector<std::string> move = currentPiece->getLegalMoves(); //string of all possible moves
+    std::vector<std::string> moves;
+    for(int i = 0; i < move.size();i++){
+        moves.push_back(move[i].substr(2,4));
+    }
+    
+    //king and queen slide. 
+    if(currentPiece->getLabel() == "k" || currentPiece->getLabel() == "K"){
+        // if(castlingPrivileges == "-"){
+        //     if(pos1 == "e1" && pos2 == "g1" || pos1 == "e8" && pos2 == "g8"){
+        //         std::cout << "Castling KingSide not allowed" << std::endl;
+        //         return false;
+        //     }
+        // }
+        //this portion swaps. if the slide is part of legal moves.
+        for(int i = 0; i < move.size(); i++){
+            if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
+                swap(pos1v, pos2v);
+                std::string h1 = "h1";
+                std::string f1 = "f1";
+                std::vector<int> h = findVPos(h1);
+                std::vector<int> f = findVPos(f1);
+                swap(h, f);
+                moved = true;
+            }
+            else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
+                swap(pos1v, pos2v);
+                std::string a1 = "a1";
+                std::string d1 = "d1";
+                std::vector<int> a = findVPos(a1);
+                std::vector<int> d = findVPos(d1);
+
+                swap(a, d);
+                moved = true;
+            }
+            else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
+                swap(pos1v, pos2v);
+                std::string h = "h8";
+                std::string f = "f8";
+                std::vector<int> h1 = findVPos(h);
+                std::vector<int> f1 = findVPos(f);
+
+                swap(h1, f1);
+                moved = true;
+            }
+            else if(move[i] == "e8c8" && move[i].substr(2,4) == pos2){
+                swap(pos1v, pos2v);
+                std::string a1 = "a8";
+                std::string d1 = "d8";
+                std::vector<int> a = findVPos(a1);
+                std::vector<int> d = findVPos(d1);
+
+                swap(a, d);
+                moved = true;
+            }
+        }
+    }
+    // if the piece is not the currentTurn's piece it doesnt move. 
+    if(currentPiece->getColor() != color){
+        std::cout << "Cannot Move Enemy Pieces. " << std::endl;
+        return false;
+    }
+    
+    
+    //this moves if the piece is a legal move. 
+    for(int i = 0; i < moves.size(); i++){
+        if(moves[i] == pos2 && moved == false){
+            if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
+                //swaps pieces.
+                prev = pos[pos2v[0]][pos2v[1]];
+                
+                swap(pos1v, pos2v);
+                std::cout << "Move Successful" << std::endl;
+                moved = true;
+            }
+            else {
+                if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
+                    prev = pos[pos2v[0]][pos2v[1]];
+                    swap(pos1v, pos2v);
+                    pos[pos1v[0]][pos1v[1]] = nullptr;
+                    std::cout << "Move Successful" << std::endl;
+                    moved = true;
+                }
+                else{
+                    moved = false;
+                }
+            }
+        }
+    }
+    //invalid move. returns false
+    if(!moved){
+        std::cout << "Invalid Move" << std::endl;
+        return false;
+    }
+    //pawn promotion
+    std::vector<std::string> legalPromo;
+    for(int i = 0; i < move.size(); i++){
+        if(move[i].length() == 5){
+            legalPromo.push_back(move[i].substr(4,5));
+        }
+    }
+    if(currentPiece->getLabel() == "p" && pos2v[0] == 7){
+        for(int i = 0; i < legalPromo.size(); i++){
+            if(legalPromo[i] == pos2c.substr(2,3)){
+                if(legalPromo[i] == "b"){
+                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
+                }
+                else if(legalPromo[i]== "q"){
+                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
+                }
+                else if(legalPromo[i] == "n"){
+                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
+                }
+                else if(legalPromo[i] == "r"){
+                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
+                }
+            }
+        }
+    }
+    if(currentPiece->getLabel() == "P" && pos2v[0] == 0){
+        for(int i = 0; i < legalPromo.size(); i++){
+            if(legalPromo[i] == pos2c.substr(2,3)){
+                if(legalPromo[i] == "b"){
+                    pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
+                }
+                else if(legalPromo[i]== "q"){
+                    pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
+                }
+                else if(legalPromo[i] == "n"){
+                    pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
+                }
+                else if(legalPromo[i] == "r"){
+                    pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
+                }
+            }
+        }
+    }
+    //just checks if king is in check... THIS IS A FAILSAFE IN CASE GETLEGALMOVES DOESNT CATCH IT. 
+    if(isInCheck() == false){
+        return true;
+    }
+    //if after move the player's  king is in check, reverts the board. 
+    if(isInCheck() == true){
+        pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+        pos[pos2v[0]][pos2v[1]] = prev;
+        std::cout << "King is in Check. Invalid Move" << std::endl;
+        return false;
+    }
+    //just here b/c otherwise i have an error. 
+    return false;
+}
+
+
+void Board::swap(std::vector<int> pos1, std::vector<int> pos2){
+    Piece* prev = pos[pos2[0]][pos2[1]];
+    pos[pos2[0]][pos2[1]] = pos[pos1[0]][pos1[1]];
+    pos[pos1[0]][pos1[1]] = prev;
+}
+
 bool Board::isInCheck() const {
     // find king position
     int kingRow = -1;

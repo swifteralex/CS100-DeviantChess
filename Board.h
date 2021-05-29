@@ -19,7 +19,7 @@ private:
 	char title = 'C';
 
 	// AIStrategy* strategy;
-	
+	void swap(std::vector<int>, std::vector<int>);
 	std::vector<int> findVPos(const std::string &pos) const;
 
 public:
@@ -58,7 +58,7 @@ public:
 	std::string generateFEN() const;
 		
 	Piece* getPieceAt(const std::string &position) const;
-
+	bool updateBoard(std::string&, std::string&);
    	void printBoard() const;
 	bool isCheckmated();
 	bool isStalemated();
