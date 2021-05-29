@@ -71,7 +71,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     std::vector<int> pos1v = findVPos(pos1); //vector location
     //checks if there is a piece at the said location.
     if(pos[pos1v[0]][pos1v[1]] == nullptr){
-        std::cout << "No piece at: " << pos1 << std::endl;
+        // std::cout << "No piece at: " << pos1 << std::endl;
         return false;
     }
     std::vector<int> pos2v = findVPos(pos2); // second piece vector location
@@ -82,7 +82,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     if(currentPiece->getLabel() == "p" || currentPiece->getLabel() == "P"){
         if(pos2v[0] == pos1v[0]){
             if(pos[pos2v[0]][pos2v[1]] != nullptr){
-                std::cout << "Invalide Pawn Placement" << std::endl;
+                // std::cout << "Invalide Pawn Placement" << std::endl;
                 return false;
             }
         }
@@ -146,7 +146,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     }
     // if the piece is not the currentTurn's piece it doesnt move. 
     if(currentPiece->getColor() != color){
-        std::cout << "Cannot Move Enemy Pieces. " << std::endl;
+        // std::cout << "Cannot Move Enemy Pieces. " << std::endl;
         return false;
     }
     
@@ -159,7 +159,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
                 prev = pos[pos2v[0]][pos2v[1]];
                 
                 swap(pos1v, pos2v);
-                std::cout << "Move Successful" << std::endl;
+                // std::cout << "Move Successful" << std::endl;
                 moved = true;
             }
             else {
@@ -167,7 +167,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
-                    std::cout << "Move Successful" << std::endl;
+                    // std::cout << "Move Successful" << std::endl;
                     moved = true;
                 }
                 else{
@@ -178,7 +178,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     }
     //invalid move. returns false
     if(!moved){
-        std::cout << "Invalid Move" << std::endl;
+        // std::cout << "Invalid Move" << std::endl;
         return false;
     }
     //pawn promotion
@@ -232,7 +232,7 @@ bool Board::updateBoard(std::string& pos1, std::string& pos2c){
     if(isInCheck() == true){
         pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
         pos[pos2v[0]][pos2v[1]] = prev;
-        std::cout << "King is in Check. Invalid Move" << std::endl;
+        // std::cout << "King is in Check. Invalid Move" << std::endl;
         return false;
     }
     //just here b/c otherwise i have an error. 
