@@ -152,14 +152,14 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     
     
     //this moves if the piece is a legal move. 
-    std::cout << moves.size();
+    //std::cout << moves.size();
     for(int i = 0; i < moves.size(); i++){
         std::cout << "hey" << std::endl;
         if(moves[i] == pos2 && moved == false){
             if(pos[pos2v[0]][pos2v[1]] == nullptr){//empty space
                 //swaps pieces.
                 prev = pos[pos2v[0]][pos2v[1]];
-                std::cout <<  "this works" << std::endl;
+                //std::cout <<  "this works" << std::endl;
                 swap(pos1v, pos2v);
                 pos[pos1v[0]][pos1v[1]] = nullptr;
                 // std::cout << "Move Successful" << std::endl;
@@ -170,7 +170,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
                     pos[pos1v[0]][pos1v[1]] = nullptr;
-                    std::cout <<  "this works" << std::endl;
+                    //std::cout <<  "this works" << std::endl;
                     // std::cout << "Move Successful" << std::endl;
                     moved = true;
                 //}
@@ -189,7 +189,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     std::vector<std::string> legalPromo;
     for(int i = 0; i < move.size(); i++){
         if(move[i].length() == 5){
-            legalPromo.push_back(move[i].substr(4,5));
+            legalPromo.push_back(move[i].substr(3,4));
         }
     }
     std::cout << pos2c.substr(2,3) << std::endl;
