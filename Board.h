@@ -33,7 +33,9 @@ public:
 	// Kkq = white can only castle kingside, and black can castle both sides.
 	// "-" = no players can castle.
 	std::string castlingPrivileges = "KQkq";
-
+	void setCastling(std::string priv){
+		castlingPrivileges = priv;
+	}
 	friend class Pawn;
 	friend class Knight;
 	friend class Bishop;
