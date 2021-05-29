@@ -431,7 +431,7 @@ std::string Board::printBoard() const {
                 if (pos.at(i).at(j)) {
                     output += pos.at(i).at(j)->getLabel();
                 } else {
-                    output += " ";
+                    output += "0";
                 }
                 output += "   ";
             }
