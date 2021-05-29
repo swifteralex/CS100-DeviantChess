@@ -172,9 +172,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                     std::cout <<  "this works" << std::endl;
                     // std::cout << "Move Successful" << std::endl;
                     moved = true;
-                }
+                //}
                 // else{
-                    moved = false;
+                //    moved = false;
                 // }
             }
         }
