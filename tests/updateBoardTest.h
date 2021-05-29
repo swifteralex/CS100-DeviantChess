@@ -279,6 +279,6 @@ TEST(pawnTest, pawnPromotestoInvalidepiece){
     Board board;
     board.setPosition(sp);
     board.setColor('w');
-    EXPECT_EQ(board.updateBoard("a7","a8b"),true);
+    EXPECT_EQ(board.updateBoard("a7","a8b"),false);
 }
 #endif

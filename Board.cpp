@@ -200,17 +200,20 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
+                    promo = true;
                 }
                 else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
+                    promo = true;
                 }
                 else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
+                    promo = true;
                 }
                 else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
+                    promo = true;
                 }
-                promo = true;
             }
         }
     }
@@ -220,21 +223,20 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
-                    
+                    promo = true;
                 }
                 else if(legalPromo[i]== "q"){
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
-                    
+                    promo = true;
                 }
                 else if(legalPromo[i] == "n"){
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
-                    
+                    promo = true;
                 }
                 else if(legalPromo[i] == "r"){
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
-                    
+                    promo = true;
                 }
-                promo = true;
             }
         }
     }
