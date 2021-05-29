@@ -20,7 +20,7 @@ int main() {
     for(int i = 0; i < m.size(); i++){
         std::cout << m[i] << std::endl;
     }
-    if(!board.updateBoard("a7", "a8q")){
+    if(board.updateBoard("a7", "a8q")){
         std::cout << board.printBoard();
     }
     else{
