@@ -423,7 +423,7 @@ std::string Board::printBoard() const {
     output += "   =====================================\n";
     int num = 9;
         for(int i = 0; i < pos.size(); i++){     
-            output += num-1 + "  ";
+            output += std::to_string(num-1) + "  ";
             num = num-1;
             output += "|   ";
             for(int j = 0; j < pos.at(i).size(); j++){
