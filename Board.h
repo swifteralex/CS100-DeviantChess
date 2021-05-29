@@ -45,7 +45,7 @@ public:
 
         ~Board();
                 
-	void setPosition(const std::vector<std::vector<ChessObject*>>&);
+	// void setPosition(const std::vector<std::vector<ChessObject*>>&);
 
 	void setPosition(const std::vector<std::vector<char>>&);
 

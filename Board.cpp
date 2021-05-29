@@ -25,9 +25,9 @@ Board::~Board() {
     }
 }
 
-void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
-    this->pos = pos;
-}
+// void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
+//     this->pos = pos;
+// }
 
 void Board::setPosition(const std::vector<std::vector<char>>& in) {
     for (int r = 0; r < 8; r++) {
