@@ -260,7 +260,7 @@ TEST(castlingTest, noCastlingWhenMoved){
         { '0', '0', '0', '0', 'K', '0', '0', '0' }
     };
     Board board;
-    board.getPiceAt("h2")->setMoved(true);
+    board.getPieceAt("h2")->setMoved(true);
     board.setCastling("kqKQ");
     board.setPosition(sp);
     board.setColor('w');
