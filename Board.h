@@ -8,7 +8,10 @@
 #include "ChessObject.h"
 #include "Piece.h"
 #include <cstring>
+#include "AIStrategy.h"
+
 class Piece;
+class AIStrategy;
 
 class Board : public ChessObject {
 private:
@@ -18,8 +21,10 @@ private:
 
 	char title = 'C';
 
-	// AIStrategy* strategy;
 	void swap(std::vector<int>, std::vector<int>);
+  
+	AIStrategy* strategy;
+	
 	std::vector<int> findVPos(const std::string &pos) const;
 
 public:
@@ -42,10 +47,14 @@ public:
 	friend class Rook;
 	friend class Queen;
 	friend class King;
-
+	
 	Board();
 
         ~Board();
+
+	void setStrategy(AIStrategy*);
+
+	void playEngineMove();
                 
 	// void setPosition(const std::vector<std::vector<ChessObject*>>&);
 
@@ -53,8 +62,6 @@ public:
 
 	// Returns true if the current player is in check
 	bool isInCheck() const;
-
-    	// void setStrategy(AIStrategy*)
 
 	// Used by Stockfish to get the current position.
 	std::string generateFEN() const;

@@ -3,6 +3,8 @@
 #include "get_legal_moves_test.hpp"
 #include "checkmate_stalemate_test.hpp"
 #include "updateBoardTest.h"
+#include "generate_FEN_test.hpp"
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
