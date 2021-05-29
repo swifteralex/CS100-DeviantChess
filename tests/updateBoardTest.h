@@ -248,6 +248,25 @@ TEST(castlingTest, noCastling){
     EXPECT_EQ(board.updateBoard("e8", "g8"), false);
 }
 
+TEST(castlingTest, noCastlingWhenMoved){
+     std::vector<std::vector<char>> sp = {
+        { 'r', 'n', 'b', 'q', 'k', '0', '0', 'r' },
+        { 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { 'R', 'P', 'P', 'P', 'P', 'P', 'P', 'R' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' }
+    };
+    Board board;
+    board.setCastling("kqKQ");
+    board.setPosition(sp);
+    board.setColor('w');
+    // board.updateBoard("e8", "g8");
+    EXPECT_EQ(board.updateBoard("e1", "g1"), false);
+}
+
 TEST(kingTest, kingNextking){
     Board board;
     std::vector<std::vector<char>> sp = {
