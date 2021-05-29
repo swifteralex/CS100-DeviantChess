@@ -14,6 +14,12 @@ int main() {
     };
     board.setPosition(sp);
     board.setColor('w');
+
+    Piece* p = board.getPieceAt("a7");
+    std::vector<std::string> m = p->getLegalMoves();
+    for(int i = 0; i < m.size(); i++){
+        std::cout << m[i] << std::endl;
+    }
     if(!board.updateBoard("a7", "a8q")){
         std::cout << board.printBoard();
     }
