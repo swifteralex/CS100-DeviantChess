@@ -223,4 +223,11 @@ TEST(updateBoardTest, wrongColor){
     EXPECT_EQ(board.updateBoard("a2", "a4") == false, true);
 }
 
+TEST(updateBoardTest, pawnOffSpawn){
+    Board board;
+    board.setColor('w');
+    board.updateBoard("a2", "a4");
+    EXPECT_EQ(board.updateBoard("a4","a6"), false);
+}
+
 #endif
