@@ -438,9 +438,9 @@ bool Board::isInCheck() const {
     return false;
 }
 
-std::string Board::generateFEN() const {
-    return "";
-}
+// std::string Board::generateFEN() const {
+//     return "";
+// }
 
 std::vector<int> Board::findVPos(const std::string &pos) const {
    std::vector<int> posit(2);
