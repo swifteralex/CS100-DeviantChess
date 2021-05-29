@@ -1301,7 +1301,7 @@ TEST(mytest, mtest){
     board.setPosition(pos);
     Piece* p = board.getPieceAt("a7");
     std::vector<std::string> moves = p->getLegalMoves();
-    std::vector<std::string> ans = { "a7a8r"};
+    std::vector<std::string> ans = { "a7a8r", "a7a8n", "a7a8b", "a7a8q"};
     EXPECT_EQ(moves == ans, true);
 }
 
