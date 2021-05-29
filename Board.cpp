@@ -2,7 +2,7 @@
 #include "Piece.h"
 #include <sstream>
 
-Board::Board() : ChessObject('w', "board") {
+Board::Board() : ChessObject('w', "board"), strategy(nullptr) {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
         { new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p"), new Pawn(this, 'b', "p") },
@@ -23,6 +23,16 @@ Board::~Board() {
             }
         }
     }
+    if (strategy) {
+        delete strategy;
+    }
+}
+
+void Board::setStrategy(AIStrategy* strat) {
+    if (strategy) {
+        delete strategy;
+    }
+    strategy = strat;
 }
 
 // void Board::setPosition(const std::vector<std::vector<ChessObject*>>& pos) {
@@ -408,7 +418,30 @@ bool Board::isInCheck() const {
 }
 
 std::string Board::generateFEN() const {
-    return "";
+    std::string res;
+    int empty_run = 0;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (pos[r][c]) {
+                if (empty_run != 0) {
+                    res.push_back(empty_run + 48);
+                }
+                empty_run = 0;
+                res += pos[r][c]->getLabel();
+            } else {
+                empty_run++;
+            }
+        }
+        if (empty_run != 0) {
+            res.push_back(empty_run + 48);
+            empty_run = 0;
+        }
+        if (r != 7) {
+            res.push_back('/');
+        }
+    }
+    res += (" " + std::string(1, color) + " " + castlingPrivileges + " " + enPassantSquare + " 0 1");
+    return res;
 }
 
 std::vector<int> Board::findVPos(const std::string &pos) const {

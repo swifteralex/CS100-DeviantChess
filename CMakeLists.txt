@@ -9,6 +9,7 @@ ADD_EXECUTABLE(test
     ChessObject.cpp
     Piece.cpp
     tests/unit_tests.cpp
+    AIStrategy.cpp
 )
 
 ADD_EXECUTABLE(main
@@ -16,6 +17,7 @@ ADD_EXECUTABLE(main
     Board.cpp
     ChessObject.cpp
     Piece.cpp
+    AIStrategy.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
