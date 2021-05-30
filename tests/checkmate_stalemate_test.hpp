@@ -98,7 +98,7 @@ TEST(CheckmateTest, FifthPosition) {
     board.castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), false);
 }
-#include <iostream>
+
 TEST(CheckmateTest, SixthPosition) {
     Board board;
     std::vector<std::vector<char>> pos = {
