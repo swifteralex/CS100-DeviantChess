@@ -18,10 +18,10 @@ int main() {
 			cin >> userInput;
 		}
 		if (userInput == '2' || userInput == '3') {
-			cout << "Which color would you like to play as? Enter W for white or B for black. << endl;
+			cout << "Which color would you like to play as? Enter W for white or B for black." << endl;
 			cin >> userColor;
 			while (userColor != 'B' && userColor != 'W') {
-				cout << "Invalid color, try again. << endl;
+				cout << "Invalid color, try again." << endl;
 				cin >> userColor;
 			}
 		}
