@@ -5,11 +5,11 @@
 #include <cctype>
 using namespace std;
 int main() {
-   	Board board;
-	char userInput;
-	char secondInput;
 	bool playAgain = true;
 	while (playAgain) {
+                Board board;
+                char userInput;
+		char secondInput;
 		cout << "Enter 1 to play against a player, 2 to play against Stockfish (Chess Engine), or 3 to play against a bot with random moves." << endl;
 		cin >> userInput;
 		while (userInput != '1' && userInput != '2' && userInput != '3' || !isdigit(userInput)) {
@@ -26,7 +26,6 @@ int main() {
         			cin >> userMove1;
         			cout << "Enter the location of where you want to move." << endl;
         			cin >> userMove2;
-				board.setColor('w');
         			while(!(board.updateBoard(userMove1, userMove2))) {
 					cout << "Invalid move, input move again." << endl;
 		                        userMove1 = "";
@@ -42,6 +41,7 @@ int main() {
                                 userMove2 = "";
                                 std::cout << board.printBoard() << std::endl;
 
+				board.setColor('b');
 				if (board.isCheckmated() || board.isStalemated()) {
 					break;
 				}
@@ -50,7 +50,6 @@ int main() {
                                 cin >> userMove1;
                                 cout << "Enter the location of where you want to move." << endl;
                                 cin >> userMove2;
-				board.setColor('b');
 				while (!(board.updateBoard(userMove1, userMove2))) {
 					cout << "Invalid move, input move again." << endl;
 					userMove1 = "";
@@ -61,88 +60,50 @@ int main() {
 					cout << "Enter the location of where you want to move." << endl;
 					cin >> userMove2;
 				}
-    			}
-		}
-
-		else if (userInput == '2') {
-			int stockfishLevel;
-			cout << "Which stockfish level would you like to play? (0 - 20)" << endl;
-			cin >> stockfishLevel;
-			string a = to_string(stockfishLevel);
-			while(!isdigit(a[0])){
-				cout << "Invalid level input. Try again." << endl;
-				cin >> stockfishLevel;
-			}	
-			AIStrategy* AI = new Stockfish(&board, stockfishLevel);
-			board.setStrategy(AI);
-			board.setColor('w');
-			while (!board.isCheckmated() && board.isStalemated()){
-				string userMove1 = "";
-				string userMove2 = "";
-				std::cout << board.printBoard() << std::endl;
-				cout << "Enter the location of the piece you want to move." << endl;
-				cin >> userMove1;
-				cout << "Enter the location of where you want to move." << endl;
-				cin >> userMove2;
-				while (!(board.updateBoard(userMove1,userMove2))) {
-					userMove1 = "";
-                                	userMove2 = "";
-                                	std::cout << board.printBoard() << std::endl;
-                                	cout << "Enter the location of the piece you want to move." << endl;
-                                	cin >> userMove1;
-                                	cout << "Enter the location of where you want to move." << endl;
-                                	cin >> userMove2;
-				}
-			board.setColor('b');
-			board.playEngineMove();
-			}
-		}
-	    else if (userInput == '3') {
-		AIStrategy* AI = new Random(&board);
-		board.setStrategy(AI);
-                board.setColor('w');
-                while (!board.isCheckmated() && !board.isStalemated()){
-                	string userMove1 = "";
-                       	string userMove2 = "";
-                      	/*std::cout << board.printBoard() << std::endl;
-                        cout << "Enter the location of the piece you want to move." << endl;
-                        cin >> userMove1;
-                    	cout << "Enter the location of where you want to move." << endl;
-                        cin >> userMove2;*/
-                        while (1) {
 				board.setColor('w');
-                        	userMove1 = "";
-                        	userMove2 = "";
-                              	std::cout << board.printBoard() << std::endl;
-                              	cout << "Enter the location of the piece you want to move." << endl;
-                           	cin >> userMove1;
-                           	cout << "Enter the location of where you want to move." << endl;
-                           	cin >> userMove2;
-                                if (board.updateBoard(userMove1, userMove2)) {
-					break;
-				} else {
-					cout << "Invalid move, input move again." << endl;
-				}
-			} 
-			board.setColor('b');
-			/*string output = "";
-			string firstOutput = "";
-			string secondOutput = "";
-			output = AI->getBestMove();
-			firstOutput = output.substr(0,2);
-			secondOutput = output.substr(2,2);
-			if (!(board.updateBoard(firstOutput,secondOutput))){
-				cout << "Error! Random bot output invalid move." << endl;
-				return 1;
-			}*/
-                        if (board.isCheckmated() || board.isStalemated()) {
-				break;
+    			}
+		} else if (userInput == '2' || userInput == '3') {
+			AIStrategy* AI;
+			if (userInput == '2') {
+				int stockfishLevel;
+                        	cout << "Which stockfish level would you like to play? (0 - 20)" << endl;
+                        	cin >> stockfishLevel;
+                        	string a = to_string(stockfishLevel);
+                        	while(!isdigit(a[0])){
+                                	cout << "Invalid level input. Try again." << endl;
+                                	cin >> stockfishLevel;
+					a = to_string(stockfishLevel);
+                        	}
+                        	AI = new Stockfish(&board, stockfishLevel);
+			} else {
+				AI = new Random(&board);
 			}
-                        board.playEngineMove();
-		}	
-	}
-
-		else {
+			board.setStrategy(AI);
+               		while (!board.isCheckmated() && !board.isStalemated()){
+                		string userMove1 = "";
+                       		string userMove2 = "";
+                        	while (1) {
+                	        	userMove1 = "";
+                        		userMove2 = "";
+                              		std::cout << board.printBoard() << std::endl;
+                              		cout << "Enter the location of the piece you want to move." << endl;
+                           		cin >> userMove1;
+                           		cout << "Enter the location of where you want to move." << endl;
+                           		cin >> userMove2;
+                                	if (board.updateBoard(userMove1, userMove2)) {
+						break;
+					} else {
+						cout << "Invalid move, input move again." << endl;
+					}
+				} 
+				board.setColor('b');
+                        	if (board.isCheckmated() || board.isStalemated()) {
+					break;
+				}
+                        	board.playEngineMove();
+				board.setColor('w');
+			}	
+		} else {
 			cout << "Error with userInput" << endl;
 			return 1;
 		}
