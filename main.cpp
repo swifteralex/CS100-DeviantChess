@@ -21,7 +21,7 @@ int main() {
    			 while (!board.isCheckmated() && !board.isStalemated()) {
         			string userMove1 = "";
         			string userMove2 = "";
-        			board.printBoard();
+        			std::cout << board.printBoard() << std::endl;
         			cout << "Enter the location of the piece you want to move." << endl;
         			cin >> userMove1;
         			cout << "Enter the location of where you want to move." << endl;
@@ -40,7 +40,7 @@ int main() {
 				}
                                 userMove1 = "";
                                 userMove2 = "";
-                                board.printBoard();
+                                std::cout << board.printBoard() << std::endl;
 
 				if (board.isCheckmated() || board.isStalemated()) {
 					break;
@@ -55,7 +55,7 @@ int main() {
 					cout << "Invalid move, input move again." << endl;
 					userMove1 = "";
 					userMove2 = "";
-					board.printBoard();
+					std::cout << board.printBoard() << std::endl;
 					cout << "Enter the location of the piece you want to move." << endl;
 					cin >> userMove1;
 					cout << "Enter the location of where you want to move." << endl;
@@ -79,7 +79,7 @@ int main() {
 			while (!board.isCheckmated() && board.isStalemated()){
 				string userMove1 = "";
 				string userMove2 = "";
-				board.printBoard();
+				std::cout << board.printBoard() << std::endl;
 				cout << "Enter the location of the piece you want to move." << endl;
 				cin >> userMove1;
 				cout << "Enter the location of where you want to move." << endl;
@@ -87,7 +87,7 @@ int main() {
 				while (!(board.updateBoard(userMove1,userMove2))) {
 					userMove1 = "";
                                 	userMove2 = "";
-                                	board.printBoard();
+                                	std::cout << board.printBoard() << std::endl;
                                 	cout << "Enter the location of the piece you want to move." << endl;
                                 	cin >> userMove1;
                                 	cout << "Enter the location of where you want to move." << endl;
@@ -101,34 +101,44 @@ int main() {
 		AIStrategy* AI = new Random(&board);
 		board.setStrategy(AI);
                 board.setColor('w');
-                while (!board.isCheckmated() && board.isStalemated()){
+                while (!board.isCheckmated() && !board.isStalemated()){
                 	string userMove1 = "";
                        	string userMove2 = "";
-                      	board.printBoard();
+                      	/*std::cout << board.printBoard() << std::endl;
                         cout << "Enter the location of the piece you want to move." << endl;
                         cin >> userMove1;
                     	cout << "Enter the location of where you want to move." << endl;
-                        cin >> userMove2;
-                        while (!(board.updateBoard(userMove1,userMove2))) {
+                        cin >> userMove2;*/
+                        while (1) {
+				board.setColor('w');
                         	userMove1 = "";
                         	userMove2 = "";
-                              	board.printBoard();
+                              	std::cout << board.printBoard() << std::endl;
                               	cout << "Enter the location of the piece you want to move." << endl;
                            	cin >> userMove1;
                            	cout << "Enter the location of where you want to move." << endl;
                            	cin >> userMove2;
+                                if (board.updateBoard(userMove1, userMove2)) {
+					break;
+				} else {
+					cout << "Invalid move, input move again." << endl;
+				}
+			} 
+			board.setColor('b');
+			/*string output = "";
+			string firstOutput = "";
+			string secondOutput = "";
+			output = AI->getBestMove();
+			firstOutput = output.substr(0,2);
+			secondOutput = output.substr(2,2);
+			if (!(board.updateBoard(firstOutput,secondOutput))){
+				cout << "Error! Random bot output invalid move." << endl;
+				return 1;
+			}*/
+                        if (board.isCheckmated() || board.isStalemated()) {
+				break;
 			}
-		board.setColor('b');
-		string output = "";
-		string firstOutput = "";
-		string secondOutput = "";
-		output = AI->getBestMove();
-		firstOutput = output.substr(0,2);
-		secondOutput = output.substr(2,2);
-		if (!(board.updateBoard(firstOutput,secondOutput))){
-			cout << "Error! Random bot output invalid move." << endl;
-			return 1;
-			}
+                        board.playEngineMove();
 		}	
 	}
 
