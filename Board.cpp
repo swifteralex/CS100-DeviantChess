@@ -61,6 +61,16 @@ void Board::setStrategy(AIStrategy* strat) {
     }
     strategy = strat;
 }
+
+void Board::playEngineMove() {
+    if (strategy) {
+        std::string move = strategy->getBestMove();
+        std::string start = move.substr(0, 2);
+        std::string end = move.substr(2, 2);
+        updateBoard(start, end);
+    }
+}
+
 void Board::setPosition(const std::vector<std::vector<char>>& in) {
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {
