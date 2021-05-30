@@ -96,7 +96,6 @@ int main() {
 			board.setColor('b');
 			board.playEngineMove();
 			}
-			delete AI;
 		}
 	    else if (userInput == '3') {
 		AIStrategy* AI = new Random(&board);
@@ -131,7 +130,6 @@ int main() {
 			return 1;
 			}
 		}	
-	delete AI;
 	}
 
 		else {
