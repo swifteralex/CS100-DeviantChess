@@ -1,7 +1,7 @@
 #include "Board.h"
 #include "Piece.h"
 #include <sstream>
-
+#include <iostream>
 Board::Board() : ChessObject('w', "board"),strategy(nullptr) {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
@@ -67,6 +67,7 @@ void Board::playEngineMove() {
         std::string move = strategy->getBestMove();
         std::string start = move.substr(0, 2);
         std::string end = move.substr(2, 2);
+	std::cout << "Computer just played " << start << "-> " << end << std::endl;
         updateBoard(start, end);
     }
 }
