@@ -98,6 +98,28 @@ TEST(CheckmateTest, FifthPosition) {
     board.castlingPrivileges = "-";
     EXPECT_EQ(board.isCheckmated(), false);
 }
+#include <iostream>
+TEST(CheckmateTest, SixthPosition) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { '0', '0', '0', '0', 'k', 'b', '0', '0' },
+        { '0', '0', '0', 'p', '0', 'p', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', 'Q', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'Q', '0', '0', '0' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("f8");
+    std::vector<std::string> moves = p->getLegalMoves();
+    for (int i = 0; i < moves.size(); i++) {
+        std::cout << moves[i] << std::endl;
+    }
+    EXPECT_EQ(board.isCheckmated(), false);
+}
 
 TEST(StalemateTest, FirstPosition) {
     Board board;

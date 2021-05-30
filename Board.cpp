@@ -554,29 +554,22 @@ std::string Board::printBoard() const {
 }
 
 bool Board::isCheckmated() {
-    if (isInCheck()) {
-        int kingRow = -1;
-        int kingCol = -1;
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                Piece* p = pos[row][col];
-                if (!p) {
-                    continue;
+    bool check = false;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (pos[i][j] != nullptr && (this->getColor() == pos[i][j]->getColor())) {
+                Piece* temp = pos[i][j];
+                if ((temp->getLegalMoves()).size() == 0) {
+                    check = true;
                 }
-                if (((color == 'w') && (p->getLabel() == "K")) || ((color == 'b') && (p->getLabel() == "k"))) {
-                    kingRow = row;
-                    kingCol = col;
-                    break;
+                else {
+                    return false;
                 }
             }
-            if (kingRow != -1) {
-                break;
-            }
         }
-        Piece* kingPosition = pos[kingRow][kingCol];
-        if ((kingPosition->getLegalMoves()).size() == 0) {
-            return true;
-        }
+    }
+    if (isInCheck() && check){
+        return true;
     }
     return false;
 }
