@@ -26,17 +26,17 @@ int main() {
         			cout << "Enter the location of where you want to move." << endl;
         			cin >> userMove2;
 				board.setColor('w');
-        			//while(!(board.updateBoard(userMove1, userMove2))) {
-					//cout << "Invalid move, input move again." << endl;
-		                        //userMove1 = "";
-                		        //userMove2 = "";
-                               		//board.printBoard();
-                  			//cout << "Enter the location of the piece you want to move." << endl;
-                   			//cin >> userMove1;
-                                	//cout << "Enter the location of where you want to move." << endl;
-                                	//cin >> userMove2;
+        			while(!(board.updateBoard(userMove1, userMove2))) {
+					cout << "Invalid move, input move again." << endl;
+		                        userMove1 = "";
+                		        userMove2 = "";
+                               		board.printBoard();
+                  			cout << "Enter the location of the piece you want to move." << endl;
+                   			cin >> userMove1;
+                                	cout << "Enter the location of where you want to move." << endl;
+                                	cin >> userMove2;
 	
-				//}
+				}
                                 userMove1 = "";
                                 userMove2 = "";
                                 board.printBoard();
@@ -50,16 +50,16 @@ int main() {
                                 cout << "Enter the location of where you want to move." << endl;
                                 cin >> userMove2;
 				board.setColor('b');
-				//while (!(board.updateBoard(userMove1, userMove2))) {
-					//cout << "Invalid move, input move again." << endl;
-					//userMove1 = "";
-					//userMove2 = "";
-					//board.printBoard();
-					//cout << "Enter the location of the piece you want to move." << endl;
-					//cin >> userMove1;
-					//cout << "Enter the location of where you want to move." << endl;
-					//cin >> userMove2;
-				//}
+				while (!(board.updateBoard(userMove1, userMove2))) {
+					cout << "Invalid move, input move again." << endl;
+					userMove1 = "";
+					userMove2 = "";
+					board.printBoard();
+					cout << "Enter the location of the piece you want to move." << endl;
+					cin >> userMove1;
+					cout << "Enter the location of where you want to move." << endl;
+					cin >> userMove2;
+				}
     			}
 		}
 
@@ -83,23 +83,55 @@ int main() {
 				cin >> userMove1;
 				cout << "Enter the location of where you want to move." << endl;
 				cin >> userMove2;
-				//while (!(board.updateBoard(userMove1,userMove2))) {
-					//userMove1 = "";
-                                	//userMove2 = "";
-                                	//board.printBoard();
-                                	//cout << "Enter the location of the piece you want to move." << endl;
-                                	//cin >> userMove1;
-                                	//cout << "Enter the location of where you want to move." << endl;
-                                	//cin >> userMove2;
-				//}
+				while (!(board.updateBoard(userMove1,userMove2))) {
+					userMove1 = "";
+                                	userMove2 = "";
+                                	board.printBoard();
+                                	cout << "Enter the location of the piece you want to move." << endl;
+                                	cin >> userMove1;
+                                	cout << "Enter the location of where you want to move." << endl;
+                                	cin >> userMove2;
+				}
 			board.setColor('b');
-			//board.playEngineMove();
+			board.playEngineMove();
 			}
 			delete AI;
 		}
 	    else if (userInput == '3') {
-	
-		}
+		AIStrategy* AI = new Random(&board);
+		board.setStrategy(AI);
+                board.setColor('w');
+                while (!board.isCheckmated() && board.isStalemated()){
+                	string userMove1 = "";
+                       	string userMove2 = "";
+                      	board.printBoard();
+                        cout << "Enter the location of the piece you want to move." << endl;
+                        cin >> userMove1;
+                    	cout << "Enter the location of where you want to move." << endl;
+                        cin >> userMove2;
+                        while (!(board.updateBoard(userMove1,userMove2))) {
+                        	userMove1 = "";
+                        	userMove2 = "";
+                              	board.printBoard();
+                              	cout << "Enter the location of the piece you want to move." << endl;
+                           	cin >> userMove1;
+                           	cout << "Enter the location of where you want to move." << endl;
+                           	cin >> userMove2;
+			}
+		board.setColor('b');
+		string output = "";
+		string firstOutput = "";
+		string secondOutput = "";
+		output = AI->getBestMove();
+		firstOutput = output.substr(0,2);
+		secondOutput = output.substr(2,2);
+		if (!(board.updateBoard(firstOutput,secondOutput))){
+			cout << "Error! Random bot output invalid move." << endl;
+			return 1;
+			}
+		}	
+	delete AI;
+	}
 
 		else {
 			cout << "Error with userInput" << endl;
