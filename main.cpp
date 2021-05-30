@@ -34,8 +34,18 @@ int main() {
         			std::cout << board.printBoard() << std::endl;
         			cout << "Enter the location of the piece you want to move." << endl;
         			cin >> userMove1;
+				while (userMove1.size() != 2) {
+					cout << "Invalid. Try again." << endl;
+					cin >> userMove1;
+				}
         			cout << "Enter the location of where you want to move." << endl;
         			cin >> userMove2;
+				while (userMove2.size() != 2) {
+					cout << "Invalid. Try again." << endl;
+					cin >> userMove2;
+				}
+				transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+				transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
         			while(!(board.updateBoard(userMove1, userMove2))) {
 					cout << "Invalid move, input move again." << endl;
 		                        userMove1 = "";
@@ -43,8 +53,16 @@ int main() {
                                		board.printBoard();
                   			cout << "Enter the location of the piece you want to move." << endl;
                    			cin >> userMove1;
+					while (userMove1.size() != 2) {
+						cout << "Invalid. Try again." << endl;
+						cin >> userMove1;
+					}
                                 	cout << "Enter the location of where you want to move." << endl;
                                 	cin >> userMove2;
+					while (userMove2.size() != 2) {
+						cout << "Invalid. Try again." << endl;
+						cin >> userMove2;
+					}
 					transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
 					transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 				}
@@ -59,8 +77,18 @@ int main() {
 
                                 cout << "Enter the location of the piece you want to move." << endl;
                                 cin >> userMove1;
+				while (userMove1.size() != 2) {
+					cout << "Invalid. Try again." << endl;
+					cin >> userMove1;
+				}
                                 cout << "Enter the location of where you want to move." << endl;
                                 cin >> userMove2;
+				while (userMove2.size() != 2) {
+					cout << "Invalid. Try again." << endl;
+					cin >> userMove2;
+				}
+				transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+				transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 				while (!(board.updateBoard(userMove1, userMove2))) {
 					cout << "Invalid move, input move again." << endl;
 					userMove1 = "";
@@ -68,8 +96,16 @@ int main() {
 					std::cout << board.printBoard() << std::endl;
 					cout << "Enter the location of the piece you want to move." << endl;
 					cin >> userMove1;
+					while (userMove1.size() != 2) {
+						cout << "Invalid. Try again." << endl;
+						cin >> userMove1;
+					}
 					cout << "Enter the location of where you want to move." << endl;
 					cin >> userMove2;
+					while (userMove2.size() != 2) {
+						cout << "Invalid. Try again." << endl;
+						cin >> userMove2;
+					}
 					transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
 					transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 				}
@@ -103,8 +139,16 @@ int main() {
 						std::cout << board.printBoard() << std::endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
+						while (userMove1.size() != 2) {
+							cout << "Invalid. Try again." << endl;
+							cin >> userMove1;
+						}
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
+						while (userMove2.size() != 2) {
+							cout << "Invalid. Try again." << endl;
+							cin >> userMove2;
+						}
 						transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
 						transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 						if (board.updateBoard(userMove1, userMove2)) {
@@ -135,8 +179,16 @@ int main() {
 						std::cout << board.printBoard() << std::endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
+						while (userMove1.size() != 2) {
+							cout << "Invalid. Try again." << endl;
+							cin >> userMove1;
+						}	
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
+						while (userMove2.size() != 2) {
+							cout << "Invalid. Try again." << endl;
+							cin >> userMove2;
+						}
 						transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
 						transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 						if (board.updateBoard(userMove1, userMove2)) {
