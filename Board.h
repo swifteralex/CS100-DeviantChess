@@ -7,6 +7,7 @@
 #include <sstream>
 #include "ChessObject.h"
 #include "Piece.h"
+#include <cstring>
 #include "AIStrategy.h"
 
 class Piece;
@@ -20,6 +21,8 @@ private:
 
 	char title = 'C';
 
+	void swap(std::vector<int>, std::vector<int>);
+  
 	AIStrategy* strategy;
 	
 	std::vector<int> findVPos(const std::string &pos) const;
@@ -35,7 +38,9 @@ public:
 	// Kkq = white can only castle kingside, and black can castle both sides.
 	// "-" = no players can castle.
 	std::string castlingPrivileges = "KQkq";
-
+	void setCastling(std::string priv){
+		castlingPrivileges = priv;
+	}
 	friend class Pawn;
 	friend class Knight;
 	friend class Bishop;
@@ -51,7 +56,7 @@ public:
 
 	void playEngineMove();
                 
-	void setPosition(const std::vector<std::vector<Piece*>>&);
+	// void setPosition(const std::vector<std::vector<ChessObject*>>&);
 
 	void setPosition(const std::vector<std::vector<char>>&);
 
@@ -62,8 +67,8 @@ public:
 	std::string generateFEN() const;
 		
 	Piece* getPieceAt(const std::string &position) const;
-
-   	void printBoard() const;
+	bool updateBoard(std::string, std::string);
+   	std::string printBoard() const;
 	bool isCheckmated();
 	bool isStalemated();
 };
