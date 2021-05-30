@@ -67,7 +67,7 @@ void Board::playEngineMove() {
         std::string move = strategy->getBestMove();
         std::string start = move.substr(0, 2);
         std::string end = move.substr(2, 2);
-	std::cout << "Computer just played " << start << "-> " << end << std::endl;
+	std::cout << "Computer just played " << start << " -> " << end << std::endl;
         updateBoard(start, end);
     }
 }
