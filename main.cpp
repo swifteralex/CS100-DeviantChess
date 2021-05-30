@@ -117,9 +117,10 @@ int main() {
 			}
 			
 			else if (userColor == 'B') {
-				board.playEngineMove();
-				board.setColor('b');
 				while (!board.isCheckmated() && !board.isStalemated()){
+	                                board.playEngineMove();
+        	                        board.setColor('b');
+
 					string userMove1 = "";
 					string userMove2 = "";
 					while (1) {
