@@ -34,14 +34,14 @@ int main() {
         			std::cout << board.printBoard() << std::endl;
         			cout << "Enter the location of the piece you want to move." << endl;
         			cin >> userMove1;
-				while (userMove1.size() != 2) {
+				while (userMove1.size() > 3) {
 					cin.clear();
 					cout << "Invalid. Try again." << endl;
 					cin >> userMove1;
 				}
         			cout << "Enter the location of where you want to move." << endl;
         			cin >> userMove2;
-				while (userMove2.size() != 2) {
+				while (userMove2.size() > 3) {
 					cin.clear();
 					cout << "Invalid. Try again." << endl;
 					cin >> userMove2;
@@ -55,14 +55,14 @@ int main() {
                                		board.printBoard();
                   			cout << "Enter the location of the piece you want to move." << endl;
                    			cin >> userMove1;
-					while (userMove1.size() != 2) {
+					while (userMove1.size() > 3) {
 						cin.clear();
 						cout << "Invalid. Try again." << endl;
 						cin >> userMove1;
 					}
                                 	cout << "Enter the location of where you want to move." << endl;
                                 	cin >> userMove2;
-					while (userMove2.size() != 2) {
+					while (userMove2.size() > 3) {
 						cin.clear();
 						cout << "Invalid. Try again." << endl;
 						cin >> userMove2;
@@ -81,14 +81,14 @@ int main() {
 
                                 cout << "Enter the location of the piece you want to move." << endl;
                                 cin >> userMove1;
-				while (userMove1.size() != 2) {
+				while (userMove1.size() > 3) {
 					cin.clear();
 					cout << "Invalid. Try again." << endl;
 					cin >> userMove1;
 				}
                                 cout << "Enter the location of where you want to move." << endl;
                                 cin >> userMove2;
-				while (userMove2.size() != 2) {
+				while (userMove2.size() > 3) {
 					cin.clear();
 					cout << "Invalid. Try again." << endl;
 					cin >> userMove2;
@@ -102,14 +102,14 @@ int main() {
 					std::cout << board.printBoard() << std::endl;
 					cout << "Enter the location of the piece you want to move." << endl;
 					cin >> userMove1;
-					while (userMove1.size() != 2) {
+					while (userMove1.size() > 3) {
 						cin.clear();
 						cout << "Invalid. Try again." << endl;
 						cin >> userMove1;
 					}
 					cout << "Enter the location of where you want to move." << endl;
 					cin >> userMove2;
-					while (userMove2.size() != 2) {
+					while (userMove2.size() > 3) {
 						cin.clear();
 						cout << "Invalid. Try again." << endl;
 						cin >> userMove2;
@@ -147,14 +147,14 @@ int main() {
 						std::cout << board.printBoard() << std::endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
-						while (userMove1.size() != 2) {
+						while (userMove1.size() > 3) {
 							cin.clear();
 							cout << "Invalid. Try again." << endl;
 							cin >> userMove1;
 						}
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
-						while (userMove2.size() != 2) {
+						while (userMove2.size() > 3) {
 							cin.clear();
 							cout << "Invalid. Try again." << endl;
 							cin >> userMove2;
@@ -189,14 +189,14 @@ int main() {
 						std::cout << board.printBoard() << std::endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
-						while (userMove1.size() != 2) {
+						while (userMove1.size() > 3) {
 							cin.clear();
 							cout << "Invalid. Try again." << endl;
 							cin >> userMove1;
 						}	
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
-						while (userMove2.size() != 2) {
+						while (userMove2.size() > 3) {
 							cin.clear();
 							cout << "Invalid. Try again." << endl;
 							cin >> userMove2;
