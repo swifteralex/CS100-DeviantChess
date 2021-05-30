@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "AIStrategy.h"
 #include <iostream>
+#include <string>
 #include <cctype>
 using namespace std;
 int main() {
