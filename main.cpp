@@ -31,7 +31,7 @@ int main() {
    			 while (!board.isCheckmated() && !board.isStalemated()) {
         			string userMove1 = "";
         			string userMove2 = "";
-        			std::cout << board.printBoard() << std::endl;
+        			cout << board.printBoard() << endl;
         			cout << "Enter the location of the piece you want to move." << endl;
         			cin >> userMove1;
 				while (userMove1.size() > 3) {
@@ -72,7 +72,7 @@ int main() {
 				}
                                 userMove1 = "";
                                 userMove2 = "";
-                                std::cout << board.printBoard() << std::endl;
+                                cout << board.printBoard() << endl;
 
 				board.setColor('b');
 				if (board.isCheckmated() || board.isStalemated()) {
@@ -99,7 +99,7 @@ int main() {
 					cout << "Invalid move, input move again." << endl;
 					userMove1 = "";
 					userMove2 = "";
-					std::cout << board.printBoard() << std::endl;
+					cout << board.printBoard() << endl;
 					cout << "Enter the location of the piece you want to move." << endl;
 					cin >> userMove1;
 					while (userMove1.size() > 3) {
@@ -186,7 +186,7 @@ int main() {
 					while (1) {
 						userMove1 = "";
 						userMove2 = "";
-						std::cout << board.printBoard() << std::endl;
+						cout << board.printBoard() << endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
 						while (userMove1.size() > 3) {
