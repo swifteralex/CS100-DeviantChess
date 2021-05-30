@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "AIStrategy.h"
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <cctype>
 using namespace std;
@@ -44,7 +45,8 @@ int main() {
                    			cin >> userMove1;
                                 	cout << "Enter the location of where you want to move." << endl;
                                 	cin >> userMove2;
-	
+					transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+					transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 				}
                                 userMove1 = "";
                                 userMove2 = "";
@@ -68,6 +70,8 @@ int main() {
 					cin >> userMove1;
 					cout << "Enter the location of where you want to move." << endl;
 					cin >> userMove2;
+					transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+					transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 				}
 				board.setColor('w');
     			}
@@ -101,6 +105,8 @@ int main() {
 						cin >> userMove1;
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
+						transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+						transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 						if (board.updateBoard(userMove1, userMove2)) {
 							break;
 						} else {
@@ -131,6 +137,8 @@ int main() {
 						cin >> userMove1;
 						cout << "Enter the location of where you want to move." << endl;
 						cin >> userMove2;
+						transform(userMove1.begin(), userMove1.end(), userMove1.begin(), ::tolower);
+						transform(userMove2.begin(), userMove2.end(), userMove2.begin(), ::tolower);
 						if (board.updateBoard(userMove1, userMove2)) {
 							break;
 						} else {
