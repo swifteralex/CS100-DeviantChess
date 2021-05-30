@@ -338,6 +338,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         return false;
     }
     //just here b/c otherwise i have an error. 
+    delete prev;
     return false;
 }
 
