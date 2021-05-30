@@ -144,7 +144,7 @@ int main() {
 					while (1) {
 						userMove1 = "";
 						userMove2 = "";
-						std::cout << board.printBoard() << std::endl;
+						cout << board.printBoard() << endl;
 						cout << "Enter the location of the piece you want to move." << endl;
 						cin >> userMove1;
 						while (userMove1.size() > 3) {
@@ -219,7 +219,7 @@ int main() {
 			cout << "Error with userInput" << endl;
 			return 1;
 		}
-
+		cout << board.printBoard() << endl;
 		cout << "Good game! Do you want to play again? Enter 1 to play again or 2 to quit." << endl;   
 		cin >> secondInput;
 		while (secondInput != '1' && secondInput != '2' || !isdigit(secondInput)) {
