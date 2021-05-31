@@ -56,7 +56,14 @@
   * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
-  Screenshots of the input/output after running your application
+  <!--Screenshots of the input/output after running your application-->
+  ![](https://i.imgur.com/6UWmq09.png)
+  ![](https://i.imgur.com/lo0eDcO.png)
+  ![](https://i.imgur.com/oPqLcIQ.png)
+  ![](https://i.imgur.com/gnRRKx1.png)
+  ![](https://i.imgur.com/QA9WUTT.png)
+  ![](https://i.imgur.com/82jHgG3.png)
+  ![](https://i.imgur.com/bzNksZY.png)
  ## Installation/Usage
   <!--Instructions on installing and running your application --->
 To compile the application, use the command "cmake3 . && make && (cd Stockfish/src && make build ARCH=x86-64)".  After that, two executables will generate named main and test. The test executable runs all the unit tests together. The main executable runs the application. When running the application, it first prompts you to choose which opponent you want to play against (player, computer, or random bot). If you pick the computer or random bot, you will then be prompted to choose which color you want to play from (white or black). To play moves, you input the location of the piece you want to move, then the location of where you want to move it. The chessboard updates every move so you can see the current position as well as the move the computer has just played if the opponent is a computer. When a stalemate or checkmate is reached, the application asks whether you want to play again, selecting no exits the application while selecting yes restarts the entire process.
