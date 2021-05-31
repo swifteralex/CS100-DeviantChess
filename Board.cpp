@@ -1,7 +1,7 @@
 #include "Board.h"
 #include "Piece.h"
 #include <sstream>
-
+#include <iostream>
 Board::Board() : ChessObject('w', "board"),strategy(nullptr) {
     pos = {
         { new Rook(this, 'b', "r"), new Knight(this, 'b', "n"), new Bishop(this, 'b', "b"), new Queen(this, 'b', "q"), new King(this, 'b', "k"), new Bishop(this, 'b', "b"), new Knight(this, 'b', "n"), new Rook(this, 'b', "r") },
@@ -67,6 +67,7 @@ void Board::playEngineMove() {
         std::string move = strategy->getBestMove();
         std::string start = move.substr(0, 2);
         std::string end = move.substr(2, 2);
+	std::cout << "Computer just played " << start << " -> " << end << std::endl;
         updateBoard(start, end);
     }
 }
@@ -150,6 +151,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("h1") != nullptr){
                     if(getPieceAt("h1")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('K');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('Q');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("h1")->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -174,6 +185,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("a1")!= nullptr){
                     if(getPieceAt("a1")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('Q');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('K');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("a1")->setMoved(true);
                         swap(pos1v, pos2v);
                         std::string a1 = "a1";
@@ -191,6 +212,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("h8") != nullptr){
                     if(getPieceAt("h8")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('k');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('q');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("h8")->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -210,6 +241,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 Piece* r = getPieceAt("a8");
                 if(r != nullptr){
                     if(r->getMoved() == false && currentPiece->getMoved() == false){
+			int find = castlingPrivileges.find('q');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('k');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         r->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -222,6 +263,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         moved = true;
                     }
                 }
+            }
+            if (castlingPrivileges == "") {
+                castlingPrivileges = "-";
             }
         }
     }
@@ -263,6 +307,72 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 else{
                    moved = false;
                 }
+            }
+            if (pos1 == "e1") {
+                int find = castlingPrivileges.find('K');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+                int find2 = castlingPrivileges.find('Q');
+                if (find2 != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                }
+            }
+            if (pos1 == "e8") {
+                int find = castlingPrivileges.find('k');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+                int find2 = castlingPrivileges.find('q');
+                if (find2 != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                }
+            }
+            if (pos1 == "h1") {
+                int find = castlingPrivileges.find('K');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "a1") {
+                int find = castlingPrivileges.find('Q');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "h8") {
+                int find = castlingPrivileges.find('k');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "a8") {
+                int find = castlingPrivileges.find('q');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (castlingPrivileges == "") {
+                castlingPrivileges = "-";
+            }
+            if (pos2 == enPassantSquare) {
+                std::string remove_pawn;
+                remove_pawn.push_back(pos2[0]);
+                if (color == 'w') {
+                    remove_pawn.push_back(pos2[1] - 1);
+                } else {
+                    remove_pawn.push_back(pos2[1] + 1);
+                }
+                Piece* p = getPieceAt(remove_pawn);
+                delete p;
+                pos[56 - remove_pawn[1]][remove_pawn[0] - 97] = nullptr;
+            }
+            if ((getPieceAt(pos2)->getLabel() == "p" || getPieceAt(pos2)->getLabel() == "P") && abs(pos1.at(1) - pos2.at(1)) == 2) {
+                enPassantSquare = "";
+                enPassantSquare.push_back(pos1.at(0));
+                enPassantSquare.push_back((pos1.at(1) + pos2.at(1)) / 2);
+            } else {
+                enPassantSquare = "-";
             }
         }
     }
@@ -583,29 +693,22 @@ std::string Board::printBoard() const {
 }
 
 bool Board::isCheckmated() {
-    if (isInCheck()) {
-        int kingRow = -1;
-        int kingCol = -1;
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                Piece* p = pos[row][col];
-                if (!p) {
-                    continue;
+    bool check = false;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if (pos[i][j] != nullptr && (this->getColor() == pos[i][j]->getColor())) {
+                Piece* temp = pos[i][j];
+                if ((temp->getLegalMoves()).size() == 0) {
+                    check = true;
                 }
-                if (((color == 'w') && (p->getLabel() == "K")) || ((color == 'b') && (p->getLabel() == "k"))) {
-                    kingRow = row;
-                    kingCol = col;
-                    break;
+                else {
+                    return false;
                 }
             }
-            if (kingRow != -1) {
-                break;
-            }
         }
-        Piece* kingPosition = pos[kingRow][kingCol];
-        if ((kingPosition->getLegalMoves()).size() == 0) {
-            return true;
-        }
+    }
+    if (isInCheck() && check){
+        return true;
     }
     return false;
 }

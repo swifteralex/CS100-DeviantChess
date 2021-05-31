@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <string.h>
+#include <sys/wait.h>
 
 AIStrategy::AIStrategy(Board* b) : board(b) {}
 
@@ -27,7 +28,8 @@ std::string Stockfish::getBestMove() {
     // set up pipes for communicating with Stockfish
     pipe(to_child);
     pipe(to_parent);
-    if (fork() == 0) {
+    const int forked = fork();
+    if (forked == 0) {
         dup2(to_child[0], STDIN_FILENO);
         dup2(to_parent[1], STDOUT_FILENO);
         execlp("./Stockfish/src/stockfish", "./Stockfish/src/stockfish", NULL);
@@ -55,6 +57,7 @@ std::string Stockfish::getBestMove() {
     ret = ret.substr(9, 4);
 
     fprintf(out, "quit\n");
+    waitpid(forked, NULL, 0);
     free(line);
     fclose(in);
     fclose(out);

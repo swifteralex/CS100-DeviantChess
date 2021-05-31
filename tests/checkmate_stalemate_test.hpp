@@ -99,6 +99,24 @@ TEST(CheckmateTest, FifthPosition) {
     EXPECT_EQ(board.isCheckmated(), false);
 }
 
+TEST(CheckmateTest, SixthPosition) {
+    Board board;
+    std::vector<std::vector<char>> pos = {
+        { '0', '0', '0', '0', 'k', 'b', '0', '0' },
+        { '0', '0', '0', 'p', '0', 'p', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', 'Q', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', '0', '0', '0', '0' },
+        { '0', '0', '0', '0', 'Q', '0', '0', '0' },
+        { '0', '0', '0', '0', 'K', '0', '0', '0' }
+    };
+    board.setPosition(pos);
+    board.setColor('b');
+    Piece* p = board.getPieceAt("f8");
+    EXPECT_EQ(board.isCheckmated(), false);
+}
+
 TEST(StalemateTest, FirstPosition) {
     Board board;
     std::vector<std::vector<char>> pos = {

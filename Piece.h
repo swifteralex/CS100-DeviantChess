@@ -17,7 +17,7 @@ public:
     bool getMoved(){
         return moved;
     }
-    bool setMoved(bool m){
+    void setMoved(bool m){
         moved = m;
     }
     virtual std::vector<std::string> getLegalMoves() = 0;
