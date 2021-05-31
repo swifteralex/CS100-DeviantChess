@@ -23,6 +23,9 @@ Board::~Board() {
             }
         }
     }
+    if(strategy){
+        delete strategy;
+    }
 }
 
 std::string Board::generateFEN() const {
