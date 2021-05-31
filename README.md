@@ -60,5 +60,6 @@
  ## Installation/Usage
   Instructions on installing and running your application
  ## Testing
-  How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+  <!--How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README. --->
+We tested our project using google test and unit tests. These files are checkmate_and_stalemate_test.hpp, generate_FEN_test.hpp, get_legal_moves_test.hpp, is_in_check_test.hpp, updateBoardTest.h, and unit_tests.cpp. The checkmate_and_stalemate_test.hpp tests the isCheckmated() and isStalemated() functions, generate_FEN_test.hpp tests the generateFEN() function, get_legal_moves_test.hpp tests all of the piece's getLegalMoves() functions, is_in_check_test.hpp tests the isInCheck() function, and the updateBoardTest.h tests the updateBoard(string,string) function. All of our unit tests pass.
  
