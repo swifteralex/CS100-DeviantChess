@@ -126,6 +126,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         if(pos2v[0] == pos1v[0]){
             if(pos[pos2v[0]][pos2v[1]] != nullptr){
                 // std::cout << "Invalide Pawn Placement" << std::endl;
+                //delete prev;
+                //delete currentPiece;
                 return false;
             }
         }
@@ -169,9 +171,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         swap(h, f);
                         moved = true;
                     }
-                    else {return false;}
+                    else {
+                        //delete prev;
+                        //delete currentPiece;
+                        return false;}
                 }
-                else {return false;}
+                else {
+                    //delete prev;
+                    //delete currentPiece;
+                    return false;
+                }
             }
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("a1")!= nullptr){
@@ -263,6 +272,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     // if the piece is not the currentTurn's piece it doesnt move. 
     if(currentPiece->getColor() != color){
         // std::cout << "Cannot Move Enemy Pieces. " << std::endl;
+        //delete prev;
+        //delete currentPiece;
         return false;
     }
     
@@ -286,6 +297,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 if(pos[pos2v[0]][pos2v[1]]->getColor() != color){ //only moves if the space is filled with a different colored piece. i.e. 
                     prev = pos[pos2v[0]][pos2v[1]];
                     swap(pos1v, pos2v);
+                    //delete pos[pos1v[0]][pos1v[1]];
                     pos[pos1v[0]][pos1v[1]] = nullptr;
                     //std::cout <<  "this works" << std::endl;
                     // std::cout << "Move Successful" << std::endl;
@@ -364,18 +376,22 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
                     promo = true;
                 }
                 else if(legalPromo[i]== "q"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
                     promo = true;
                 }
                 else if(legalPromo[i] == "n"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
                     promo = true;
                 }
                 else if(legalPromo[i] == "r"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
                     promo = true;
                 }
@@ -388,21 +404,25 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             //std::cout << pos2c.substr(2,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i]== "q"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "n"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "r"){
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
@@ -413,6 +433,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     }
     if(promo == false && currentPiece->getLabel() == "p"){
         if(pos2v[0] == 7){
+            delete pos[pos1v[0]][pos1v[1]];
+            delete pos[pos2v[0]][pos2v[1]];
             pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
             pos[pos2v[0]][pos2v[1]] = prev;
             // std::cout << "King is in Check. Invalid Move" << std::endl;
@@ -421,6 +443,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     }
     else if(promo == false && currentPiece->getLabel() == "P"){
         if(pos2v[0] == 0){
+            delete pos[pos1v[0]][pos1v[1]];
+            delete pos[pos2v[0]][pos2v[1]];
             pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'w', "P");
             pos[pos2v[0]][pos2v[1]] = prev;
             // std::cout << "King is in Check. Invalid Move" << std::endl;
@@ -433,11 +457,14 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     }
     //if after move the player's  king is in check, reverts the board. 
     else if(isInCheck() == true){
+        delete pos[pos1v[0]][pos1v[1]];
         pos[pos1v[0]][pos1v[1]] = pos[pos2v[0]][pos2v[1]];
+        delete pos[pos2v[0]][pos2v[1]];
         pos[pos2v[0]][pos2v[1]] = prev;
         // std::cout << "King is in Check. Invalid Move" << std::endl;
         return false;
     }
+    delete currentPiece;
     delete prev;
     //just here b/c otherwise i have an error. 
     return false;
@@ -446,8 +473,10 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
 
 void Board::swap(std::vector<int> pos1, std::vector<int> pos2){
     Piece* prev = pos[pos2[0]][pos2[1]];
+    //delete pos[pos2[0]][pos2[1]];
     pos[pos2[0]][pos2[1]] = pos[pos1[0]][pos1[1]];
     pos[pos1[0]][pos1[1]] = prev;
+    delete prev;
 }
 
 bool Board::isInCheck() const {
