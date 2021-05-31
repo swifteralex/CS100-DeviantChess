@@ -149,6 +149,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if(move[i] == "e1g1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("h1") != nullptr){
                     if(getPieceAt("h1")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('K');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('Q');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("h1")->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -166,6 +176,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             else if(move[i] == "e1c1" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("a1")!= nullptr){
                     if(getPieceAt("a1")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('Q');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('K');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("a1")->setMoved(true);
                         swap(pos1v, pos2v);
                         std::string a1 = "a1";
@@ -183,6 +203,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             else if(move[i] == "e8g8" && move[i].substr(2,4) == pos2){
                 if(getPieceAt("h8") != nullptr){
                     if(getPieceAt("h8")->getMoved() == false && currentPiece->getMoved() == false){
+                        int find = castlingPrivileges.find('k');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('q');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         getPieceAt("h8")->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -202,6 +232,16 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 Piece* r = getPieceAt("a8");
                 if(r != nullptr){
                     if(r->getMoved() == false && currentPiece->getMoved() == false){
+			int find = castlingPrivileges.find('q');
+                        if (find != std::string::npos) {
+                            castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                            int find2 = castlingPrivileges.find('k');
+                            if (find2 != std::string::npos) {
+                                castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                            }
+                        } else {
+                            return false;
+                        }
                         r->setMoved(true);
                         currentPiece->setMoved(true);
                         swap(pos1v, pos2v);
@@ -214,6 +254,9 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         moved = true;
                     }
                 }
+            }
+            if (castlingPrivileges == "") {
+                castlingPrivileges = "-";
             }
         }
     }
@@ -252,6 +295,53 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                 else{
                    moved = false;
                 }
+            }
+            if (pos1 == "e1") {
+                int find = castlingPrivileges.find('K');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+                int find2 = castlingPrivileges.find('Q');
+                if (find2 != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                }
+            }
+            if (pos1 == "e8") {
+                int find = castlingPrivileges.find('k');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+                int find2 = castlingPrivileges.find('q');
+                if (find2 != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find2);
+                }
+            }
+            if (pos1 == "h1") {
+                int find = castlingPrivileges.find('K');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "a1") {
+                int find = castlingPrivileges.find('Q');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "h8") {
+                int find = castlingPrivileges.find('k');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (pos1 == "a8") {
+                int find = castlingPrivileges.find('q');
+                if (find != std::string::npos) {
+                    castlingPrivileges.erase(castlingPrivileges.begin() + find);
+                }
+            }
+            if (castlingPrivileges == "") {
+                castlingPrivileges = "-";
             }
         }
     }
