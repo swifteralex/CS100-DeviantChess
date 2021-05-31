@@ -355,6 +355,25 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             if (castlingPrivileges == "") {
                 castlingPrivileges = "-";
             }
+            if (pos2 == enPassantSquare) {
+                std::string remove_pawn;
+                remove_pawn.push_back(pos2[0]);
+                if (color == 'w') {
+                    remove_pawn.push_back(pos2[1] - 1);
+                } else {
+                    remove_pawn.push_back(pos2[1] + 1);
+                }
+                Piece* p = getPieceAt(remove_pawn);
+                delete p;
+                pos[56 - remove_pawn[1]][remove_pawn[0] - 97] = nullptr;
+            }
+            if ((getPieceAt(pos2)->getLabel() == "p" || getPieceAt(pos2)->getLabel() == "P") && abs(pos1.at(1) - pos2.at(1)) == 2) {
+                enPassantSquare = "";
+                enPassantSquare.push_back(pos1.at(0));
+                enPassantSquare.push_back((pos1.at(1) + pos2.at(1)) / 2);
+            } else {
+                enPassantSquare = "-";
+            }
         }
     }
     //invalid move. returns false
