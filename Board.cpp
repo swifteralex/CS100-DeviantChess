@@ -285,22 +285,22 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             // std::cout << pos2c.substr(1,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'b', "b");
                     promo = true;
                 }
                 else if(legalPromo[i]== "q"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'b', "q");
                     promo = true;
                 }
                 else if(legalPromo[i] == "n"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'b', "n");
                     promo = true;
                 }
                 else if(legalPromo[i] == "r"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'b', "r");
                     promo = true;
                 }
@@ -313,25 +313,25 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
             //std::cout << pos2c.substr(2,3) << std::endl;
             if(legalPromo[i] == pos2c.substr(2,3)){
                 if(legalPromo[i] == "b"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Bishop(this, 'w', "B");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i]== "q"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Queen(this, 'w', "Q");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "n"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Knight(this, 'w', "N");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
                 }
                 else if(legalPromo[i] == "r"){
-                    //delete pos[pos2v[0]][pos2v[1]];
+                    delete pos[pos2v[0]][pos2v[1]];
                     pos[pos2v[0]][pos2v[1]] = new Rook(this, 'w', "R");
                     pos[pos2v[0]][pos2v[1]]->setMoved(true);
                     promo = true;
