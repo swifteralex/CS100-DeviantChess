@@ -125,8 +125,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         if(pos2v[0] == pos1v[0]){
             if(pos[pos2v[0]][pos2v[1]] != nullptr){
                 // std::cout << "Invalide Pawn Placement" << std::endl;
-                delete prev;
-                delete currentPiece;
+                //delete prev;
+                //delete currentPiece;
                 return false;
             }
         }
@@ -161,13 +161,13 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
                         moved = true;
                     }
                     else {
-                        delete prev;
-                        delete currentPiece;
+                        //delete prev;
+                        //delete currentPiece;
                         return false;}
                 }
                 else {
-                    delete prev;
-                    delete currentPiece;
+                    //delete prev;
+                    //delete currentPiece;
                     return false;
                 }
             }
@@ -228,8 +228,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     // if the piece is not the currentTurn's piece it doesnt move. 
     if(currentPiece->getColor() != color){
         // std::cout << "Cannot Move Enemy Pieces. " << std::endl;
-        delete prev;
-        delete currentPiece;
+        //delete prev;
+        //delete currentPiece;
         return false;
     }
     
