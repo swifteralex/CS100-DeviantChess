@@ -342,8 +342,8 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
     }
     if(promo == false && currentPiece->getLabel() == "p"){
         if(pos2v[0] == 7){
-            // delete pos[pos1v[0]][pos1v[1]];
-            // delete pos[pos2v[0]][pos2v[1]];
+            delete pos[pos1v[0]][pos1v[1]];
+            delete pos[pos2v[0]][pos2v[1]];
             pos[pos1v[0]][pos1v[1]] = new Pawn(this, 'b', "p");
             pos[pos2v[0]][pos2v[1]] = prev;
             // std::cout << "King is in Check. Invalid Move" << std::endl;
