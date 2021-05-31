@@ -373,7 +373,7 @@ bool Board::updateBoard(std::string pos1, std::string pos2c){
         // std::cout << "King is in Check. Invalid Move" << std::endl;
         return false;
     }
-    delete currentPiece;
+    //delete currentPiece;
     delete prev;
     //just here b/c otherwise i have an error. 
     return false;
