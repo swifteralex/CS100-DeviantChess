@@ -34,9 +34,8 @@
   * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
     * Create smaller development tasks as issues and assign them to team members. Place these in the `TODO` column.
     * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-    * 
   ## Class Diagram
-  ![diagram](https://i.imgur.com/lzDYoYT.png)
+  ![diagram](https://imgur.com/OmtBrV7.png)
   This diagram shows both of our design patterns. We have used the composite pattern -- the ChessObject class is the component, the Knight, Pawn, Bishop, etc. classes (all derived from a Piece class) are leafs, and the Board class is the composite class. We also used the strategy pattern for our chess ai's, enabling us to reference each ai with one AIStrategy type. Each ChessObject has a color; the Board class' color represents the current turn and the Piece class' color represents the color of the piece.
   
   The Board class contains data for the position of the board -- a 8x8 2d array of Piece*, 1 string representing castling rights for each player ("-" = no castling, "KkQq" = both sides can castle queen and kingside, etc.), and an en-passant square if the last move was a pawn going two squares ("-" if not). The class also contains a generateFEN() function that will be used by the engines. The function playMove(), aided by the isInCheck() and getLegalMoves() functions, will take in a string representing a move (ex. "a1 c2" would move a knight from square a1 to c2 if possible), returning false if the move isn't legal. The Board constructor should set up the pieces in their starting positions among other actions.
