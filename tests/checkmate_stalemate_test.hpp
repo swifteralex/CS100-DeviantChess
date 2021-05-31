@@ -114,10 +114,6 @@ TEST(CheckmateTest, SixthPosition) {
     board.setPosition(pos);
     board.setColor('b');
     Piece* p = board.getPieceAt("f8");
-    std::vector<std::string> moves = p->getLegalMoves();
-    for (int i = 0; i < moves.size(); i++) {
-        std::cout << moves[i] << std::endl;
-    }
     EXPECT_EQ(board.isCheckmated(), false);
 }
 
