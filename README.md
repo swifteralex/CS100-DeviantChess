@@ -64,7 +64,6 @@
   ![](https://i.imgur.com/QA9WUTT.png)
   ![](https://i.imgur.com/82jHgG3.png)
   ![](https://i.imgur.com/bzNksZY.png)
-  ![](https://i.imgur.com/qWdD6qB.png)
  ## Installation/Usage
   <!--Instructions on installing and running your application --->
 To install onto your repository use "git clone --recursive \<repoLink>".
