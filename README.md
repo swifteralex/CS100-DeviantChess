@@ -66,7 +66,7 @@
   ![](https://i.imgur.com/bzNksZY.png)
  ## Installation/Usage
   <!--Instructions on installing and running your application --->
-To install onto your repository use "git clone --recursive <repoLink>"
+To install onto your repository use "git clone --recursive <repoLink>".
 To compile the application, after clonging the repository, use the command "cmake3 . && make && (cd Stockfish/src && make build ARCH=x86-64)".  After that, two executables will generate named main and test. The test executable runs all the unit tests together. The main executable runs the application. When running the application, it first prompts you to choose which opponent you want to play against (player, computer, or random bot). If you pick the computer or random bot, you will then be prompted to choose which color you want to play from (white or black). To play moves, you input the location of the piece you want to move, then the location of where you want to move it. The chessboard updates every move so you can see the current position as well as the move the computer has just played if the opponent is a computer. When a stalemate or checkmate is reached, the application asks whether you want to play again, selecting no exits the application while selecting yes restarts the entire process.
  ## Testing
   <!--How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README. --->
